@@ -1,5 +1,5 @@
 # MySQL.  Versions 4.1 and 5.0 are recommended.
-# 
+#
 # Install the MYSQL driver
 #   gem install mysql2
 #
@@ -16,7 +16,7 @@ development:
   pool: 5
   username: root
   password: tmedia
-  socket: /var/lib/mysql/mysql.sock
+  #socket: /var/lib/mysql/mysql.sock
 
 main_site_development:
   adapter: mysql2
@@ -26,7 +26,7 @@ main_site_development:
   pool: 5
   username: root
   password: tmedia
-  socket: /var/lib/mysql/mysql.sock
+  #socket: /var/lib/mysql/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -39,7 +39,7 @@ test:
   pool: 5
   username: root
   password: tmedia
-  socket: /var/lib/mysql/mysql.sock
+  #socket: /var/lib/mysql/mysql.sock
 
 production:
   adapter: mysql2
@@ -49,7 +49,7 @@ production:
   pool: 5
   username: cp_intranet
   password: c43p1u547#!
-  socket: /var/lib/mysql/mysql.sock
+  #socket: /var/lib/mysql/mysql.sock
 
 main_site_production:
   adapter: mysql2
@@ -59,4 +59,4 @@ main_site_production:
   pool: 5
   username: careplus
   password: careplus47#!
-  socket: /var/lib/mysql/mysql.sock
+  #socket: /var/lib/mysql/mysql.sock

@@ -1,0 +1,55 @@
+<div id="shoutbox-<%= shoutbox.id %>" class="reply level-<%= shoutbox.ancestry_depth %>">
+  <p class="date-details">
+    <%= l(shoutbox.created_at, :format => :short) %>,
+
+    <% if current_user and current_user.id == shoutbox.user.id %>
+      <strong>
+        <%= link_to "you", shoutbox.user, :title => "#{shoutbox.user.first_name} #{shoutbox.user.last_name}" %>
+      </strong>
+    <% else %>
+      <strong>
+        <%= link_to "#{shoutbox.user.first_name} #{shoutbox.user.last_name}", shoutbox.user, :title => "#{shoutbox.user.first_name} #{shoutbox.user.last_name}" %>
+      </strong>
+    <% end %> wrote:
+  </p>
+
+  <% unless shoutbox.reported.blank? %>
+    <p>
+      <strong>This shout has been reported</strong>.<br />
+      <!-- <a href="#msg-<%= shoutbox.id %>" data-class="hidden" class="toggle-class" data-return="false">Show me anyway</a> -->
+    </p>
+    
+    <div class="message reported hidden" id="msg-<%= shoutbox.id %>">
+  <% else %>
+    <% if current_user and current_user.id != shoutbox.user.id %>
+    <%= form_for(@shoutbox, :html => { :class => "report-form"}) do |f| %>
+      <%= f.hidden_field :reported, :value => "1" %>
+      <%= f.hidden_field :shout_id, :value => shoutbox.id %>
+      
+      <%= f.submit "Report" %>
+    <% end %>
+  <% end %>
+    
+    <div class="message" id="msg-<%= shoutbox.id %>">
+  <% end %>
+  
+    <%= raw shoutbox.message %>
+  </div>
+
+
+  <% unless shoutbox.edited_at.blank? %>
+    <p>
+      <strong>
+        This post was last edited on <%= l(shoutbox.edited_at, :format => :short) %>.
+      </strong>
+    </p>
+  <% end %>
+
+  <div class="shout-controls">
+    <%= link_to "Reply", new_shoutbox_path(:parent_id => shoutbox.id) %>
+  
+    <% if current_user and current_user.id == shoutbox.user_id %>
+      | <%= link_to 'Edit', edit_shoutbox_path(shoutbox) %>
+    <% end %>
+  </div>
+</div>

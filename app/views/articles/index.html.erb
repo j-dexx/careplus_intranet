@@ -1,0 +1,38 @@
+<section class="internal-content">
+  <div class="inner">
+    <h1 class="item-header"><span>News</span></h1>
+    
+    <% unless !@articles.blank? %>
+      <p class="text-center">There are currently no articles.</p>
+    <% end %>
+    
+    <% @articles.each do |article| %>
+      <% unless article.image.blank? %>    
+        <div class="internal-news-pebble">
+          <%= link_to article do %>
+            <div class="image">
+              <%= image_tag article.image.index, :alt => "#{article.headline}" %>
+              
+              <div class="clip"></div>
+            </div>
+          <% end %>
+        
+          <div class="details">
+            <h2><%= link_to truncate(sanitize(article.headline, :tags => []), length: 40), article, :title => article.headline %></h2>
+            
+            <span class="published">
+              Published: <%= l(article.date) %>
+            </span>
+            
+            <!-- <p><%= truncate(sanitize(article.summary, :tags => []), length: 30) %></p> -->
+            
+            <p>
+              <%= link_to "Read more >>", article, :title => article.headline %>
+            </p>
+          </div>
+        </div>    
+      <% end %>
+    <% end %>
+    <div class="clear"></div>
+  </div>
+</section>

@@ -1,0 +1,12 @@
+<% unless article.image.blank? %>    
+  <div class="news-pebble">
+    <%= link_to article do %>
+      <div class="image">
+        <%= image_tag article.image.index, :alt => "#{article.headline}" %>
+        <div class="clip"></div>
+      </div>
+        
+      <%= article.headline %>
+    <% end %>
+  </div>    
+<% end %>

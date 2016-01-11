@@ -1,0 +1,23 @@
+<html lang="en">
+  <body>
+  
+    <p>
+      <strong>Name:</strong>
+      <br />
+      <%= @staff_suggestion.name %>
+    </p>
+    
+    <p>
+      <strong>Email:</strong>
+      <br />
+      <%= mail_to(@staff_suggestion.email) %>
+    </p> 
+    
+    <p>
+      <strong>Suggestion:</strong>
+      <br />
+      <%= @staff_suggestion.suggested %>
+    </p>
+    
+  </body>
+</html>

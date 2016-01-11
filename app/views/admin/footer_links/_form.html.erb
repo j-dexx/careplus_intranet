@@ -1,0 +1,27 @@
+<%= form_for([:admin, @footer_link]) do |f| %>
+
+  <%= f.error_messages %>
+
+  <%= field_set_tag 'Basic' do -%>
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :link %><br />
+      <%= f.text_field :link %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :display %><br />
+      <%= f.check_box :display, :checked => "checked" %>
+    </div>
+    
+  <% end -%>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+<% end %>					

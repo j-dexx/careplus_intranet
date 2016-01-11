@@ -1,0 +1,132 @@
+<section class="internal-content">
+  <div class="inner">
+    <h1 class="item-header">
+      <span><%= @shoutbox.title %></span>
+    </h1>
+    
+    <% unless @shoutbox.sale_item.blank? %>
+    <ul class="inline-list breadcrumb-links">
+      <li>
+        You are here:
+      </li>
+      
+      <li>
+        <%= link_to 'Buy and Sell', sale_categories_path %>
+      </li>
+      
+      <li>
+        >
+      </li>
+      
+      <li>
+        <%= link_to @shoutbox.sale_category.title, @shoutbox.sale_category %>
+      </li>
+      
+      <li>
+        >
+      </li>
+      
+      <li>
+        <strong>
+          <%= @shoutbox.title %>
+        </strong>
+      </li>
+    </ul>
+    <% end %>
+    
+    <% unless @shoutbox.item_sold.blank? %>
+      <h2>This item is now sold.</h2>
+      
+      
+      <% if !@shoutbox.sale_item.blank? and !@shoutbox.item_sold.blank? and current_user and current_user.id == @shoutbox.user.id %>
+        <%= form_for(@shoutbox) do |f| %>
+          <%= f.hidden_field :item_sold, :value => "0" %>
+          <%= f.hidden_field :id, :value => @shoutbox.id %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+          <%= f.hidden_field :display, :value => "1" %>
+          <div class="actions">
+            <%= f.submit "Mark as not sold" %>
+          </div>
+        <% end %>
+      <% end %>
+      
+    <% end %>
+    
+    <% unless notice.blank? %>
+      <p id="flash_notice"><%= notice %></p>
+    <% end %>
+    
+    <% unless @shoutbox.sale_item.blank? %>
+      <p>
+        This sale item was created by <strong><%= @shoutbox.user.first_name %> <%= @shoutbox.user.last_name %></strong> on
+        <strong><%= l(@shoutbox.created_at, :format => :short) %></strong> and has <strong><%= @shoutbox.descendants.count %></strong> replies,
+        it is filed in <strong><%= @shoutbox.sale_category.title %></strong>.
+      </p>
+    <% else %>
+      <p>
+        This post was created by <strong><%= @shoutbox.user.first_name %> <%= @shoutbox.user.last_name %></strong> on
+        <strong><%= l(@shoutbox.created_at, :format => :short) %></strong> and has <strong><%= @shoutbox.descendants.count %></strong> replies.
+      </p>
+    <% end %>
+    
+    <% if !@shoutbox.sale_item.blank? and @shoutbox.item_sold.blank? and current_user and current_user.id == @shoutbox.user.id %>
+      <%= form_for(@shoutbox) do |f| %>
+        <%= f.hidden_field :item_sold, :value => "1" %>
+        <%= f.hidden_field :id, :value => @shoutbox.id %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :display, :value => "1" %>
+        <div class="actions">
+          <%= f.submit "Mark as sold" %>
+        </div>
+      <% end %>
+    <% end %>
+    
+    
+    
+    <div class="reply level-0">
+    <% if params[:page] == nil %>
+      
+      <% unless @shoutbox.image.blank? %>
+        <div class="float-left">
+          <%= link_to @shoutbox.image.url, :rel => "shadowbox" do %>
+            <%= image_tag @shoutbox.image.index, :class=> "image-left", :alt => @shoutbox.title %>
+          <% end %>
+        </div>
+        
+        <div class="float-left">
+          <p class="small">Click the photo to see a bigger version.</p>
+        </div>
+        
+        <div class="clear"></div>
+      <% end %>
+      
+      <%= render 'shout', :shout => @shoutbox %>
+    <% end %>
+    </div>
+
+
+
+    <%= nested_shoutboxes @replies %>
+    
+    <% if !current_user %>
+      <% session[:return_to] = request.original_url %>
+      <p>To contribute to this shout, you must be <%= link_to 'logged in', login_path %>.</p>
+    <% end %>
+
+    <hr />
+
+    <div id="shout-<%= @shoutbox.id %>" class="hidden">
+      <%= render 'reply_form' %>
+    </div>
+
+    <% if !@shoutbox.sale_category.blank? %>
+      <%= link_to 'Back', sale_category_path(@shoutbox.sale_category), :class => "back-link" %>
+    <% elsif !@shoutbox.rumour.blank? %>
+      <%= link_to 'Back', rumours_path, :class => "back-link" %>
+    <% else %>
+      <%= link_to 'Back', shoutboxes_path, :class => "back-link" %>
+    <% end %>
+
+    <%#= paginate @replies %>
+  </div>
+</section>

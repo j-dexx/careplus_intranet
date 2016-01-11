@@ -1,0 +1,12 @@
+<% title Event.model_name.human.pluralize %>
+
+<div class="admin_functions">
+  <%= link_to "New #{ Event.model_name.human }", new_admin_event_path %>
+</div>
+
+<p>Events where the end date has passed are not shown regardless of their display setting.</p>
+
+<%= informant_table @events, {
+      :headings => [ :name, :start_datetime, :end_datetime, :image, :display, '', '' ], 
+      :body => [ :name, it_local(:start_datetime, :short), it_local(:end_datetime, :short), it_edit_images(:image), it_ajax_toggle(:display), it_edit, it_destroy ]
+    } %>

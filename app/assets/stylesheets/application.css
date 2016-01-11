@@ -1,0 +1,44 @@
+/*
+ *= require reset
+ *= require foundation_and_overrides
+ *= require core
+ *= require main
+ *= require header
+ *= require navigation
+ *= require home
+ *= require internal
+ *= require services
+ *= require footer
+ *= require users
+ *= require advanced_css
+ *= require media_queries
+ *= require shadowbox
+ *= require venue
+ *= require members
+ *= require_self
+*/
+
+/*
+ *= require jquery.fileupload-ui
+*/
+
+input.check_box {
+  vertical-align: middle;
+}
+
+.upload {
+  border-top: solid 1px #CCC;
+  width: 400px;
+  padding-top: 10px;
+  margin-top: 10px;
+
+  .progress {
+    margin-top: 8px;
+    border: solid 1px #555;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    .bar {
+      height: 10px;
+    }
+  }
+}

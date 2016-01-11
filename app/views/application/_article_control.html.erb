@@ -1,0 +1,11 @@
+<li>
+  <%= link_to truncate(sanitize(article.headline, :tags => []), length: 35), article, :"data-banner-id" => "#banner-#{index}", :class => "banner-control-#{index} display-block #{extra_class}" %>
+  
+  <!--
+  <div class="summary">
+  <%= truncate(sanitize(article.summary, :tags => []), length: 48) %>
+  </div>  
+  
+  <%= link_to "Read", article, :class => "read-more display-block" %>
+  -->
+</li>

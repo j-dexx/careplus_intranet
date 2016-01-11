@@ -1,0 +1,27 @@
+<h1>Listing award_votes</h1>
+
+<table>
+  <tr>
+    <th>Award</th>
+    <th>Nomination</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @award_votes.each do |award_vote| %>
+  <tr>
+    <td><%= award_vote.award %></td>
+    <td><%= award_vote.nomination %></td>
+    <td><%= award_vote.user %></td>
+    <td><%= link_to 'Show', award_vote %></td>
+    <td><%= link_to 'Edit', edit_award_vote_path(award_vote) %></td>
+    <td><%= link_to 'Destroy', award_vote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Award vote', new_award_vote_path %>

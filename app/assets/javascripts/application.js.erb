@@ -1,0 +1,187 @@
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// the compiled file.
+//
+// WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
+// GO AFTER THE REQUIRES BELOW.
+//
+//= require jquery
+//= require jquery_ujs
+//= require jquery-ui
+//= require tinymce/tinymce.jquery
+//= require foundation/jquery.placeholder.js
+//= require foundation/jquery.foundation.alerts.js
+//= require foundation/jquery.foundation.accordion.js
+//= require foundation/jquery.foundation.buttons.js
+//= require foundation/jquery.foundation.tooltips.js
+//= require foundation/jquery.foundation.forms.js
+//= require foundation/jquery.foundation.tabs.js
+//= require foundation/jquery.foundation.navigation.js
+//= require foundation/jquery.foundation.topbar.js
+//= require foundation/jquery.foundation.reveal.js
+//= require foundation/jquery.foundation.orbit.js
+//= require foundation/jquery.foundation.magellan.js
+//= require foundation/jquery.foundation.joyride.js
+//= require foundation/jquery.foundation.clearing.js
+//= require foundation/jquery.foundation.mediaQueryToggle.js
+//= require modernizr
+//= require shadowbox
+if (!$('html').hasClass('ie7')) {
+  Shadowbox.init();
+}
+
+$(document).on("click", ".toggle-class", function() {
+  var toggleContainer = this.hash;
+  var toggleClass = $(this).attr('data-class');
+  var dataReturn  = $(this).attr('data-return');
+  $(toggleContainer).toggleClass(toggleClass);
+  
+  if (dataReturn == 'false') {
+    return false;
+  }
+  
+});
+
+tinyMCE.baseURL = "/assets/tinymce/";
+
+tinyMCE.init({
+  selector: 'textarea.tinymce',
+  theme: 'modern',
+  plugins: 'media preview mantimage mantlink code textcolor paste emoticons',
+  content_css: '<%= asset_path('core.css') %>',
+  menubar: "edit insert view format tools",
+  toolbar: 'styleselect | link image emoticons | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent',
+  link_list: '/stored_documents.js',
+  image_list: '/stored_images.js'
+});
+
+var toggleTimer;
+var togglePosition;
+
+$(document).on("click", ".banner-control", function(event) {
+  var bannerToShowId = $(this).attr('data-banner-id');
+  
+  if(togglePosition != bannerToShowId) {
+    $('.banner').hide();
+    $(bannerToShowId).show();
+    $(".banner-controls a").removeClass('active');
+    $(this).addClass('active');
+  }
+  
+  toggleTimer = clearTimeout(toggleTimer);
+  
+  event.preventDefault();
+});
+
+$(document).ready(function() {
+  // Setup some ticker variables
+  
+  var toggleItems     = $('.banner');
+  var toggleItemTotal = toggleItems.length;
+
+  togglePosition = 0;
+  var toggleSpeed    = 7000;
+  toggleTimer    = setInterval(tickerToggle, toggleSpeed);
+
+  // Actually do stuff
+  function tickerToggle() {
+    var fadeOut = togglePosition;
+
+    if(togglePosition == toggleItemTotal - 1) {
+      togglePosition = 0;
+    } else {
+      togglePosition++;
+    }
+    
+    if (!$('html').hasClass('ie7')) {
+      $('#banner-' + fadeOut).hide();      
+      $('#banner-' + togglePosition).show();
+      
+      $('.banner-controls a').removeClass('active');
+      $('.banner-control-' + togglePosition).addClass('active');
+    } else {
+      $('#banner-' + togglePosition).removeClass('hidden');
+      $('#banner-' + fadeOut).addClass('hidden');
+      
+      /*
+      $('.banner-controls a').removeClass('active');
+      $('.banner-control-' + togglePosition).addClass('active');
+      */
+    }
+    
+  }
+  
+  // Setup some ticker variables  
+  var benefitToggleItems     = $('.benefit');
+  var benefitToggleItemTotal = benefitToggleItems.length;
+
+  var benefitTogglePosition = 0;
+  var benefitToggleSpeed    = 3500;
+  var benefitToggleTimer    = setInterval(benefitToggle, benefitToggleSpeed);
+
+  // Actually do stuff
+  function benefitToggle() {
+    var fadeOut = benefitTogglePosition;
+
+    if(benefitTogglePosition == benefitToggleItemTotal - 1) {
+      benefitTogglePosition = 0;
+    } else {
+      benefitTogglePosition++;
+    }
+    
+    if (!$('html').hasClass('ie7')) {
+      $('#benefit-' + fadeOut).hide();
+       $('#benefit-' + benefitTogglePosition).show();
+    } else {
+      $('#benefit-' + benefitTogglePosition).removeClass('hidden');
+      $('#benefit-' + fadeOut).addClass('hidden');
+      
+    }
+    
+  }
+  
+  // adapted from http://stackoverflow.com/a/6781074
+  
+  
+  /*
+  if (Modernizr.mq('only screen and (min-width: 768px)') || $('html').hasClass('ie7')  || $('html').hasClass('ie8')) {
+    var maxHeight = -1;
+  
+    $('.equal-height').each(function() {
+      maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
+    });
+  
+    if ($('html').hasClass('ie8')) {
+      maxHeight -= 3;
+    }
+  
+    maxHeight = Math.round(maxHeight);
+    
+    $('.equal-height').each(function() {      
+      $(this).height(maxHeight);
+    });
+  }
+  */
+  
+  
+  /*
+  $("#benefits-slider").orbit({
+    animation: 'fade',
+    animationSpeed: 500,
+    advanceSpeed: 3500,
+    fluid: '9x1',
+    timer: true
+  });
+  */
+  
+  $(".dropdown").hover(function(){
+    $(this).children("ul").stop().fadeIn('fast');
+  }, function(){
+    $(this).children("ul").stop().fadeOut('fast');   
+  });
+});

@@ -1,0 +1,57 @@
+<section class="internal-content">
+  <div class="inner">
+    <h1 class="item-header">
+      <span>Edit Post</span>
+    </h1>
+    
+    <% unless @shoutbox.root.sale_item.blank? %>
+      <ul class="inline-list breadcrumb-links">
+        <li>
+          You are here:
+        </li>
+        
+        <li>
+          <%= link_to 'Buy and Sell', sale_categories_path %>
+        </li>
+        
+        <li>
+          >
+        </li>
+        
+        <li>
+          <%= link_to @shoutbox.root.sale_category.title, @shoutbox.root.sale_category %>
+        </li>
+        
+        <li>
+          >
+        </li>
+        
+        <li>
+          <%= link_to @shoutbox.root.title, @shoutbox.root %>
+        </li>
+        
+        <li>
+          >
+        </li>
+        
+        <li>
+          <strong>
+            Edit shout
+          </strong>
+          
+          <!--
+            <span>(posted <%= l(@shoutbox.created_at, :format => :short) %>)</span>
+          -->
+          <% unless @shoutbox.edited_at.blank? %>
+            <span>(last edited <%= l(@shoutbox.edited_at, :format => :short) %>)</span>
+          <% end %>
+        </li>
+      </ul>
+    <% end %>
+    
+    
+    <%= render 'form' %>
+    
+    <%#= link_to 'Back to shout', @shoutbox %>
+  </div>
+</section>

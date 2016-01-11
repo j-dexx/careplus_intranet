@@ -1,0 +1,79 @@
+<!--
+<div id="cookie-warning">
+  <div>
+    <p>
+      By continuing to use this website, you agree to our use of cookies.
+
+      <a href="#cookie-warning" class="toggle-class float-right cookie-warning-link" data-class="hidden" data-return="false">Close</a>
+    </p>
+  </div>
+</div>
+-->
+
+<header>
+  <div class="inner">
+    <div id="logo">
+      <%= link_to image_tag("logo.png"), root_path, :class => "float-left" %>
+
+      <div class="float-right">
+        <span class="intranet-text">Intranet for</span>
+        <h1>Care Plus Group</h1>
+      </div>
+    </div>
+
+    <aside>
+      
+    </aside>
+
+  </div>
+</header>
+
+<nav class="main-navigation">
+  <div class="inner">
+    <div class="links">
+      <a href="#menu" data-class="mobile-hidden" class="toggle-class show-for-small">Menu</a>
+
+      <ul id="menu" class="mobile-hidden">
+       <% navigation = Willow::Branch.where(:tree => "Main Navigation") %>
+        <% unless navigation.blank? %>
+          <% navigation.roots.order(:position).each_with_index do |branch, i| %>
+            <li>
+              <% if @current_branch and @current_branch.name == branch.name %>
+                <% if branch.name == 'Red Tape Challenge' %>
+                    <%= link_to branch.name, branch.destination, :class => "red-tape-challenge red-tape-current" %>
+                <% else %>
+                    <%= link_to branch.name, branch.destination, :class => "current" %>
+                <% end %>
+              <% else %>
+                <% if branch.name == 'Red Tape Challenge' %>
+                  <%= link_to branch.name, branch.destination, :class => "red-tape-challenge" %>
+                <% else %>
+                  <%= link_to branch.name, branch.destination %>
+                <% end %>
+              <% end %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+      
+    <div class="user-details">
+      <% if current_user %>
+          <div class="dropdown">
+            <%= link_to "Account", edit_user_path(current_user), :class => "username" %>
+            
+            <ul class="dropdown-links">
+              <li class="padded"><%= current_user.first_name %></li>
+              <li><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>
+              <li><%= link_to 'Your Posts', posts_users_path %></li>
+              <li><%= link_to 'Your Rumours', rumours_users_path %></li>
+              <li><%= link_to 'Your Sales', sales_users_path %></li>
+              <li><%= link_to 'Logout', logout_path %></li>
+            </ul>
+          </div>
+      <% else %>
+        <%= link_to 'Login', login_path, :class => "username" %>
+      <% end %>
+    </div>
+  </div>
+</nav>

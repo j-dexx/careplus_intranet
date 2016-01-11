@@ -1,0 +1,42 @@
+<h2><%= @shoutbox.title %></h2>
+
+<p><%= @shoutbox.user.first_name %> <%= @shoutbox.user.last_name %>, <%= l(@shoutbox.created_at, :format => :short) %>:</p>
+
+<div>
+  <%= raw @shoutbox.message %>
+</div>
+
+
+<% unless @shoutbox.edited_at.blank? %>
+  <strong>This was last edited at <%= l(@shoutbox.edited_at, :format => :short) %></strong>
+<% end %>
+
+
+<%= form_for([:admin, @shoutbox]) do |f| %>
+
+  <%= f.error_messages %>
+
+  <%= field_set_tag 'Basic' do -%>
+    <% unless @shoutbox.sale_category.blank? %>
+      <div class="field">
+        <%= f.label :sale_category_id %><br />
+        <%= f.select :sale_category_id, SaleCategory.all.map{|x| [x.title, x.id]} %>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :reported %><br />
+      <%= f.check_box :reported %>
+    </div>
+
+    <div class="field">
+      <%= f.label :display %><br />
+      <%= f.check_box :display %>
+    </div>
+  <% end -%>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

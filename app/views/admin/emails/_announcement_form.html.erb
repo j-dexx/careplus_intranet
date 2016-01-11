@@ -1,0 +1,17 @@
+<%= field_set_tag 'Content' do -%>
+  <div class="field">
+    <%= label_tag 'email[heading]', 'Heading' %><br />
+    <%= text_field_tag 'email[heading]', @email.heading %>
+  </div>
+
+  <div class="field">
+    <%= label_tag 'email[summary]', 'Subheading' %><br />
+    <%= text_field_tag 'email[summary]', @email.summary %>
+  </div>
+
+  <div class="field">
+    <%= label_tag 'email[content]', 'Body content' %><br />
+    <%= text_area_tag 'email[content]', @email.content %>
+  </div>
+
+<% end -%>

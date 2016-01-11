@@ -1,0 +1,45 @@
+<% title "Edit #{ AwardSuggestedNomination.model_name.human }" %>
+
+<div class="admin_functions">
+  <%= link_to 'Back', admin_award_award_suggested_nominations_path %>
+</div>
+
+<p>
+  Nominee:
+  
+  <strong>
+    <% unless @award_suggested_nomination.user_nominated.blank? %>
+      <%= @award_suggested_nomination.user_nominated.first_name %> <%= @award_suggested_nomination.user_nominated.last_name %>
+    <% else %>
+      <%= @award_suggested_nomination.name %>
+      
+      <% unless @award_suggested_nomination.email.blank? %>
+        <%= @award_suggested_nomination.email %>
+      <% end %>
+      
+      <%= @award_suggested_nomination.telephone %>
+    <% end %>
+  </strong>
+</p>
+
+<p>
+  Nominated by:
+  
+  <strong>
+    <%= @award_suggested_nomination.user_nominated_by.first_name %> <%= @award_suggested_nomination.user_nominated_by.last_name %>
+    <%= @award_suggested_nomination.user_nominated_by.email %>
+    
+    <% unless @award_suggested_nomination.user_nominated_by.phone_number.blank? %>
+      <%= @award_suggested_nomination.user_nominated_by.phone_number %>
+    <% end %>
+  </strong>
+</p>
+
+<p>
+  Reason: 
+  <%= @award_suggested_nomination.reason %>
+</p>
+
+<%=
+  render 'form'
+%>

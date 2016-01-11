@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Position:</b>
+  <%= @member.position %>
+</p>
+
+<p>
+  <b>First name:</b>
+  <%= @member.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @member.last_name %>
+</p>
+
+<p>
+  <b>Role:</b>
+  <%= @member.role %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= @member.image %>
+</p>
+
+<p>
+  <b>Biography:</b>
+  <%= @member.biography %>
+</p>
+
+<p>
+  <b>Display:</b>
+  <%= @member.display %>
+</p>
+
+
+<%= link_to 'Edit', edit_member_path(@member) %> |
+<%= link_to 'Back', members_path %>

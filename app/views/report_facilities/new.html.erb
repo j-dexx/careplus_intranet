@@ -1,0 +1,22 @@
+<section class="internal-content">
+  <div class="inner">
+      
+    <h1 class="item-header">
+      <span>Report a Facilities Issue</span>
+    </h1>
+    
+    <p>To use the contact form below, please enter your name and email address and the building in question and a description of the issue and press submit and we will log this and get back to you directly.</p>
+  
+    <% unless notice.blank? %>
+      <h2>
+        <span>Successfully submitted</span>
+      </h2>
+      <p><%= notice %></p>
+    <% end %>
+    
+    <div class="information">  
+      <%= render "form" %>
+    </div>
+    
+  </div>
+</section>

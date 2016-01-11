@@ -1,0 +1,9 @@
+<li>
+  <%= link_to truncate(sanitize(event.name, :tags => []), length: 48), event, :"data-banner-id" => "#banner-#{index}", :class => "banner-control banner-control-#{index + 1} display-block #{extra_class}" %>
+  
+  <div class="summary">
+  <%= l(event.start_datetime, :format => :short) %> - <%= l(event.end_datetime, :format => :short) %>
+  </div>
+  
+  <%= link_to "Read", event, :class => "read-more display-block" %>
+</li>

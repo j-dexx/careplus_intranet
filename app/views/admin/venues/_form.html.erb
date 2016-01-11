@@ -1,0 +1,38 @@
+<%= form_for([:admin, @venue]) do |f| %>
+
+  <%= f.error_messages %>
+
+  <%= field_set_tag 'Basic' do -%>
+    
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :address %> <br />
+      <%= f.text_area :address %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :postcode %><br />
+      <%= f.text_field :postcode %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :image %><br />
+      <%= f.image_field :image %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :display %><br />
+      <%= f.check_box :display, :checked => "checked" %>
+    </div>
+    
+  <% end -%>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+<% end %>					

@@ -1,0 +1,37 @@
+<%= form_for([:admin, @slider]) do |f| %>
+
+  <%= f.error_messages %>
+
+  <%= field_set_tag 'Basic' do -%>
+    
+    <div class="field">
+      <%= f.label :headline %><br />
+      <%= f.text_field :headline %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :image %><br />
+      <%= f.image_field :image %>
+    </div>
+    
+    <div class="field">
+      <p>
+        Paste the full link in this field, a link should look similar to this:<br />
+        http://www.google.co.uk.
+      </p>
+      <%= f.label :link %><br />
+      <%= f.text_field :link %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :display %><br />
+      <%= f.check_box :display, :checked => true %>
+    </div>
+    
+  <% end -%>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+<% end %>					

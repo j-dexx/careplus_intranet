@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Award:</b>
+  <%= @award_nomination.award %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @award_nomination.user %>
+</p>
+
+
+<%= link_to 'Edit', edit_award_nomination_path(@award_nomination) %> |
+<%= link_to 'Back', award_nominations_path %>

@@ -1,0 +1,28 @@
+<section class="internal-content">
+  <div class="inner">
+      
+    <h1 class="item-header">
+      <span>Staff Suggestion Scheme</span>
+    </h1>
+
+    <div class="information">  
+    
+    <p>Have you got a good idea? A suggestion for saving money, new way of working or do you just want to ask why don't we?</p>
+
+    <p>Fill in the form below to put your suggestion to the Staff Voice committee who will review all suggestions and take the best ones forward. </p>
+
+    <p>The best suggestion of the year will be presented with a certificate at the AMM following shortlisting at Staff Voice and these being put on intranet for voting by all staff.</p>
+  
+    <% unless notice.blank? %>
+      <h2>
+        <span>Successfully submitted</span>
+      </h2>
+      <p><%= notice %></p>
+    <% end %>
+    
+    
+      <%= render "form" %>
+    </div>
+    
+  </div>
+</section>

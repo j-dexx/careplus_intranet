@@ -1,0 +1,17 @@
+<li><%= link_to 'Pages', main_app.admin_pages_path %></li>
+<li><%= link_to Article.model_name.human.pluralize, main_app.admin_articles_path %></li>
+<li><%#= link_to Event.model_name.human.pluralize, main_app.admin_events_path %></li>
+<li><%= link_to "Forum, Sales, Rumours", main_app.admin_shoutboxes_path %></li>
+<li><%= link_to User.model_name.human.pluralize, main_app.admin_users_path %></li>
+<li><%= link_to SaleCategory.model_name.human.pluralize, main_app.admin_sale_categories_path %></li>
+<li><%= link_to Email.model_name.human.pluralize, main_app.admin_emails_path %></li>
+<li><%= link_to StaffBenefit.model_name.human.pluralize, main_app.admin_staff_benefits_path %></li>
+<li><%#= link_to Slider.model_name.human.pluralize, main_app.admin_sliders_path %></li>
+<li><%= link_to Award.model_name.human.pluralize, main_app.admin_awards_path %></li>
+
+
+
+<li><%= link_to FooterLink.model_name.human.pluralize, main_app.admin_footer_links_path %></li>
+<li><%= link_to Venue.model_name.human.pluralize, main_app.admin_venues_path %></li>
+<li><%= link_to Member.model_name.human.pluralize, main_app.admin_members_path %></li>
+<%# END OF LIST %>

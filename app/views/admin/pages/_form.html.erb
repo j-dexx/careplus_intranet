@@ -1,0 +1,13 @@
+<%= form_for([:admin, @page]) do |f| %>
+
+  <%= f.error_messages %>
+  
+  <%= render 'form_fields', :f => f %>
+
+  <%= f.branch_fields %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+<% end %>

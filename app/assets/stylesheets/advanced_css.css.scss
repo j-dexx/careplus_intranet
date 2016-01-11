@@ -1,0 +1,276 @@
+@import "variables";
+@import "functions";
+
+/*
+ *
+ * Use this file for any modnerizr based classes, please.
+ *
+*/
+
+.multiplebgs .item-header span {
+  padding: 0 emCalc(30);
+  background:
+    image-url('header-lines-left.png') center left no-repeat,
+    image-url('header-lines-right.png') center right no-repeat;
+}
+
+.multiplebgs .item-header .star-awards {
+  padding: 0 emCalc(30);
+  background:
+    image-url('header-lines-star-left.png') center left no-repeat,
+    image-url('header-lines-star-right.png') center right no-repeat;
+}
+
+.multiplebgs .item-header.dark-lines span {
+  padding: 0 emCalc(30);
+  background:
+    image-url('header-dark-lines-left.png') center left no-repeat,
+    image-url('header-dark-lines-right.png') center right no-repeat;
+}
+
+.multiplebgs .internal-content {
+  .item-header span, .item-header .star-awards {
+    padding: 0 1.5em;
+  }
+}
+
+.star-awards-header {
+  background: image-url('header-faded-star.png') center no-repeat;
+  
+  div {
+    font-size: inherit;
+  }
+}
+
+.ie8 {  
+  .orbit {
+    height: 60px !important;
+  }
+  
+  .banners li div {
+    right: -1px;
+  }
+  
+  .benefits-area-placeholder a:link, .benefits-area-placeholder a:hover, .benefits-area-placeholder a:visited, .benefits-area-placeholder a:active {
+    font-weight: normal;
+  }
+  
+  .banner-descriptions .item-header {
+    margin-right: emCalc(5);
+  }
+  
+  .item-header {
+    margin-left: emCalc(5);
+    margin-right: emCalc(5);
+    background: image-url('header-lines-left.png') center left no-repeat;
+    
+    span {
+      display: block;
+      background: image-url('header-lines-right.png') center right no-repeat;
+    }
+  }
+  
+  .star-awards-header {
+    margin-left: emCalc(5);
+    background: image-url('header-lines-star-left.png') center left no-repeat;
+    
+    span {
+      display: block;
+      background: image-url('header-lines-star-right.png') center right no-repeat;
+    }
+    
+    div {
+      background: image-url('header-faded-star.png') center no-repeat;
+    }
+  }
+  
+  .item-header.dark-lines {
+    margin-left: emCalc(5);
+    background: image-url('header-dark-lines-left.png') center left no-repeat;
+    
+    span {
+      display: block;
+      background: image-url('header-dark-lines-right.png') center right no-repeat;
+    }
+  }
+  
+  .footer-useful-links .useful-links-button {
+    height: 81px;
+  }
+  
+  #report-incident {
+    width: 303px;    
+  }
+  
+  .shout, .shout a, div.social-item, blockquote.social-item, .opinion a, .sale a, .internal-content p a, .award .title a,
+  .page-content a, .back-link, .sub-nav li a, .shout.sale a, .reply, .shout-controls, a.main-button, input[type='text'], input[type='password'], input[type='email'], textarea,
+  input[type='submit'], .main-navigation input[type="search"], .home-shouts, .home-sales, .staff-benefits .links-inner, .email-sign-up .inner, .main-navigation .inner, header .inner, .user-details .username, .charity .inner,  .home-useful-links .links-inner, #staff-benefits .links-inner, .banners li img, .category, .internal-content .inner, .forum-content .inner {
+    behavior: url(/assets/PIE.htc);      
+    position: relative;
+  }
+  
+  .home-shouts .item-header {
+    width: 100%;
+    margin: 0;
+    padding-right: 2%;
+    padding-left: 2%;
+    background-color: $section_opinion_colour;
+    
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+    
+    behavior: url(/assets/PIE.htc);      
+    position: relative;
+  }
+  
+  .home-sales .item-header {
+    width: 100%;
+    margin: 0;
+    padding-right: 2%;
+    padding-left: 2%;
+    background-color: $section_testimonial_colour;
+    
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+    
+    behavior: url(/assets/PIE.htc);      
+    position: relative;
+  }
+  
+  .main-navigation .user-details .username {
+    -moz-border-radius: 0 10px 10px 0;
+    -webkit-border-radius: 0 10px 10px 0;
+    border-radius: 0 10px 10px 0;
+    
+    behavior: url(/assets/PIE.htc);      
+    position: relative;
+  }
+  
+  #staff-benefits li img {
+    -moz-border-radius: 0 0 10px 10px;
+    -webkit-border-radius: 0 0 10px 10px;
+    border-radius: 0 0 10px 10px;
+    
+    behavior: url(/assets/PIE.htc);      
+    position: relative;
+    z-index: 0;
+  }
+  
+  #staff-benefits li div, .banners li div {
+    -moz-border-radius: 10px 0 0 10px;
+    -webkit-border-radius: 10px 0 0 10px;
+    border-radius: 10px 0 0 10px;
+    
+    behavior: url(/assets/PIE.htc);
+    position: absolute;
+    z-index: 2;
+    overflow: hidden;
+  }
+  
+  .email-sign-up .inner {
+    -moz-border-radius: 10px 10px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0;
+    
+    behavior: url(/assets/PIE.htc);
+  }
+  
+  .charity .inner {
+    -moz-border-radius: 0 0 10px 10px;
+    -webkit-border-radius: 0 0 10px 10px;
+    border-radius: 0 0 10px 10px;
+    
+    behavior: url(/assets/PIE.htc);
+  }
+  
+  .dropdown-links {
+    -moz-border-radius: 10px 0 10px 10px;
+    -webkit-border-radius: 10px 0 10px 10px;
+    border-radius: 10px 0 10px 10px;
+    
+    behavior: url(/assets/PIE.htc);
+  }
+  
+  .icons {
+    text-align: right;
+    width: 50%;
+  }
+}
+
+.ie7 {
+  .cookie-warning-link {
+    display: none;
+  }
+  
+  .useful-information .footer-information {
+    width: 31%;
+  }
+  
+  .useful-information .search-input {
+    width: 50%;
+  }
+  
+  
+  .banners img {
+    border: 0;
+  }
+  
+  .main-navigation li, .sub-navigation li {
+    float: left;
+  }
+  
+  .module-image {
+    border: 0;
+  }
+  
+  .banner-area {
+    overflow: hidden;
+  }
+  
+  .banners li {
+    display: list-item;
+  }
+  
+  .banner.hidden {
+    display: none;
+  }
+  
+  .internal-news-pebble:last-of-type {
+    clear: left;
+  }
+  
+  .services .service-item div {
+    float: left;
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .social-item {
+    padding: emCalc(8) 1px;
+  }
+  
+  header aside {
+    width: 43%;
+  }
+  
+  .date .float-right {
+    float: none;
+  }
+  
+  .banners {
+    /*width: 659px;*/
+    height: 399px;
+    overflow: hidden;
+  }
+  
+  .benefits {
+    width: 20%;
+  }
+  
+  .benefit {
+    height: auto;
+    width: auto;
+  }
+}

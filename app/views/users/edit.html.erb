@@ -1,0 +1,42 @@
+<section class="internal-content">
+  <div class="inner">  
+    <h1 class="item-header">
+      <span>Edit Your Profile</span>
+    </h1>
+
+    <p><%= link_to 'View your profile', @user %> as others would see it.</p>
+    <%#= link_to 'Back', users_path %>
+    
+    <%= render 'edit_form' %>
+    
+    <hr />
+    
+    <%= form_for(@user) do |f| %>
+      <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    
+          <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      
+      <div class="field half-width">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, :value => '' %>
+      </div>
+    
+      <div class="field half-width">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, :value => '' %>
+      </div>
+      
+      <div class="actions">
+        <%= f.submit "Change password" %>
+      </div>
+    <% end %>
+  </div>
+</section>

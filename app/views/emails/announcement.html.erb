@@ -1,0 +1,81 @@
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="#EAECEB" width="600" align="center">
+  <tr>
+    <td width="600" bgcolor="#EAECEB" height="15">
+      <div style="line-height: 15px;">
+        &nbsp;
+      </div>
+    </td>
+  </tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="#EAECEB" width="600" align="center">
+  <tr>
+    <td width="600" bgcolor="#EAECEB">
+      <table cellpadding="0" cellspacing="0" border="0" bgcolor="#EAECEB" width="560" align="center">
+        <tr>
+          <td width="560" style="padding: 10px; background-color: #FFF" bgcolor="#FFF" align="left">
+            <div style="background-color: #FFF; font-family: Rockwell, Palatino Linotype, Georgia, serif; color:#000; font-size: 24px;">
+              <%= @email.heading %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td width="560" style="padding: 10px; background-color: #FFF" bgcolor="#FFF" align="left">
+            <div style="background-color: #FFF; font-family: Rockwell, Palatino Linotype, Georgia, serif; color: #28BBEF; font-size: 16px;">
+              <%= @email.summary %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td width="560" style="background-color: #000" bgcolor="#000" height="15" align="center">
+            <div style="background-color: #000; line-height: 15px;">
+              &nbsp;
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td width="560" style="padding: 10px; background-color: #FFF" bgcolor="#FFF" align="center">
+            <div style="background-color: #FFF;">
+       	      <% if @email.image? %>
+                <%= absolute_image_tag @email.image.announcement, {
+                      :alt => @email.image_alt,
+                      :title => @email.image_alt,
+                      :width => "560",
+                      :height => "300",
+                      :style => "display:block;",
+                      :border => "0"
+                    } %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td width="560" style="background-color: #000" bgcolor="#000" height="15" align="center">
+            <div style="background-color: #000; line-height: 15px;">
+              &nbsp;
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td width="560" style="padding: 10px; background-color: #FFF" bgcolor="#FFF" align="left">
+            <div style="background-color: #FFF; color: #000; font-family: Arial, Helvetica, sans-serif;">
+              <%= raw @email.content.gsub("\n", '<br />') %>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="#EAECEB" width="600" align="center">
+  <tr>
+    <td width="600" bgcolor="#EAECEB" height="15">
+      <div style="line-height: 15px;">
+        &nbsp;
+      </div>
+    </td>
+  </tr>
+</table>
+
+<%#= render 'blue_boxes' %>

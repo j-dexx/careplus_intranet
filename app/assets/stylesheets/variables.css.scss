@@ -1,0 +1,118 @@
+$main_font: Calibri, Lucida Grande, Arial, Tahoma, sans-serif;
+
+$background_colour: #e7f5fc ;
+$background_image:  'background.png';
+
+
+$notice_background_colour:    #a41984;
+$notice_text_colour:          #fff;
+
+$notice_link_colour:          #fff;
+$notice_link_visited_colour:  #fff;
+$notice_link_hover_colour:    #fff;
+$notice_link_active_colour:   #fff;
+
+$default_link_colour:         #000;
+$default_link_visited_colour: #000;
+$default_link_hover_colour:   #000;
+$default_link_active_colour:  #000;
+
+$nhs_colour: #0d7bc0;
+
+$complimentary_colour: #8cc63f;
+
+$navigation_background_colour: $complimentary_colour;
+$navigation_background_hover_colour: #b7db86;
+$navigation_border_colour: #6d9b2f;
+$navigation_link_colour: #fff;
+
+$sub_navigation_background_hover_colour: #fff;
+$sub_navigation_hover_colour: #a41984;
+$sub_navigation_link_colour: #fff;
+$sub_navigation_service_link_colour: #a41984;
+
+$account_navigation_background_colour: #0d7bc0;
+
+$banner_background_colour: #bdd1dc;
+
+$notice_box_background_colour: #0d7bc0;
+$notice_box_text_colour: #fff;
+
+$content_background_colour: #e7f5fc;
+$content_border_colour: 		#cbe6f6;
+
+$main_button_text_colour: #000;
+$main_button_text_hover_colour: #fff;
+$main_button_background_colour: $content_border_colour;
+$main_button_background_hover_colour: darken($content_border_colour, 15%);
+
+$section_news_colour:         		#1b445c;
+$section_news_link_colour:    	  #1b445c;
+$section_news_text_link_hover_colour: #FFF;
+$section_news_link_hover_colour:  #61903e;
+$section_news_button_background_colour: #a2d6f3;
+
+
+
+$section_twitter_colour: 		  #112937;
+$section_twitter_text_colour: #fff;
+$section_twitter_link_colour: #9dd0ed;
+$section_twitter_date_colour: #c6d1d9;
+
+$section_opinion_colour: 		    #76ab41;
+$section_opinion_text_colour:   #fff;
+$section_opinion_link_colour:   #96c11f;
+$section_opinion_header_colour: #feff9b;
+
+$section_testimonial_colour: 			#b91f41;
+$section_testimonial_link_colour: #CE4F6B;
+$section_testimonial_text_colour: #fff;
+
+$section_email_sign_up_colour: 							 #1b445c;
+$section_email_sign_up_text_colour: 				 #fff;
+$section_email_sign_up_complimentary_colour: #96c11f;
+
+$section_useful_links_colour: 		 #133142;
+$section_useful_links_text_colour: #fff;
+$section_useful_links_link_colour: #fff;
+$section_useful_links_text_colour: #fff;
+
+$reported_reply_colour: #a41984;
+$standard_reply_background_colour: #f2fafd;
+$shout_controls_background_colour: #e7f5fc;
+
+$emphasis_colour: #1b445c;
+
+$form_label_colour: #bdbdbd;
+$form_input_border_colour: #cccccc;
+
+$footer_header_background_colour: $section_testimonial_colour;
+$footer_header_colour: #fff;
+$footer_background_colour:  #fff;
+$footer_text_colour: #000;
+$footer_bullet_colour: $section_email_sign_up_complimentary_colour;
+
+$submit_background_colour: #cbe6f6;
+$submit_colour: #000;
+$submit_background_hover_colour: lighten($footer_header_background_colour, 25%);
+
+$charity_background_colour: #f50000;
+$charity_text_colour: 			#fff;
+
+$module_image_border_colour: $navigation_background_colour;
+
+$banner_text_colour: #000;
+
+@mixin zero {
+	padding: 0px; 
+	margin: 0px; 
+	border: 0px;
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

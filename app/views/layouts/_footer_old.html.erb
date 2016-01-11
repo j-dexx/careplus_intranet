@@ -1,0 +1,71 @@
+
+
+<% unless @footer_links.blank? %>
+<section class="email-sign-up">
+  <div class="inner">
+
+    <ul class="inline-list">
+      <% @footer_links.each do |footer_link| %>
+        <li>
+          <%= link_to footer_link.title, footer_link.link %>
+        </li>
+      <% end %>
+
+    <!--
+      <li><%= link_to 'Sign in', '#' %></li>
+      <li><%= link_to 'NHS Mail', '#' %></li>
+      <li><%= link_to 'NEL CCG intranet', '#' %></li>
+      <li><%= link_to 'NLG intranet', '#' %></li>
+      <li><%= link_to 'Training calendar', '#' %></li>
+      <li><%= link_to 'Citrix', '#' %></li>
+      <li><%= link_to 'Report Facilities issues', '#' %></li>
+      <li><%= link_to 'End of Life Care', '#' %></li>
+    -->
+    </ul>
+
+  </div>
+</section>
+<% end %>
+
+<div class="charity">
+  <div class="inner">
+    <span>Our charity</span>
+
+    <%= link_to image_tag("footer/care4all.jpg", :alt => "Care4All - our charity"), "http://www.care4all.org.uk/" %>
+  </div>
+</div>
+
+<footer class="page-bottom">
+  <div class="inner">
+    <div class="ukas float-left">
+      <%= link_to image_tag("footer/ukas.jpg", :alt => "UKAS"), "/pages/iso-9001-2008" %>
+    </div>
+
+    <% unless SITE_SETTINGS["Address"].blank? %>
+      <div class="address float-left">
+        <% address_lines = SITE_SETTINGS["Address"].split(",") %>
+
+        <% address_lines.each_with_index do |address_line, i| %>
+
+          <% if i == 0 %>
+            <div class="name"><%= address_line %></div>
+
+            <% elsif i == address_lines.length - 1 %>
+              <%= address_line %>
+            <% else %>
+              <%= address_line %> <span class="bullet">&bull;</span>
+          <% end %>
+
+        <% end %>
+
+        <% unless SITE_SETTINGS["Telephone"].blank? %>
+          <div class="telephone emphasis"><%= SITE_SETTINGS["Telephone"] %></div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="nhs-logo float-right">
+      <%= image_tag "footer/nhs.jpg", :alt => "NHS" %>
+    </div>
+  </div>
+</footer>

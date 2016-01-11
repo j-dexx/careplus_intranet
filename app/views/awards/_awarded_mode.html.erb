@@ -1,0 +1,71 @@
+<h1>
+          Winner:
+          <% unless @award.award_suggested_nomination.name.blank? %>
+            <%= @award.award_suggested_nomination.name %>
+          <% else %>
+            <%= @award.award_suggested_nomination.user_nominated.first_name %>
+            <%= @award.award_suggested_nomination.user_nominated.last_name %>
+          <% end %>
+        </h1>
+        
+        <p>
+          
+          You voted for
+          
+          <% unless @award_user_voted.blank? %>
+            <strong>
+            
+            <% unless @award_user_voted[0].nomination.award_suggested_nomination.name.blank? %>
+              <%= @award_user_voted[0].nomination.award_suggested_nomination.name %>
+            <% else %>
+              <%= @award_user_voted[0].nomination.award_suggested_nomination.user_nominated.first_name %>
+              <%= @award_user_voted[0].nomination.award_suggested_nomination.user_nominated.last_name %>.
+            <% end %>
+            </strong>
+          <% else %>
+            nobody
+          <% end %>
+          
+          
+          and nominated
+          
+          <% unless @award_user_nomination.blank? %>
+            
+            <% unless @award_user_nomination[0].name.blank? %>
+              
+              <strong>
+                <%= @award_user_nomination[0].name %>
+              </strong>
+              
+            <% else %>
+              
+              <strong>
+                <%= @award_user_nomination[0].user_nominated.first_name %> <%= @award_user_nomination[0].user_nominated.last_name %>
+              </strong>
+              
+            <% end %>
+            
+          <% else %>
+            
+            nobody
+            
+          <% end %>
+        </p>
+          
+        <h2>Award Nominations</h2>        
+        
+        <% @award_finalised_nominations.each do |x| %>
+          <strong class="name"><%= x.award_suggested_nomination.name %></strong>
+          
+          <% @award_nominations[x.award_suggested_nomination.name.upcase].each_with_index do |x, index| %>
+            <p>
+              <strong>Reason <%= index + 1 %></strong>
+              
+              <br />
+            
+              <%= x.reason %>
+            </p>
+          <% end %>
+          
+          <hr />
+        <% end %>

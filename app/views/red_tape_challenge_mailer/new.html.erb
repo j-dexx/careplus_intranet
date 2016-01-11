@@ -1,0 +1,31 @@
+<html lang="en">
+  <body>
+  
+    <p>
+      <strong>Name:</strong>
+      <br />
+      <% unless @red_tape_challenge.name.blank? %>
+          <%= mail_to(@red_tape_challenge.name) %>
+      <% else %>
+          None provided
+      <% end %>
+    </p>
+    
+    <p>
+      <strong>Email:</strong>
+      <br />
+      <% unless @red_tape_challenge.email.blank? %>
+          <%= mail_to(@red_tape_challenge.email) %>
+      <% else %>
+          None provided
+      <% end %>
+    </p> 
+    
+    <p>
+      <strong>Suggestion:</strong>
+      <br />
+      <%= @red_tape_challenge.suggested %>
+    </p>
+    
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<section class="internal-content">
+  <div class="inner">
+    <h1 class="star-awards-header item-header"><span class="star-awards">Star Awards</span></h1>
+    
+    <h2>Nominate</h2>
+    
+    <% unless @awards_nomination_mode.blank? %>
+      <p>These awards are in nomination mode. Click the award to nominate.</p>
+    <% else %>
+      <p>There are no awards to show.</p>
+    <% end %>
+    
+    <% @awards_nomination_mode.each do |award| %>
+      <div class="award float-left">
+        <div class="title">
+          <%= link_to award.title, award %>
+        </div>
+        
+        <% unless award.image.blank? %>        
+          <%= link_to (image_tag award.image.index, :alt => award.title), award %>
+        <% else %>
+          <%= link_to (image_tag "award-image-small.png", :alt => award.title), award %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</section>

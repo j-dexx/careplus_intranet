@@ -1,0 +1,48 @@
+<%
+navigation     = Willow::Branch.where(:tree => "Main Navigation")
+has_navigation = false;
+%>
+
+<section class="internal-content">
+  <div class="inner">
+    <% navigation.roots.order(:position).each_with_index do |branch, i| %>      
+      <% if @current_branch and @current_branch.name == branch.name %>      
+        <% unless branch.children.blank? %>
+          <% has_navigation = true %>
+          <div class="information">
+        <% end %>
+      <% end %>
+    <% end %>
+  
+    <h1 class="star-awards-header item-header">
+      <span class="star-awards"><%= @page.title %></span>
+    </h1>
+    
+    <% if @page.image? %>
+      <%= image_tag @page.image.show %>
+    <% end %>
+    
+    <%= raw @page.content.gsub('%20', ' ') %>
+      
+    <% if has_navigation == true %>
+      </div>
+    <% end %>
+    
+    <% navigation.roots.order(:position).each_with_index do |branch, i| %>      
+      <% if @current_branch and @current_branch.name == branch.name %>      
+        <% unless branch.children.blank? %>
+          <div class="sidebar">
+            <h2>Useful Links</h2>      
+            <ul class="sub-nav">
+              <% branch.children.each do |child| %>
+                <li>
+                  <%= link_to child.name, child.destination %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</section>

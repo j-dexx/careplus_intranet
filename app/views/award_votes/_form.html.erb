@@ -1,0 +1,26 @@
+<%= form_for(@award_vote) do |f| %>
+  <% if @award_vote.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@award_vote.errors.count, "error") %> prohibited this award_vote from being saved:</h2>
+
+      <ul>
+      <% @award_vote.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= f.hidden_field :nomination_id, :value => nomination_id %>
+  
+  <%= f.hidden_field :award_id, :value => @award.id %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  
+  <div class="actions">
+    <% unless @award_user_voted[0].blank? %>
+      <%= f.submit "Change vote" %>
+    <% else %>
+      <%= f.submit "Vote for #{nominee.name}" %>
+    <% end %>
+  </div>
+<% end %>

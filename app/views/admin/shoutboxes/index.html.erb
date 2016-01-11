@@ -1,0 +1,60 @@
+<% title "Forum, Sales, Rumours" %>
+
+<div class="admin_functions">
+  <%= #link_to "New #{ Shoutbox.model_name.human }", new_admin_shoutbox_path
+  %>
+</div>
+
+<h2>Forum</h2>
+
+<%= informant_table @shoutboxes, {
+      :headings => [ :title, :user_id, :reported, :display, :created_at, '', '', '' ], 
+      :body => [ :title,
+                lambda{|x| "#{x.user.first_name} #{x.user.last_name}" if x.user},
+                :reported,
+                it_ajax_toggle(:display),
+                it_local(:created_at, :short),
+                lambda{|x| x.shout_id ? ( link_to "View", shoutbox_path(x.parent) ) : ( link_to "View", shoutbox_path(x) ) },
+                it_edit,
+                it_destroy
+                ]
+    } %>
+    
+<%= paginate @shoutboxes %>
+
+<h2>Sales</h2>
+
+
+<%= informant_table @sale_items, {
+      :headings => [ :title, :item_sold, :sale_category, :user_id, :reported, :display, :created_at, '', '', '' ], 
+      :body => [ :title,
+                :item_sold,
+                lambda{|x| x.sale_category.title if x.sale_category},
+                lambda{|x| "#{x.user.first_name} #{x.user.last_name}" if x.user},
+                :reported,
+                it_ajax_toggle(:display),
+                it_local(:created_at, :short),
+                lambda{|x| x.shout_id ? ( link_to "View", shoutbox_path(x.parent) ) : ( link_to "View", shoutbox_path(x) ) },
+                it_edit,
+                it_destroy
+                ]
+    } %>
+    
+<%= paginate @sale_items %>
+
+<h2>Rumours</h2>
+
+
+<%= informant_table @rumours, {
+      :headings => [ :title, :user_id, :reported, :display, :created_at, '', '', '' ], 
+      :body => [ :title,
+                lambda{|x| "#{x.user.first_name} #{x.user.last_name}" if x.user},
+                :reported,
+                it_ajax_toggle(:display), it_local(:created_at, :short),
+                lambda{|x| x.shout_id ? ( link_to "View", shoutbox_path(x.parent) ) : ( link_to "View", shoutbox_path(x) ) },
+                it_edit,
+                it_destroy
+                ]
+    } %>
+    
+<%= paginate @rumours %>

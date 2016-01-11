@@ -1,0 +1,41 @@
+<section class="forum-content">
+  <div class="inner">
+    <h1 class="item-header">
+      <span>Forum</span>
+    </h1>
+    
+    <p>
+      This Forum has been provided for the use of all staff, you must be logged in to take part in discussions in the Forum. Discussions can be around work or non-work related issues but please be aware of the Acceptable Internet Use Policy. Please be aware this forum is not anonymous.
+    </p>
+    
+    <div class="main-button-container">
+      <%= link_to 'Create post', new_shoutbox_path, :class => "main-button" %>
+      <%= link_to 'Go to Rumour Board', rumours_path, :class => "main-button" %>
+    </div>
+    
+    <% if @all_shoutboxes.count == 0 %>
+      <p>Nobody has shouted anything.</p>
+    <% end %>
+    
+    <% @all_shoutboxes.each do |shout| %>
+      <div class="shout opinion">   
+        <p>
+          <%= link_to truncate(shout.title, :length => 30, :omission => '...'), shout %><br />
+          
+          by <strong><%= shout.user.first_name %> <%= shout.user.last_name %></strong>
+        </p>
+        
+        <p><%= sanitize(truncate(shout.message, :length => 35, :omission => '...'), :tags => []) %></p>
+        
+        <p class="date">
+          Updated: <span class="float-right"><%= l(shout.updated_at, :format => :short) %></span><br />
+          Created: <span class="float-right"><%= l(shout.created_at, :format => :short) %></span>
+        </p>
+      </div>
+    <% end %>
+    
+    <div class="clear"></div>
+    
+    <%= paginate @all_shoutboxes %>
+  </div>
+</section>

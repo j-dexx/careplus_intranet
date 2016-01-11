@@ -1,0 +1,9 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      parent.$('.mce-image-url-input input').val('<%= @stored_image.image.url %>');
+      parent.$('input.mce-image-alt-input').first().val('<%= @stored_image.name %>');
+      parent.tinymce.activeEditor.windowManager.close();
+    </script>
+  </head>
+</html>

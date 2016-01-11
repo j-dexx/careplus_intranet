@@ -1,0 +1,25 @@
+<section class="internal-content">
+  <div class="inner">
+    <h1 class="item-header">
+      <span>New Password</span>
+    </h1>
+  
+    <%= form_tag user_password_resets_path, :method => :post do %>
+      <% unless flash[:alert].blank? and flash[:notice].blank? %>
+        <div class="flash-alert">
+          <%= flash[:alert] %>
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+  
+      <div class="field">
+        <%= label_tag :username, 'Email address' %><br />
+        <%= text_field_tag :username, params[:username] %>
+      </div>
+  
+      <div class="actions">
+        <%= submit_tag "Reset Password" %>
+      </div>
+    <% end %>
+  </div>
+</section>

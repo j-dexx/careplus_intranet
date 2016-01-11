@@ -1,0 +1,16 @@
+<% title AwardNomination.model_name.human.pluralize %>
+
+<div class="admin_functions">
+  <%= link_to "Back to Awards", admin_awards_path %>
+  <%= link_to "New #{ AwardNomination.model_name.human }", new_admin_award_award_nomination_path %>
+</div>
+
+<%= informant_table @award_nominations, {
+      :headings => [ 'Award', 'User', '', '' ], 
+      :body => [
+        lambda{|x| x.award.title if x.award},
+        lambda{|x| x.award_suggested_nomination.user_nominated ? "#{x.award_suggested_nomination.user_nominated.first_name} #{x.award_suggested_nomination.user_nominated.last_name}" : "#{x.award_suggested_nomination.name} (#{x.award_suggested_nomination.telephone})" },
+        it_edit,
+        it_destroy
+      ]
+    } %>

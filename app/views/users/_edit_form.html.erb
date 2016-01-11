@@ -1,0 +1,79 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field half-width">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field half-width">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field half-width">
+    <%= f.label :job_title %><br />
+    <%= f.text_field :job_title %>
+  </div>
+
+  <div class="field half-width">
+    <%= f.label :department %><br />
+    <%= f.text_field :department %>
+  </div>
+
+  <div class="field half-width">
+    <%= f.label :phone_number %><br />
+    <%= f.text_field :phone_number, :placeholder => "Don't have a phone number? Leave this blank." %>
+  </div>
+
+  <div class="clear"></div>
+  
+  <p>The following fields are optional, and can be added in later. But why not fill them in while you're here?</p>
+
+  <div class="field">
+    <%= f.label :profile %><br />
+    <%= f.text_area :profile %>
+  </div>
+
+  <div class="field">
+    
+      <%= f.label :photo, 'Image' %>
+      
+      <p>The correct size for this image is 100x100 pixels. All image types are accepted.</p>
+
+      <% if @user.photo? %>
+        <%= image_tag @user.photo.thumb.url %><br />
+        <%= link_to_function "Remove/Replace", "$('#alter_personal_image').toggle()" %>
+
+        <div id="alter_personal_image" style="display: none;">
+          <p>
+            <%= f.check_box "remove_photo" %>
+            <strong><%= f.label "remove_photo", 'Remove Image?', :class => "display-inline" %></strong>
+          </p>
+
+          <p>
+            <%= f.label :photo, 'Replace File' %>
+            <%= f.file_field :photo %>
+            <%= f.hidden_field :photo_cache %>
+          </p>
+        </div>
+      <% else %>
+        <%= f.label :photo, 'Upload File' %>
+        <%= f.file_field :photo %>
+        <%= f.hidden_field :photo_cache %>
+      <% end %>
+    </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

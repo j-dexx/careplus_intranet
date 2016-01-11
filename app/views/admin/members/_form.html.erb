@@ -1,0 +1,49 @@
+<%= form_for([:admin, @member]) do |f| %>
+
+  <%= f.error_messages %>
+
+  <%= field_set_tag 'Basic' do -%>
+    
+    <div class="field">
+      <%= f.label :first_name %><br />
+      <%= f.text_field :first_name %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :last_name %><br />
+      <%= f.text_field :last_name %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :role %><br />
+      <%= f.text_field :role %>
+    </div>
+    
+    
+    <div class="field">
+      <%= f.label :group %><br />
+      <%= f.select :group, [ [ "Non-Executive Directors", 1 ], [ "Executive Directors", 2 ], [ "Advisors", 3 ], [ "Heads of Service", 4 ] ] %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :image %><br />
+      <%= f.image_field :image %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :biography %><br />
+      <%= f.text_area :biography, :class => "tinymce" %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :display %><br />
+      <%= f.check_box :display, :checked => "checked" %>
+    </div>
+    
+  <% end -%>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+<% end %>					

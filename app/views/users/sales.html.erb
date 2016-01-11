@@ -1,0 +1,42 @@
+<section class="forum-content">
+  <div class="inner">
+    <h1 class="item-header">
+      <span>Your Sales</span>
+    </h1>
+    
+    
+  <% unless @all_sales.blank? %>
+    
+    <p>These are sales you have created, ordered by their sold status, then the created date in descending order.</p>
+    
+    <% @all_sales.each do |shout| %>
+      <% unless shout.item_sold.blank? %>
+        <div class="shout sale sold">
+      <% else %>
+        <div class="shout sale">
+      <% end %>
+        <p>
+          <%= link_to shout.title, shout %><br />
+          
+          by <strong><%= shout.user.first_name %> <%= shout.user.last_name %></strong>
+        </p>
+        
+        <%= raw truncate(shout.message, :length => 35, :omission => '...') %>
+        
+        <p class="date">
+          Updated: <span class="float-right"><%= l(shout.updated_at, :format => :short) %></span><br />
+          Created: <span class="float-right"><%= l(shout.created_at, :format => :short) %></span>          
+        </p>
+      </div>
+    <% end %>
+    
+    <div class="clear"></div>
+    <%= paginate @all_sales %>
+    
+  <% else %>
+    
+    <p>You haven't created any sales.</p>
+    
+  <% end %>
+  </div>
+</section>

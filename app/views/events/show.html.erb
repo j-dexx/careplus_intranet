@@ -1,0 +1,19 @@
+<section class="internal-content">
+  <div class="inner">
+    <h1><%= @event.name %></h1>
+
+    <div class="published">
+      Start: <strong><%= l(@event.start_datetime, :format => :short) %></strong> |
+      End: <strong><%= l(@event.end_datetime, :format => :short) %></strong>
+    </div>
+    
+    <%= image_tag @event.image.show, :alt => @event.name, :class => "module-image display-block" %>
+    
+    <%= raw @event.summary %>
+    
+    <%= raw @event.content %>
+    
+    <%= link_to 'View all events', events_path %>
+  </div>
+</section>
+

@@ -1,0 +1,43 @@
+<html lang="en">
+  <body>
+  
+    <h1>Award nomination: <%= @award.title %></h1>
+
+    <p>
+      Nominee:
+      
+      <strong>
+        <% unless @award_nomination.user_nominated.blank? %>
+          <%= @award_nomination.user_nominated.first_name %> <%= @award_nomination.user_nominated.last_name %>
+        <% else %>
+          <%= @award_nomination.name %>
+          
+          <% unless @award_nomination.email.blank? %>
+            <%= @award_nomination.email %>
+          <% end %>
+          
+          <%= @award_nomination.telephone %>
+        <% end %>
+      </strong>
+    </p>
+    
+    <p>
+      Nominated by:
+      
+      <strong>
+        <%= @award_nomination.user_nominated_by.first_name %> <%= @award_nomination.user_nominated_by.last_name %>
+        <%= @award_nomination.user_nominated_by.email %>
+        
+        <% unless @award_nomination.user_nominated_by.phone_number.blank? %>
+          <%= @award_nomination.user_nominated_by.phone_number %>
+        <% end %>
+      </strong>
+    </p>
+    
+    <p>
+      Reason:
+      
+      <%= @award_nomination.reason %>
+    </p>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<%= form_for([:admin, @article]) do |f| %>
+
+  <%= f.error_messages %>
+
+  <%= field_set_tag 'Basic' do -%>
+    
+    <div class="field">
+      <%= f.label :headline %><br />
+      <%= f.text_field :headline %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :summary %><br />
+      <%= f.text_area :summary, :class => "tinymce" %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :content %><br />
+      <%= f.text_area :content, :class => "tinymce" %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :date %><br />
+      <%= f.text_field :date, :class => "datepicker" %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :image %><br />
+      <%= f.image_field :image %>
+    </div>
+
+    <% unless @article.pushed_to_main_site? %>
+      <div class="field">
+        <%= f.label :pushed_to_main_site %><br />
+        <%= f.check_box :pushed_to_main_site %>
+      </div>
+    <% end %>
+    
+    
+    <% if @article.new_record? %>
+      <div class="field">
+        <%= f.label :tweet, "Tweet: this will only work when 'pushed to main site' is ticked" %><br />
+        <%= f.check_box :tweet %>
+      </div>
+    <% end %>
+    
+    <div class="field">
+      <%= f.label :display %><br />
+      <%= f.check_box :display, :checked => "checked" %>
+    </div>
+    
+  <% end -%>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+<% end %>					

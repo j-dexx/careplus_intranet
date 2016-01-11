@@ -1,0 +1,5 @@
+<% if @email.template? %>
+  $("#additional_form_fields").html("<%= escape_javascript render("#{@email.template.downcase.gsub(' ', '_')}_form") %>");
+<% else %>
+  $("#additional_form_fields").html("");
+<% end %>

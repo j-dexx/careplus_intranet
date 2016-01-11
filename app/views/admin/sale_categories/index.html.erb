@@ -1,0 +1,10 @@
+<% title SaleCategory.model_name.human.pluralize %>
+
+<div class="admin_functions">
+  <%= link_to "New #{ SaleCategory.model_name.human }", new_admin_sale_category_path %>
+</div>
+
+<%= informant_table @sale_categories, {
+      :headings => [ 'Title', '', '' ], 
+      :body => [ :title, it_edit, it_destroy ]
+    } %>

@@ -1,0 +1,17 @@
+<% unless event.image.blank? %>    
+  <div class="news-pebble">
+    <%= link_to event do %>
+      <div class="image">
+        <%= image_tag event.image.index, :alt => "#{event.name}" %>
+        <div class="clip"></div>
+      </div>
+        
+      <%= event.name %>
+    <% end %>
+    
+    <div class="published">
+      Start: <span class="float-right"><%= l(event.start_datetime, :format => :short) %></span><br />
+      End: <span class="float-right"><%= l(event.end_datetime, :format => :short) %></span>
+    </div>
+  </div>    
+<% end %>

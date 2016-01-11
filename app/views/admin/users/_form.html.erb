@@ -1,0 +1,59 @@
+<%= form_for([:admin, @user]) do |f| %>
+
+  <%= f.error_messages %>
+
+  <%= field_set_tag 'Required details' do -%>
+    
+    <div class="field">
+      <%= f.label :first_name %><br />
+      <%= f.text_field :first_name %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :last_name %><br />
+      <%= f.text_field :last_name %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.text_field :email %>
+    </div>
+        
+    <div class="field">
+      <%= f.label :password %><br />
+      <%= f.text_field :password %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :job_title %><br />
+      <%= f.text_field :job_title %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :department %><br />
+      <%= f.text_field :department %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :active_user %><br />
+      <%= f.check_box :active_user, :checked => "checked" %>
+    </div>
+  <% end -%>
+    
+  <%= field_set_tag 'Optional details' do -%>    
+    <div class="field">
+      <%= f.label :profile %><br />
+      <%= f.text_area :profile %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :phone_number %><br />
+      <%= f.text_field :phone_number %>
+    </div>
+  <% end -%>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+<% end %>					

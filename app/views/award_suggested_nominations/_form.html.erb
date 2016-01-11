@@ -1,0 +1,78 @@
+<%= form_for(@award_suggested_nomination) do |f| %>
+  <% if @award_suggested_nomination.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@award_suggested_nomination.errors.count, "error") %> prohibited this award_suggested_nomination from being saved:</h2>
+
+      <ul>
+      <% @award_suggested_nomination.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!--
+  <fieldset>
+    <legend>
+      Nomination
+    </legend>
+    
+    <div class="field">
+      <%= f.label :nomination_type %>
+      <%= f.select :nomination_type, ['Individual', 'Volunteer', 'Team'] %>
+    </div>
+    -->
+    <!--
+    <div class="field">
+      <%= #f.label :user_nominated_id
+      %>
+      <%= #f.select :user_nominated_id, User.where("active_user = ? AND id != ? ", true, current_user.id).map{|x| ["#{x.first_name} #{x.last_name} (#{x.job_title})", x.id]}, :prompt => "Please select"
+      %>
+    </div>
+    -->
+  <!--
+  </fieldset>
+  -->
+  
+  <fieldset>
+    <legend>
+      Nomination details
+    </legend>
+    
+    <p>Please fill in the form below.</p>
+    
+    <div class="field">
+      <%= f.label :name, "Nominee Name" %>    
+      <%= f.text_field :name %>
+    </div>  
+    
+    <div class="field">
+      <%= f.label :telephone, "Nominee Telephone" %>    
+      <%= f.text_field :telephone %>
+    </div>  
+    
+    
+    <div class="field">
+      <%= f.label :email, "Nominee Email (optional)" %>    
+      <%= f.text_field :email %>
+    </div> 
+  </fieldset>
+  
+  <fieldset>
+    <legend>
+      Reason
+    </legend>
+    
+    <div class="field">
+      <p>Please describe in no more than 200 words why this team/individual has one above and beyond and deserves to win.</p>
+      <%= f.label :reason, "Reason for nomination" %>    
+      <%= f.text_area :reason %>
+    </div>
+  </fieldset>
+  
+  <%= f.hidden_field :award_id, :value => @award.id %>
+  <%= f.hidden_field :user_nominated_by_id, :value => current_user.id %>
+  
+  <div class="actions">
+    <%= f.submit "Suggest this person" %>
+  </div>
+<% end %>

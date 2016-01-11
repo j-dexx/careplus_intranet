@@ -1,0 +1,77 @@
+<section class="internal-content">
+  <div class="inner">
+    <h1 class="item-header">
+      <span>Users</span>
+    </h1>
+    
+    <p id="notice"><%= notice %></p>
+    
+    <%= form_tag( users_path, { :method => 'get', :class => "users-search" } ) do %>
+      <%= hidden_field_tag :order, params[:order] %>
+      
+      <div class="field">
+        <%= label_tag :search, 'Name' %>
+        <%= text_field_tag :search, params[:search] %>
+      </div>
+      
+      <div class="field">
+        <%= label_tag :department, 'Department' %>
+        <%= text_field_tag :department, params[:department] %>
+      </div>
+      
+      <div class="actions">
+        <%= submit_tag 'Search' %>
+      </div>
+    <% end %>
+    
+    <% unless @users.blank? %>
+    
+    <table>
+      <tr>
+        <th>
+          <%= link_to 'Name', :order => (params[:order] == 'last_name' ? 'last_name DESC' : 'last_name') %>
+        </th>
+        
+        <th>
+          Email
+        </th>
+        
+        <th>
+          Phone
+        </th>
+        
+        <th>
+          <%= link_to 'Department', :order => (params[:order] == 'department' ? 'department DESC' : 'department') %>
+        </th>
+      </tr>
+    
+      <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to "#{user.last_name}, #{user.first_name}", user %>
+          </td>
+          
+          <td>
+            <%= mail_to user.email, "Email #{user.first_name}" %>
+          </td>
+          
+          <td>
+            <%= user.phone_number %>
+          </td>
+          
+          <td>
+            <%= user.department %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  
+    <%= paginate @users %>
+    
+  <% else %>
+    
+    <p>There are no users to show.</p>
+    
+  <% end %>
+  </div>
+</section>

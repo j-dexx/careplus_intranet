@@ -1,0 +1,15 @@
+<% title StaffBenefit.model_name.human.pluralize %>
+
+<div class="admin_functions">
+  <%= link_to "New #{ StaffBenefit.model_name.human }", new_admin_staff_benefit_path %>
+</div>
+
+<%#= informant_table @staff_benefits, {
+      :headings => [ '', 'Title', 'Image', 'Display', '', '' ], 
+      :body => [ it_sort, :title, it_edit_images(:image), :details, it_ajax_toggle(:display), it_edit, it_destroy ]
+    } %>
+    
+<%= informant_table @staff_benefits, {
+  :headings => [ '', 'Title', 'Image', 'Display', '', '' ], 
+  :body => [ it_sort, :title, it_edit_images(:image), it_ajax_toggle(:display), it_edit, it_destroy ]
+} %>

@@ -1,0 +1,54 @@
+@import "variables";
+@import "functions";
+
+.service {
+  margin: 0 0 emCalc(1) emCalc(30);
+  float: left;
+  width: 160px;
+  
+  &.margin-left-0 {
+    margin-left: 0;
+  }
+  
+  .service-title {
+    width: 160px;
+    min-height: 50px;
+    
+    font-size: emCalc(22);
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .image {
+    position: relative;
+    overflow: hidden;
+    width: 160px;
+    height: 160px;
+    
+    margin: emCalc(5) 0 emCalc(15) 0;
+  }
+  
+  .clip {
+    width: 160px;
+    height: 160px;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    background: image-url("masks/services.png") no-repeat;
+    
+    &:hover {
+      background: image-url("masks/services-hover.png") no-repeat; 
+    }
+  }
+  
+  a {
+    color: $section_news_link_colour;
+    text-decoration: none;
+    
+    &:hover {
+      color: $section_news_link_hover_colour;
+    }
+  }
+}

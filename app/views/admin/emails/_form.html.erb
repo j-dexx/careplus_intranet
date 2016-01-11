@@ -1,0 +1,42 @@
+<%= form_for([:admin, @email]) do |f| %>
+
+  <%= f.error_messages %>
+
+  <%= field_set_tag 'Basic' do -%>
+    <div class="field">
+      <%= f.label :subject %><br />
+      <%= f.text_field :subject %>
+    </div>
+
+    <% if @email.new_record? %>
+      <div class="field">
+        <%= f.label :list_id %><br />
+        <%= f.select :list_id, Email.campaigns %>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.hidden_field :template, :value => @email.template %>
+      <%#= f.label :template %><br />
+      <%#= f.select(
+            :template,
+            Email.templates,
+            { :include_blank => true },
+            { :onchange => "$('#main-image').toggle(true); $.post('#{change_template_admin_email_path(@email.id || 0)}?template='+this.value)" }
+          ) %>
+    </div>
+  <% end %>
+
+  <%= field_set_tag 'Main Image', :style => "display: #{@email.template? ? 'block' : 'none'};", :id => 'main-image' do -%>
+    <%= f.image_field :image, :alt => true %>
+  <% end -%>
+
+  <div id="additional_form_fields">
+    <%= render("#{@email.template.downcase.gsub(' ', '_')}_form") if @email.template? %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

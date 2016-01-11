@@ -1,0 +1,26 @@
+<section class="internal-content">
+  <div class="inner">
+    
+    <div class="information">
+  
+      <h1><%= @staff_benefit.title %></h1>
+    
+    
+      <%= raw @staff_benefit.details %>
+      
+    </div>
+    
+    <div class="sidebar">
+      <h2>Staff Benefits</h2>      
+    
+      <ul class="sub-nav">
+        <% @staff_benefits.each do |benefit| %>
+          <li>
+            <%= link_to benefit.title, benefit %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    
+  </div>
+</section>

@@ -1,0 +1,43 @@
+<%= form_for([:admin, @award]) do |f| %>
+
+  <%= f.error_messages %>
+
+  <%= field_set_tag 'Basic' do -%>
+    
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :image %><br />
+      <%= f.image_field :image %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_area :description, :class => "tinymce" %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :mode %><br />
+      <%= f.select :mode, ['Nomination', 'Voting', 'Awarded'] %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :award_suggested_nomination_id, "Award winner (select a winner if the mode is awarded)" %><br />
+      <%= f.select :award_suggested_nomination_id, AwardSuggestedNomination.where(:award_id => @award.id).map{|x| x.user_nominated ? ["#{x.user_nominated.first_name} #{x.user_nominated.last_name}", x.id] : ["#{x.name}", x.id]}, :include_blank => true %>      
+    </div>
+    
+    <div class="field">
+      <%= f.label :display %><br />
+      <%= f.check_box :display, :checked => true %>
+    </div>
+    
+  <% end -%>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+<% end %>					

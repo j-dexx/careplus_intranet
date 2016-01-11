@@ -1,0 +1,175 @@
+<section class="home-content">
+  <div class="home-inner">
+    <% unless notice.blank? %>
+      <p id="flash_notice">
+        <%= notice %>
+      </p>
+    <% end %>
+  
+    <div class="banner-area">  
+      <% unless @footer_articles.blank? %> 
+        <ul class="banners">    
+          <li class="banner" id="banner-0">
+            <%= render "article_banner", :article => @footer_articles[0] %>
+          </li>
+          
+          <% @footer_articles[1..-1].each_with_index do |banner, index| %>
+            <li class="banner hidden" id="banner-<%= index + 1 %>">
+              <%= render "article_banner", :article => banner, :index => index + 1  %>
+            </li>
+          <% end %>
+        </ul>
+        
+        <div class="clear"></div>
+      <% end %>
+      
+      <div class="home-information">
+        <div class="home-shouts equal-height">
+          <h5 class="item-header">
+            <span>Forum &amp; Sales</span>
+          </h5>
+        
+          <div class="new opinion">
+            <%= link_to "New Post", new_shoutbox_path %>  
+          </div>
+        
+          <div class="new opinion sale">
+            <%= link_to "New Sale Item", new_shoutbox_path(:sale_item => "1") %>
+          </div>
+        
+          <div class="clear"></div>
+        
+          <% unless @shoutboxes.blank? %>
+           <% @shoutboxes.each do |shout| %>            
+            <div class="social-item opinion">
+              <p>
+                <%= link_to shout.title, shout %><br />
+                by <strong><%= shout.user.first_name %> <%= shout.user.last_name %></strong>
+              </p>
+              
+              <div class="summary">
+                <%= raw truncate(shout.message, :length => 40, :omission => '...') %>
+              </div>
+              
+              <p class="date">Updated: <%= l(shout.updated_at, :format => :short) %></p>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    
+      <div class="home-information">
+        <div class="staff-benefits equal-height-top">
+          <div class="banner-descriptions">
+            <% unless @staff_benefits.blank? %>
+              <h2 class="item-header">
+                <span>
+                  Staff Benefits
+                </span>
+              </h2>
+            <% end %>      
+          </div>
+        
+          <% unless @staff_benefits.blank? %>      
+            <div class="staff-benefits-slider" id="benefits-slider">        
+              <% @staff_benefits.each_with_index do |benefit, index| %>
+                <div><%= link_to benefit.title, benefit %></div>
+              <% end %>
+            </div>
+          <% end %>
+          
+          <div class="all-news">
+            <%= link_to 'View All Benefits', staff_benefit_path(@staff_benefits[0].id), :title => 'See More News' %>
+          </div>
+          
+          <div class="clear"></div>
+        </div>
+        
+        <% unless SITE_SETTINGS["Twitter"].blank? %>
+          <div class="home-social tweet-height">
+            <h5 class="item-header">
+              <span>Latest Tweet</span>
+            </h5>        
+          
+            <div class="twitter">    
+              <%= render "shared/twitter" %>
+            </div>
+          </div>
+        <% end %>        
+      </div>
+    </div>
+      
+    <div class="home-information home-useful-links">
+      <div class="links-inner">
+        <h5 class="item-header">
+          <span>Useful Links</span>
+        </h5>
+        
+        <form method="post" action="http://ser-fsrc-sdesk:8888/EmployeeSearch.cc">
+          <input type="hidden" name="searchType" value="contains" />
+          <input type="hidden" name="searchBy" value="ALL_FIELDS" />
+          
+          <label for="searchString">Contacts Search</label>
+          <input type="text"   name="searchString" class="search-input" placeholder="Enter a search string..." />
+          
+          <input type="hidden" name="actionId" value="search" />
+          
+          <input type="submit" value="Search" class="submit" />
+          
+          <div class="clear"></div>
+        </form>
+      </div>
+      
+      <%= link_to (image_tag "useful-links/document-search.png", :alt => "Document search"), "File://T:/Shared Area/Document Store/" %>    
+      
+      <%= link_to (image_tag "useful-links/datix-report.jpg", :alt => "Datix report"), "#report-incident", :class => "toggle-class float-left", :"data-toggle-class" => "hidden" %>
+      
+      <%= link_to (image_tag "useful-links/datix-compliment.jpg", :alt => "Datix compliment"), "http://ser-fsrc-datix.f4.local/careplus/Live/index.php?form_id=2&module=COM", :class => "float-left" %>
+      
+      <div class="clear"></div>
+      
+      <div id="report-incident" class="hidden">
+        <div class="links-inner">
+          <p>
+            Who does this incident relate to?<br />
+            Please click on the relevant logo.
+          </p>
+          
+          <%= link_to (image_tag "useful-links/logo-careplus.jpg", :alt => "Care Plus Group"), "http://ser-fsrc-datix.f4.local/careplus/Live/" %>
+          
+          <%= link_to (image_tag "useful-links/logo-care4all.png", :alt => "Care4All"), "http://ser-fsrc-datix.f4.local/careplus/Live/index.php?form_id=7&module=INC" %>
+        </div>
+      </div>
+      
+      <%= link_to (image_tag "useful-links/royal-marsden.jpg", :alt => "Royal Marsen Clinical Nursing Procedures"), "http://www.rmmonline.co.uk/", :class => "float-left" %>
+      
+      <%= link_to (image_tag "useful-links/vacancies.jpg", :alt => "Vacancies"), "http://www.jobs.nhs.uk/cgi-bin/advsearch?vpd_code=814", :class => "float-left" %>
+      
+      <div class="clear"></div>
+      
+        <div class="home-social text-center join-us-height">
+          <h5 class="item-header">
+            <span>Join Us</span>
+          </h5>
+          
+          <% unless SITE_SETTINGS["Twitter"].blank? %>
+            <div class="float-left">
+              <p>Follow us on Twitter</p>
+              <%= link_to (image_tag "useful-links/twitter.png", :alt => "Twitter"), SITE_SETTINGS["Twitter"] %>
+            </div>
+          <% end %>
+          
+          <% unless SITE_SETTINGS["Facebook"].blank? %>
+            <div class="float-right">
+              <p>Like us on Facebook</p>
+              <%= link_to (image_tag "useful-links/facebook.png", :alt => "Facebook"), SITE_SETTINGS["Facebook"] %>
+            </div>
+          <% end %>
+          
+          <div class="clear"></div>          
+        </div>
+        
+      </div>
+    </div>    
+  </div>
+</section>

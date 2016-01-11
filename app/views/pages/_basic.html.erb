@@ -1,0 +1,59 @@
+<section class="internal-content">
+  <div class="inner">
+    <h1 class="item-header">
+      <span><%= @page.title %></span>
+    </h1>
+
+    <% if @current_branch.present? %>
+      <div class="information">
+    <% end %>
+    
+
+    <% if @page.image? %>
+      <%= image_tag @page.image.show %>
+    <% end %>
+
+    <div class="page-content">
+      <%= raw @page.content.gsub('%20', ' ') %>
+    </div>
+
+
+    <% if @current_branch.present? %>     
+      </div>
+    <% end %>
+    <% if @current_branch %>
+      <div class="sidebar">
+        <h2>Useful Links</h2>
+        <ul class="sub-nav">
+          <% @current_branch.ancestors.order(:position).each do |branch| %>
+            <li class="depth-<%= branch.ancestry_depth %>">
+              <%= link_to branch.name, branch.destination %>
+            </li>
+            <% if @current_branch.parent == branch %>
+              <% if @current_branch.has_children? %>
+                <li class="depth-<%= @current_branch.ancestry_depth %>">
+                  <%= link_to @current_branch.name, @current_branch.destination %>
+                </li>
+                <% @current_branch.children.each do |child| %>
+                  <li class="depth-<%= child.ancestry_depth %>">
+                    <%= link_to child.name, child.destination %>
+                  </li>
+                <% end %>
+              <% else %>
+                <% @current_branch.siblings.order(:position).each do |sibling| %>
+                  <li class="depth-<%= sibling.ancestry_depth %>">
+                    <% if @current_branch == sibling %>
+                      <%= link_to sibling.name, sibling.destination, class: 'active' %>
+                    <% else %>
+                      <%= link_to sibling.name, sibling.destination %>
+                    <% end %>
+                  </li>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</section>

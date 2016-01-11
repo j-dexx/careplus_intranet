@@ -1,0 +1,20 @@
+<section class="internal-content">
+  <div class="inner">
+    <h1 class="item-header">
+      <span><%= @article.headline %></span>
+    </h1>
+
+    <div class="published">
+      Published: <strong><%= l(@article.date) %></strong>
+    </div>
+    
+    <%= image_tag @article.image.show, :alt => @article.headline, :class => "module-image display-block" %>
+    
+    <%= raw @article.summary %>
+    
+    <%= raw @article.content %>
+    
+    <%= link_to 'View all articles', articles_path, :class => "back-link" %>
+  </div>
+</section>
+

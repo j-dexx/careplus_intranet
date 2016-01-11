@@ -1,0 +1,77 @@
+<%
+navigation     = Willow::Branch.where(:tree => "Main Navigation")
+has_navigation = false;
+%>
+
+<section class="internal-content">
+  <div class="inner">
+    <h1 class="item-header">
+      <span>Who's Who</span>
+    </h1>
+
+    <% navigation.roots.order(:position).each_with_index do |branch, i| %>
+      <% unless @root.blank? or @root.children.order(:position).blank? %>
+        <% unless branch.children.blank? %>
+          <% has_navigation = true %>          
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% if has_navigation == true %>
+      <div class="information">
+    <% end %>
+
+    <div class="page-content">
+      <% unless @member_roles.blank? %>
+        <% @member_roles.each do |role, members| %>
+          <% groups = [ "", "Non-Executive Directors", "Executive Directors", "Advisors", "Heads of Service" ] %>
+          <h1><%= groups[role] %></h1>
+        
+          <% members.each do |member| %>          
+            <% unless member.image.blank? %>
+              <div class="staff">
+                <div class="image">
+                  <%= image_tag member.image.show, :alt => "#{member.first_name} #{member.last_name}", :class => "image-right" %>
+                  <div class="clip"></div>
+                </div>
+              </div>
+            <% end %>
+              
+            <h2><%= member.first_name %> <%= member.last_name %>, <%= member.role %></h2>
+            
+            <%= raw member.biography %>
+            <div class="clear"></div>
+          <% end %>       
+        <% end %>
+      <% end %>
+    </div>
+
+    <% if has_navigation == true %>
+      </div>
+    <% end %>
+
+    <% unless @root.blank? or @root.children.order(:position).blank? %>
+      <div class="sidebar">
+        <h2>Useful Links</h2>
+        <ul class="sub-nav">
+          <% @root.children.order(:position).each_with_index do |branch, i| %>
+            <li>
+              <%= link_to branch.name, branch.destination %>
+              <% if @current_branch and @current_branch == branch or @current_branch.parent == branch %>
+                <ul>
+                  <% branch.children.each do |child| %>
+                    <li>
+                      <%= link_to child.name, child.destination %>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    
+  </div>
+</section>

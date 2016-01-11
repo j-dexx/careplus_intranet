@@ -1,0 +1,70 @@
+<section class="forum-content">
+  <div class="inner">
+    <h1 class="item-header">
+      <span>Buy and Sell</span>
+    </h1>
+    
+    <ul class="inline-list breadcrumb-links">
+      <li>
+        You are here:
+      </li>
+      
+      <li>
+        <strong>
+          Buy and Sell
+        </strong>
+      </li>
+    </ul>
+    
+    <p>
+      Staff can post items for sale (or items for free if you're feeling generous). Please remember this is a private sale arrangement between you and another staff member. Care Plus Group <strong>takes no responsibility for any transactions that take place via this forum.</strong>
+    </p>
+    
+    <% unless @sale_categories.blank? %>
+      <div class="main-button-container">
+        <%= link_to 'Create new buy or sell item', new_shoutbox_path(:sale_item => "1"), :class => "main-button" %>
+      </div>
+    <% else %>
+      <p>No categories are setup, so no sale items can be added.</p>
+    <% end %>
+    
+    <h2>
+      <span>Buy and Sell: recently updated</span>
+    </h2>
+    
+    <% @recent_sales.each do |shout| %>    
+      <% unless shout.item_sold.blank? %>
+        <div class="shout sale sold">
+      <% else %>
+        <div class="shout sale">
+      <% end %>
+        <p>
+          <!-- <%= link_to shout.title, shout %><br /> -->
+          <%= link_to truncate(shout.title, :length => 30, :omission => '...'), shout %><br />
+          
+          by <strong><%= shout.user.first_name %> <%= shout.user.last_name %></strong>
+        </p>
+        
+        <!-- <%= raw truncate(shout.message, :length => 35, :omission => '...') %> -->
+        <p><%= sanitize(truncate(shout.message, :length => 35, :omission => '...'), :tags => []) %></p>
+        
+        <p class="date">
+          Updated: <span class="float-right"><%= l(shout.updated_at, :format => :short) %></span><br />
+          Created: <span class="float-right"><%= l(shout.created_at, :format => :short) %></span>          
+        </p>
+      </div>
+    <% end %>
+    <div class="clear"></div>
+    
+    <h2>
+      <span>Buy and Sell: category list</span>
+    </h2>
+    <% @sale_categories.each do |sale_category| %>
+      <div class="category">
+        <%= link_to "#{sale_category.title} (#{sale_category.shoutboxes_count})", sale_category %>
+      </div>
+    <% end %>
+    <div class="clear"></div>
+    
+  </div>
+</section>

@@ -1,0 +1,13 @@
+
+<%= field_set_tag "Item #{@length}", :id => "email-item-#{@email_item.id}"  do -%>
+
+  <%= render 'item', :length => @length, :email_item => @email_item %>
+
+  <div style="margin-top: 10px;">
+    <%= link_to_function '[remove]', "$('#email-item-#{@email_item.id}').replaceWith('')" %>
+  </div>
+<% end %>
+
+<div id="new_email_item" style="margin: 0 20px 30px;">
+  <%= link_to_function 'Add Item', "$.post('#{new_item_admin_email_path(@email.id || 0)}?length=#{@length}')" %>
+</div>

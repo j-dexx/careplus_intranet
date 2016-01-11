@@ -1,0 +1,38 @@
+<section class="forum-content">
+  <div class="inner">
+    <h1 class="item-header">
+      <span>Your Posts</span>
+    </h1>
+    
+    
+  <% unless @all_posts.blank? %>
+    
+    <p>These are posts you have created, ordered by the created date in descending order.</p>
+    
+  <% @all_posts.each do |shout| %>
+      <div class="shout opinion">   
+        <p>
+          <%= link_to shout.title, shout %><br />
+          
+          by <strong><%= shout.user.first_name %> <%= shout.user.last_name %></strong>
+        </p>
+        
+        <%= raw truncate(shout.message, :length => 35, :omission => '...') %>
+        
+        <p class="date">
+          Updated: <span class="float-right"><%= l(shout.updated_at, :format => :short) %></span><br />
+          Created: <span class="float-right"><%= l(shout.created_at, :format => :short) %></span>
+        </p>
+      </div>
+    <% end %>
+    
+    <div class="clear"></div>
+    <%= paginate @all_posts %>
+    
+  <% else %>
+    
+    <p>You haven't created any posts.</p>
+    
+  <% end %>
+  </div>
+</section>

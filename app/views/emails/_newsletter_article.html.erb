@@ -1,0 +1,109 @@
+<% article = Article.find(email_item.email_item_id) %>
+      <% if i.odd? %>
+
+        <!-- START ARTICLE ODD -->
+        <tr>
+          <td colspan="2" align="left" valign="top" bgcolor="#e7f5fc" style="padding: 15px 15px 0px 15px;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td align="left" valign="top" bgcolor="#FFFFFF" style="padding: 25px;">
+                  <div style="border: 3px solid #cee4ef; display: inline-block;">
+                    <% if article.image? %>
+                      <%= absolute_image_tag article.image.newsletter, {
+                        :alt => article.headline,
+                        :title => article.headline,
+                        :width => "195",
+                        :height => "135",
+                        :style => "display:block;",
+                        :border => "0"
+                      } %>
+                    <% end %>
+                  </div>
+                </td>
+                <td align="left" valign="top" bgcolor="#FFFFFF" style="padding: 25px 25px 25px 0px;">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td colspan="2" align="left" valign="top" style="font-family: Arial, sans-serif; font-size: 19px; line-height: 24px; color: #1b445c; padding-bottom: 3px; border-bottom: 3px dotted #a41984;">
+                        <%= link_to article.headline, article_url(article), {
+                          :style => "color:#1b445c; text-decoration: none;",
+                          :target => '_blank'
+                        } %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" align="left" valign="top" style="padding: 10px 0px 10px 0px; font-family: Arial, sans-serif; font-size: 14px; line-height: 19px; color: #333;">
+                        <%= raw article.summary.gsub("\n", '<br />') %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td width="80%" align="right" valign="top">
+                        &nbsp;
+                      </td>
+                      <td width="20%" align="right" valign="top" bgcolor="#a2d6f3" style="padding: 5px 12px 5px 12px; font-family: Arial, sans-serif; font-size: 14px; line-height: 19px; color: #1b445c; font-weight: bold;">
+                        <%= link_to "MORE", article_url(article), {
+                          :style => "color:#1b445c; text-decoration: none; font-weight: bold;",
+                          :target => '_blank'
+                        } %>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- END ARTICLE ODD -->
+      <% else %>
+        <!-- START ARTICLE EVEN -->
+        <tr>
+          <td colspan="2" align="left" valign="top" bgcolor="#e7f5fc" style="padding: 15px 15px 0px 15px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td align="left" valign="top" bgcolor="#FFFFFF" style="padding: 25px 0px 25px 25px;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td colspan="2" align="left" valign="top" style="font-family: Arial, sans-serif; font-size: 19px; line-height: 24px; color: #1b445c; padding-bottom: 3px; border-bottom: 3px dotted #a41984;">
+                      <%= link_to article.headline, article_url(article), {
+                        :style => "color:#1b445c; text-decoration: none;",
+                        :target => '_blank'
+                      } %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" align="left" valign="top" style="padding: 10px 0px 10px 0px; font-family: Arial, sans-serif; font-size: 14px; line-height: 19px; color: #333;">
+                      <%= raw article.summary.gsub("\n", '<br />') %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="80%" align="right" valign="top">
+                      &nbsp;
+                    </td>
+                    <td width="20%" align="right" valign="top" bgcolor="#a2d6f3" style="padding: 5px 12px 5px 12px; font-family: Arial, sans-serif; font-size: 14px; line-height: 19px; color: #1b445c; font-weight: bold;">
+                      <%= link_to "MORE", article_url(article), {
+                        :style => "color:#1b445c; text-decoration: none; font-weight: bold;",
+                        :target => '_blank'
+                      } %>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td align="left" valign="top" bgcolor="#FFFFFF" style="padding: 25px;">
+                <div style="border: 3px solid #cee4ef; display: inline-block;">
+                  <% if article.image? %>
+                    <%= absolute_image_tag article.image.newsletter, {
+                      :alt => article.headline,
+                      :title => article.headline,
+                      :width => "195",
+                      :height => "135",
+                      :style => "display:block;",
+                      :border => "0"
+                    } %>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
+          </table>
+          </td>
+        </tr>
+	      <!-- END ARTICLE EVEN -->
+        
+	    <% end %>

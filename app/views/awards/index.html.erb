@@ -1,0 +1,87 @@
+<section class="internal-content">
+  <div class="inner">
+    <h1 class="star-awards-header item-header">
+      <div>
+        <span class="star-awards">
+          Star Awards
+        </span>
+      </div>
+    </h1>
+    
+    
+    <p>You can nominate an individual, volunteer or team for going above and beyond. Nominations close on 14th of each month. After this date you are able to vote for the individual, team or volunteer you feel deserves to win. The winner is the nominee in each category with the most votes. </p>
+
+    <p>There will be prizes awarded at the end of the month (&pound;10 gift voucher Employee/ Team basket of fruit/ &pound;10 gift voucher Volunteer).  Each monthly winner will go forward to the Annual Awards at the AMM. </p>
+
+    
+    <h2>Nominate</h2>
+    
+    <% unless @awards_nomination_mode.blank? %>
+      <p>These awards are in nomination mode. Click the award to nominate.</p>
+    <% else %>
+      <p>There are no awards to show.</p>
+    <% end %>
+    
+    <% @awards_nomination_mode.each do |award| %>
+      <div class="award float-left">
+        <div class="title">
+          <%= link_to award.title, award %>
+        </div>
+        
+        <% unless award.image.blank? %>        
+          <%= link_to (image_tag award.image.index, :alt => award.title), award %>
+        <% else %>
+          <%= link_to (image_tag "award-image-small.png", :alt => award.title), award %>
+        <% end %>
+      </div>
+    <% end %>
+    
+    <div class="clear"></div>
+  
+    <h2>Vote</h2>
+    
+    <% unless @awards_voting_mode.blank? %>
+      <p>Cast your one vote on these awards.</p>
+    <% else %>
+      <p>There are no awards to show.</p>
+    <% end %>
+    
+    <% @awards_voting_mode.each do |award| %>
+      <div class="award float-left">
+        <div class="title">
+          <%= link_to award.title, award %>
+        </div>
+        
+        <% unless award.image.blank? %>        
+          <%= link_to (image_tag award.image.index, :alt => award.title), award %>
+        <% else %>
+          <%= link_to (image_tag "award-image-small.png", :alt => award.title), award %>
+        <% end %>
+      </div>
+    <% end %>
+    
+    <div class="clear"></div>
+  
+    <h2>Winners</h2>
+    
+    <% unless @awards_awarded.blank? %>
+      <p>These awards have been awarded. View them to find out who won!</p>
+    <% else %>
+      <p>There are no awards to show.</p>
+    <% end %>
+    
+    <% @awards_awarded.each do |award| %>
+      <div class="award float-left">
+        <div class="title">
+          <%= link_to award.title, award %>
+        </div>
+        
+        <% unless award.image.blank? %>        
+          <%= link_to (image_tag award.image.index, :alt => award.title), award %>
+        <% else %>
+          <%= link_to (image_tag "award-image-small.png", :alt => award.title), award %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</section>

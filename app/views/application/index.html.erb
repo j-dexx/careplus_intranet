@@ -1,0 +1,221 @@
+<section class="home-content">
+  <div class="home-inner">
+    <% unless notice.blank? %>
+      <p id="flash_notice">
+        <%= notice %>
+      </p>
+    <% end %>
+
+    <div class="banner-area">
+      <% unless @footer_articles.blank? %>
+        <ul class="banners">
+          <li class="banner" id="banner-0">
+            <%= render "article_banner", :article => @footer_articles[0] %>
+          </li>
+
+          <% @footer_articles[1..-1].each_with_index do |banner, index| %>
+            <li class="banner hidden" id="banner-<%= index + 1 %>">
+              <%= render "article_banner", :article => banner, :index => index + 1  %>
+            </li>
+          <% end %>
+        </ul>
+
+        <div class="clear"></div>
+      <% end %>
+
+      <div class="home-information">
+        <div class="home-shouts equal-height">
+          <h5 class="item-header">
+            <span><%= link_to "Forum", shoutboxes_path %></span>
+          </h5>
+
+          <div class="new opinion">
+            <%= link_to "New Post", new_shoutbox_path %>
+          </div>
+
+          <div class="clear"></div>
+
+          <% unless @shoutboxes.blank? %>
+           <% @shoutboxes.each do |shout| %>
+            <div class="social-item opinion">
+              <p>
+                <%= link_to shout.title, shout %><br />
+                by <strong><%= shout.user.first_name %> <%= shout.user.last_name %></strong>
+              </p>
+
+              <!--
+              <div class="summary">
+                <%= raw truncate(shout.message, :length => 40, :omission => '...') %>
+              </div>
+              -->
+
+              <p class="date">Updated: <%= l(shout.updated_at, :format => :short) %></p>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="home-information">
+        <div class="home-sales equal-height">
+          <h5 class="item-header">
+            <span><%= link_to "Sales", sale_categories_path %></span>
+          </h5>
+
+          <div class="new opinion sale">
+            <%= link_to "New Sale Item", new_shoutbox_path(:sale_item => "1") %>
+          </div>
+
+          <div class="clear"></div>
+
+          <% unless @sale_items.blank? %>
+            <% @sale_items.each do |shout| %>
+             <div class="social-item opinion">
+               <p>
+                 <%= link_to shout.title, shout %><br />
+                 by <strong><%= shout.user.first_name %> <%= shout.user.last_name %></strong>
+               </p>
+
+               <!--
+               <div class="summary">
+                 <%= raw truncate(shout.message, :length => 40, :omission => '...') %>
+               </div>
+               -->
+
+               <p class="date">Updated: <%= l(shout.updated_at, :format => :short) %></p>
+             </div>
+            <% end %>
+          <% else %>
+            <p class="empty-state-message">Post items for sale (or items for free if you're feeling generous)</p>
+          <% end %>
+        </div>
+      </div>
+
+      <!--
+      <div class="home-information wide">
+          <div class="staff-benefits">
+            <% unless @staff_benefits.blank? %>
+              <h2 class="item-header">
+                <span>
+                  <%= link_to "Staff Benefits", staff_benefits_path %>
+                </span>
+              </h2>
+            <% end %>
+
+
+              <% unless @staff_benefits.blank? %>
+                <div class="staff-benefits-slider" id="benefits-slider">
+                  <% @staff_benefits.each_with_index do |benefit, index| %>
+                    <div><%= link_to benefit.title, benefit %></div>
+                  <% end %>
+                </div>
+              <% end %>
+
+            <div class="clear"></div>
+          </div>
+        </div>
+      -->
+    </div>
+
+    <div class="home-information home-useful-links">
+      <div class="links-inner">
+        <form action="http://ser-fsrc-sdesk:8888/EmployeeSearch.cc" id="contacts-search" method="get">
+          <%= hidden_field_tag :searchType, "contains" %>
+          <%= hidden_field_tag :searchBy, "ALL_FIELDS" %>
+
+          <%#= label_tag :searchString, "Contacts Search" %>
+          <%= image_tag "useful-links/contact-search-icon.png", :alt => "Contacts Search", :class => "float-left" %>
+          <%= text_field_tag :searchString, nil, :class => "search-input", :placeholder => "Enter a contact name..." %>
+          <%= hidden_field_tag :actionId, "search" %>
+
+          <%= submit_tag "Search", :class => "submit", :name => nil %>
+        </form>
+
+      <div class="clear"></div>
+
+      <hr />
+
+      <% [{ name: "Document Store", image: "useful-links/document-search.png"}, { name: "Foundations Document Store", image: "useful-links/foundations-document-search.png" }].each do |doc_store| %>
+        <% unless SITE_SETTINGS[doc_store[:name]].blank? %>
+          <%= link_to (image_tag doc_store[:image], :alt => "Document search"), SITE_SETTINGS[doc_store[:name]], class: 'image-grid float-left', :target => "_blank" %>
+        <% end %>
+      <% end %>
+
+      <div class="clear"></div>
+
+      <hr />
+
+      <%= link_to (image_tag "useful-links/cqc-evidence-base.png", :alt => "CQC Evidence Base"), 'http://ser-fsrc-datix.f4.local/careplus/Live/index.php?form_id=10&module=INC', :target => "_blank" %>
+
+      <hr />
+
+      <%= link_to (image_tag "useful-links/datix-report.png", :alt => "Datix report"), "/pages/datix-report-incident", :class => "image-grid float-left", :"data-toggle-class" => "hidden" %>
+
+      <%= link_to (image_tag "useful-links/datix-compliment.png", :alt => "Datix compliment"), "http://ser-fsrc-datix.f4.local/careplus/Live/index.php?form_id=2&module=COM", :target => "_blank", :class => "float-left" %>
+
+      <div class="clear"></div>
+
+      <div id="report-incident" class="hidden">
+        <div class="links-inner">
+          <p>
+            Who does this incident relate to?<br />
+            Please click on the relevant logo.
+          </p>
+
+          <%= link_to (image_tag "useful-links/logo-careplus.jpg", :alt => "Care Plus Group"), "http://ser-fsrc-datix.f4.local/careplus/Live/", :target => "_blank" %>
+
+          <%= link_to (image_tag "useful-links/logo-care4all.png", :alt => "Care4All"), "http://ser-fsrc-datix.f4.local/careplus/Live/index.php?form_id=7&module=INC", :target => "_blank" %>
+        </div>
+      </div>
+
+      <hr />
+
+      <%= link_to (image_tag "useful-links/royal-marsden-new.png", :id => "royal-marsden", :alt => "Royal Marsen Clinical Nursing Procedures"), "http://www.rmmonline.co.uk/", :target => "blank", :class => "float-left image-grid text-center" %>
+      <!--<%= link_to (image_tag "useful-links/royal-marsden.png", :alt => "Royal Marsen Clinical Nursing Procedures"), "http://intranet.nelctp.nhs.uk:8180/web/careplus/royal-marsden", :target => "_blank", :class => "float-left image-grid" %>-->
+
+      <!-- <%= link_to (image_tag "useful-links/vacancies.png", :alt => "Vacancies"), "http://www.jobs.nhs.uk/xi/search_vacancy/1dc7c05a1ad308c02e0c1d4a2ef2ab46/?action=search&master_id=126194", :target => "_blank", :class => "float-left" %> -->
+
+      <%= link_to (image_tag "useful-links/vacancies.png", :alt => "Vacancies"), "/pages/vacancies--3", :class => "float-left" %>
+
+      <div class="clear"></div>
+
+
+        </div>
+      </div>
+
+      <% unless @staff_benefits.blank? %>
+        <div id="staff-benefits">
+          <div class="links-inner equal-height">
+            <h5 class="item-header">
+              <span>
+                <%= link_to "Staff Benefits", staff_benefits_path %>
+              </span>
+            </h5>
+
+            <ul id="benefits-slider">
+              <li class="benefit" id="benefit-0">
+                <div>
+                  <span><%= link_to @staff_benefits[0].title, @staff_benefits[0] %></span>
+                </div>
+
+                <%= link_to image_tag(@staff_benefits[0].image.show, :alt => @staff_benefits[0].title), @staff_benefits[0] %>
+              </li>
+
+
+              <% @staff_benefits[1..-1].each_with_index do |benefit, index| %>
+                <li class="benefit hidden" id="benefit-<%= index + 1 %>">
+                  <div>
+                    <span><%= link_to benefit.title, benefit %></span>
+                  </div>
+
+                  <%= link_to image_tag(benefit.image.show, :alt => benefit.title), benefit %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</section>

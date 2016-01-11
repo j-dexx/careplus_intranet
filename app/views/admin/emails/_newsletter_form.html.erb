@@ -1,0 +1,119 @@
+<script type="text/javascript">
+  function toggleSelect(articleSelectID, emailItemType, length) {
+    articleSelectID = articleSelectID.toLowerCase();
+    articleSelectID = articleSelectID.replace(/ /g, "-");
+    
+    $('.module-content-list-' + length).hide();
+    $('#' + articleSelectID).show();
+    
+    /*
+    if (emailItemType == 'Article') {
+      $("#"+articleSelectID).toggle(true);
+    } else {
+      $("#"+articleSelectID).toggle(false);
+    }
+    */
+  }
+</script>
+
+<%= field_set_tag 'Content' do -%>
+  <div class="field">
+    <%= label_tag 'email[heading]', 'Title/Highlight' %><br />
+    <%= text_area_tag 'email[heading]', @email.heading %>
+  </div>
+
+  <div class="field">
+    <%= label_tag 'email[summary]', 'Introduction Paragraph' %><br />
+    <%= text_area_tag 'email[summary]', @email.summary %>
+  </div>
+<% end -%>
+
+<%= field_set_tag "Select Post", :id => "email-item-shout"  do -%>
+  <%= hidden_field_tag "email[email_items_attributes][1][email_item_type]", "Shout" %>
+
+  <div class="field">
+    <%= label_tag "email[email_items_attributes][1][email_item_type]", "Selected Post" %><br />
+
+    <% unless @email.email_items.blank? %>
+    
+      <%= hidden_field_tag "email[email_items_attributes][1][id]", @email.email_items[0].id %>
+    
+      <%= select_tag(
+            "email[email_items_attributes][1][email_item_id]",
+            options_for_select(Shoutbox.where(:shout_id => nil, :display => true, :sale_item => nil).order('created_at DESC').map{|x| [x.title, x.id]}, @email.email_items[0].email_item_id),
+            { :include_blank => true }
+          ) %>
+        
+    <% else %>
+    
+      <%= select_tag(
+          "email[email_items_attributes][1][email_item_id]",
+          options_for_select(Shoutbox.where(:shout_id => nil, :display => true, :sale_item => nil).order('created_at DESC').map{|x| [x.title, x.id]}, "Shout"),
+          { :include_blank => true }
+        ) %>
+      
+    <% end %>
+  </div>
+<% end %>
+
+
+<%= field_set_tag "Select Buy and Sell", :id => "email-item-sale"  do -%>
+  <%= hidden_field_tag "email[email_items_attributes][2][email_item_type]", "Sale" %>
+
+  <div class="field">
+    <%= label_tag "email[email_items_attributes][2][email_item_type]", "Selected Buy and Sell" %><br />
+
+    <% unless @email.email_items.blank? %>
+    
+      <%= hidden_field_tag "email[email_items_attributes][2][id]", @email.email_items[1].id %>
+    
+      <%= select_tag(
+            "email[email_items_attributes][2][email_item_id]",
+            options_for_select(Shoutbox.where(:shout_id => nil, :display => true, :sale_item => true).order('created_at DESC').map{|x| [x.title, x.id]}, @email.email_items[1].email_item_id),
+            { :include_blank => true }
+          ) %>
+          
+    <% else %>
+      
+      <%= select_tag(
+            "email[email_items_attributes][2][email_item_id]",
+            options_for_select(Shoutbox.where(:shout_id => nil, :display => true, :sale_item => true).order('created_at DESC').map{|x| [x.title, x.id]}, "Sale"),
+            { :include_blank => true }
+          ) %>
+      
+    <% end %>
+  </div>
+<% end %>
+
+<% unless @email.email_items.blank? %>
+  <% @email.email_items.order(:position)[2..-1].each_with_index do |email_item, i| %>
+    
+    <%
+    
+      i += 2
+      
+    
+    %>
+    
+    <%= field_set_tag "Item #{i+1}", :id => "email-item-#{email_item.id}"  do %>
+      <%= hidden_field_tag "email[email_items_attributes][#{i+1}][id]", email_item.id %>
+  
+      <%= render 'item', :length => i+1, :email_item => email_item %>
+  
+      <div style="margin-top: 10px;">
+        <%= link_to_function '[remove]', "$.post('#{destroy_item_admin_email_path(@email, :email_item_id => email_item.id)}')" %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<!-- offset to account for shout and sale -->
+<div id="new_email_item" style="margin: 0 20px 30px;">
+  <% unless @email.email_items.blank? %>
+    <%= link_to_function 'Add Item', "$.post('#{new_item_admin_email_path(@email.id || 0)}?length=#{@email.email_items.length}')" %>
+  <% else %>
+    <%= link_to_function 'Add Item', "$.post('#{new_item_admin_email_path(@email.id || 0)}?length=#{@email.email_items.length + 2}')" %>
+  <% end %>
+</div>
+
+

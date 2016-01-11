@@ -1,0 +1,68 @@
+<%
+navigation     = Willow::Branch.where(:tree => "Main Navigation")
+has_navigation = false;
+%>
+
+<section class="internal-content">
+  <div class="inner">
+    <h1 class="item-header">
+      <span>Venues</span>
+    </h1>
+
+    <% navigation.roots.order(:position).each_with_index do |branch, i| %>
+      <% unless @root.blank? or @root.children.order(:position).blank? %>
+        <% unless branch.children.blank? %>
+          <% has_navigation = true %>          
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% if has_navigation == true %>
+      <div class="information">
+    <% end %>
+    
+    <div class="page-content">
+      
+      <% @venues.each do |venue| %>
+        <div class="venue">
+          <% unless venue.image.show.blank? %>
+            <%= image_tag venue.image.show, :alt => venue.name, :class => "float-right module-image" %>
+          <% end %>
+          
+          <strong><%= venue.name %></strong>
+          <%= simple_format(venue.address) %>
+          
+          <%= link_to venue.postcode ,"https://maps.google.co.uk/maps?q=#{venue.postcode}&hl=en&sll=53.613151,-0.206676&sspn=0.007701,0.013797&oq=#{venue.postcode}&t=m&z=16", :target => "_blank" %>
+        </div>
+      <% end %>
+      
+    </div>
+    <% if has_navigation == true %>
+      </div>
+    <% end %>
+
+    <% unless @root.blank? or @root.children.order(:position).blank? %>
+      <div class="sidebar">
+        <h2>Useful Links</h2>
+        <ul class="sub-nav">
+          <% @root.children.order(:position).each_with_index do |branch, i| %>
+            <li>
+              <%= link_to branch.name, branch.destination %>
+              <% if @current_branch and @current_branch == branch %>
+                <ul>
+                  <% branch.children.each do |child| %>
+                    <li>
+                      <%= link_to child.name, child.destination %>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    
+  </div>
+</section>

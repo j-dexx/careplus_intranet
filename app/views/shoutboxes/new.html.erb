@@ -1,0 +1,90 @@
+<section class="internal-content">
+  <div class="inner">
+    <% if !params[:sale_item].blank? %>
+      
+      <h1>Create a new Sale item</h1>
+      
+      <ul class="inline-list breadcrumb-links">
+        <li>
+          You are here:
+        </li>
+        
+        <li>
+          <%= link_to 'Buy and Sell', sale_categories_path %>
+        </li>
+        
+        <li>
+          >
+        </li>
+        
+        <% unless @specific_category.blank? %>          
+          <li>
+            <%= link_to @specific_category.title, @specific_category %>
+          </li>
+          
+          <li>
+            >
+          </li>
+        <% end %>
+        
+        <li>
+          <strong>
+            Create a new Sale item
+          </strong>
+        </li>
+      </ul>
+      
+      <%= render 'sale_form' %>
+      
+    <% elsif !params[:rumour].blank? %>
+      
+      <h1>Create a new Rumour</h1>
+      
+      <%= render 'rumour_form' %>
+      
+    <% else %>
+      <h1>Create a new Post</h1>
+      
+      <% unless @shoutbox.root.sale_item.blank? %>
+        <ul class="inline-list">
+          <li>
+            You are here:
+          </li>
+          
+          <li>
+            <%= link_to 'Buy and Sell', sale_categories_path %>
+          </li>
+          
+          <li>
+            >
+          </li>
+          
+          <li>
+            <%= link_to @shoutbox.root.sale_category.title, @shoutbox.root.sale_category %>
+          </li>
+          
+          <li>
+            >
+          </li>
+          
+          <li>
+            <%= link_to @shoutbox.root.title, @shoutbox.root %>
+          </li>
+          
+          <li>
+            >
+          </li>
+          
+          <li>
+            <strong>
+              Create a new Shout (reply)
+            </strong>
+          </li>
+        </ul>
+      <% end %>
+      
+      <%= render 'form' %>
+      
+    <% end %>
+  </div>
+</section>

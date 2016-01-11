@@ -1,0 +1,10 @@
+<% title Slider.model_name.human.pluralize %>
+
+<div class="admin_functions">
+  <%= link_to "New #{ Slider.model_name.human }", new_admin_slider_path %>
+</div>
+
+<%= informant_table @sliders, {
+      :headings => [ '', 'Headline', 'Image', 'Link', 'Display', '', '' ], 
+      :body => [ it_sort, :headline, it_edit_images(:image), lambda{|x| link_to x.link, x.link, :target => "_blank" if x.link?}, it_ajax_toggle(:display), it_edit, it_destroy ]
+    } %>

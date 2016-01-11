@@ -1,0 +1,42 @@
+<section class="internal-content">
+  <div class="inner">
+      
+    <h1 class="item-header">
+      <span>Red Tape Challenge</span>
+    </h1>
+
+    <div class="information">
+
+    <%= image_tag 'CRT-Logo-3.jpg', :alt => 'Red Tape Challenge' %>
+    
+    <p>We need your help!!</p>
+
+    <p>When Care Plus Group was formed in 2011 one of the promises made to us all was that as a social enterprise we would create an organisation that did not have unnecessary bureaucracy.</p>
+
+    <p>One of our newstrategic objectives for 2014 / 15 is that we all contribute to the identification and removal of red tape.</p>
+
+    <p>Re tape can involve</p>
+
+    <ul>
+      <li>overlap and duplication</li>
+      <li>insurmountable paperwork resulting in time delays on care</li>
+      <li>unnecessary or inflexible policies and regulations</li>
+      <li>lengthy delays in processing</li>
+      <li>inefficiencies in the system</li>
+    </ul>
+
+    <p>Please help us by identifying any unnecessary red tape (and you can do this anonymously).</p>
+
+    <% unless notice.blank? %>
+      <h2>
+        <span>Successfully submitted</span>
+      </h2>
+      <p><%= notice %></p>
+    <% end %>
+    
+    
+      <%= render "form" %>
+    </div>
+    
+  </div>
+</section>

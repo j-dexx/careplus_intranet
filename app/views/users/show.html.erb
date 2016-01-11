@@ -1,0 +1,71 @@
+<section class="internal-content">
+  <div class="inner">
+    <p id="notice"><%= notice %></p>
+
+    <% if @user.photo? %>    
+      <%= image_tag @user.photo.show, :class => "float-right", :alt => "#{@user.first_name} #{@user.last_name}" %>
+    <% end %>
+
+    <h1>
+      <%= @user.first_name %>
+      
+      <%= @user.last_name %>
+    </h1>
+    
+    <% if current_user and current_user.id == @user.id %>
+      <p>
+        <strong>This is you!</strong>
+        
+        <%= link_to 'Edit', edit_user_path(@user) %> your profile
+      </p>
+    <% end %>
+    
+    <p>
+      <strong>Job title</strong>: <%= @user.job_title %><br />
+      <strong>Department</strong>: <%= @user.department %>
+    </p>
+    
+    <p>
+      <% unless @user.phone_number.blank? %>
+        <strong>Call</strong>: <%= @user.phone_number %>
+      <% end %>
+      
+      <% unless @user.email.blank? and @user.phone_number.blank? %>
+        <br />
+      <% end %>
+      
+      <% unless @user.email.blank? %>
+        <strong>Email</strong>: <%= link_to @user.email %>
+      <% end %>    
+    </p>
+
+    <% unless @user.profile.blank? %>
+      <p>
+        <%= @user.profile %>
+      </p>
+    <% end %>
+    
+    <% unless @awards.blank? %>
+      <h2><%= @user.first_name %>'s Awards</h2>
+    <% end %>
+    
+    <% @awards.each do |award| %>
+      <div class="award float-left">
+        <div class="title">
+          <%= link_to award.title, award %>
+        </div>
+        
+        <% unless award.image.blank? %>        
+          <%= link_to (image_tag award.image.index, :alt => award.title), award %>
+        <% else %>
+          <%= link_to (image_tag "award-image-small.png", :alt => award.title), award %>
+        <% end %>
+      </div>
+    <% end %>
+    
+    <div class="clear"></div>
+    
+    <%# link_to 'View all', users_path, :class => "back-link"
+    %>
+  </div>
+</section>

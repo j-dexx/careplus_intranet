@@ -1,0 +1,28 @@
+<%= form_for([:admin, @award, @award_vote]) do |f| %>
+
+  <%= f.error_messages %>
+
+  <%= field_set_tag 'Basic' do -%>
+    
+    <div class="field">
+      <%= f.label :award %><br />
+      <%= f.number_field :award %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :nomination %><br />
+      <%= f.number_field :nomination %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :user %><br />
+      <%= f.number_field :user %>
+    </div>
+    
+  <% end -%>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+<% end %>					

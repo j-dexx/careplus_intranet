@@ -1,0 +1,71 @@
+/*--Main--*/
+body {
+	font-family: Lucida Grande, Arial, Tahoma, sans-serif; 
+	font-size: 14px;
+	color: #666666;
+  background: #fff;
+}
+
+
+p {
+	margin: 0px; 
+	padding: 8px 0px 8px 0px;
+}
+
+hr {
+	border: 0px; 
+	border-bottom: 1px solid #333333; 
+	height: 0px; 
+	clear: left; 
+	margin: 0px 0px 10px 0px; 
+	padding: 10px 0px 0px 0px;
+}
+
+#tinymce {
+	h2, h3, h4, h5, h6 {
+		padding-bottom: emCalc(3);
+		border-bottom: 3px dotted #a41984;
+	}
+}
+
+
+/*--Links--*/
+a:link {
+  color: #000;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #000;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #000;
+  text-decoration: none;
+}
+
+a:active {
+  color: #000;
+	text-decoration: none;
+}
+
+
+/*--Image Styles--*/
+img.image-right {
+	float: right; 
+	margin: 4px 0px 8px 15px;
+}
+
+img.image-left {
+	float: left; 
+	margin: 4px 15px 8px 0px;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}

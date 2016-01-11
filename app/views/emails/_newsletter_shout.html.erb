@@ -1,0 +1,148 @@
+<% shout = Shoutbox.find(email_item.email_item_id) %>
+      <% if i.odd? %>
+
+        <!-- START ARTICLE ODD -->
+        <tr>
+          <td colspan="2" align="left" valign="top" bgcolor="#e7f5fc" style="padding: 15px 15px 0px 15px;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <% if shout.image? %>
+                <td align="left" valign="top" bgcolor="#FFFFFF" style="padding: 25px;">
+                  <div style="border: 3px solid #cee4ef; display: inline-block;">                    
+                      <%= absolute_image_tag shout.image.newsletter, {
+                        :alt => shout.title,
+                        :title => shout.title,
+                        :width => "195",
+                        :height => "135",
+                        :style => "display:block;",
+                        :border => "0"
+                      } %>
+                  </div>
+                </td>
+                <% else %>
+                  <td align="left" valign="top" bgcolor="#FFFFFF" style="padding: 4px;">
+                </td>
+                <% end %>
+                <td align="left" valign="top" bgcolor="#FFFFFF" style="padding: 25px 25px 25px 15px;">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td colspan="2" align="left" valign="top" style="font-family: Arial, sans-serif; font-size: 19px; line-height: 24px; color: #1b445c; padding-bottom: 3px; border-bottom: 3px dotted #a41984;">
+                        <%= link_to shout.title, shoutbox_url(shout), {
+                          :style => "color:#1b445c; text-decoration: none;",
+                          :target => '_blank'
+                        } %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" align="left" valign="top" style="padding: 10px 0px 10px 0px; font-family: Arial, sans-serif; font-size: 14px; line-height: 19px; color: #333;">
+                        <p style="margin: 0; padding: 0;font-size: 12px">
+                          Created by
+                          
+                          <strong><%= link_to "#{shout.user.first_name} #{shout.user.last_name}", shout.user, :target => "_blank" %></strong>
+                          
+                          on
+                          
+                          <strong><%= l(shout.created_at, :format => :short) %></strong>
+                          
+                          and has
+                          
+                          <strong><%= shout.descendants.count %></strong>
+                          
+                          replies.
+                        </p>
+
+                        <%= raw shout.message %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td width="80%" align="right" valign="top">
+                        &nbsp;
+                      </td>
+                      <td width="2%" align="right" valign="top" bgcolor="#a2d6f3" style="padding: 5px 12px 5px 10px; font-family: Arial, sans-serif; font-size: 14px; line-height: 19px; color: #1b445c; font-weight: bold;">
+                        <%= link_to "MORE", shoutbox_url(shout), {
+                          :style => "color:#1b445c; text-decoration: none; font-weight: bold;",
+                          :target => '_blank'
+                        } %>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- END ARTICLE ODD -->
+      <% else %>
+        <!-- START ARTICLE EVEN -->
+        <tr>
+          <td colspan="2" align="left" valign="top" bgcolor="#e7f5fc" style="padding: 15px 15px 0px 15px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td align="left" valign="top" bgcolor="#FFFFFF" style="padding: 25px 0px 25px 25px;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td colspan="2" align="left" valign="top" style="font-family: Arial, sans-serif; font-size: 19px; line-height: 24px; color: #1b445c; padding-bottom: 3px; border-bottom: 3px dotted #a41984;">
+                      <%= link_to shout.title, shoutbox_url(shout), {
+                        :style => "color:#1b445c; text-decoration: none;",
+                        :target => '_blank'
+                      } %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" align="left" valign="top" style="padding: 10px 0px 10px 0px; font-family: Arial, sans-serif; font-size: 14px; line-height: 19px; color: #333;">
+                      <p style="margin: 0; padding: 0;font-size: 12px">
+                          Created by
+                          
+                          <strong><%= link_to "#{shout.user.first_name} #{shout.user.last_name}", shout.user, :target => "_blank" %></strong>
+                          
+                          on
+                          
+                          <strong><%= l(shout.created_at, :format => :short) %></strong>
+                          
+                          and has
+                          
+                          <strong><%= shout.descendants.count %></strong>
+                          
+                          replies.
+                        </p>
+                      
+                      <%= raw shout.message %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="80%" align="right" valign="top">
+                      &nbsp;
+                    </td>
+                    <td width="2%" align="right" valign="top" bgcolor="#a2d6f3" style="padding: 5px 12px 5px 10px; font-family: Arial, sans-serif; font-size: 14px; line-height: 19px; color: #1b445c; font-weight: bold;">
+                      <%= link_to "MORE", shoutbox_url(shout), {
+                        :style => "color:#1b445c; text-decoration: none; font-weight: bold;",
+                        :target => '_blank'
+                      } %>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              
+              <% if shout.image? %>
+                <td align="left" valign="top" bgcolor="#FFFFFF" style="padding: 25px;">                
+                    <div style="border: 3px solid #cee4ef; display: inline-block;">
+                        <%= absolute_image_tag shout.image.newsletter, {
+                          :alt => shout.title,
+                          :title => shout.title,
+                          :width => "195",
+                          :height => "135",
+                          :style => "display:block;",
+                          :border => "0"
+                        } %>
+                    </div>
+                </td>
+              <% else %>
+                <td align="left" valign="top" bgcolor="#FFFFFF" style="padding: 4px;">
+                </td>
+              <% end %>
+              
+            </tr>
+          </table>
+          </td>
+        </tr>
+	      <!-- END ARTICLE EVEN -->
+	    <% end %>

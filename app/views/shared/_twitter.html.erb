@@ -1,0 +1,33 @@
+<% begin %>
+  <% cache "twitter_side", :expires_in => 600  do %>
+      <% Twitter.user_timeline("CarePlusGroup", :count => 1).each_with_index do |tweet, index| %>
+        
+        <% unless tweet.retweeted_status.blank? %>
+          
+          <p>
+            <%= raw scan_for_links(tweet.retweeted_status.text) %>
+          
+            <span class="date">
+              / <%= link_to "#{ tweet.created_at.strftime('%d %b %H:%M') }", "https://www.twitter.com/#{ tweet.user.screen_name }/statuses/#{ tweet.id }", :target => "_blank", :class => "time" %>
+            </span>
+          
+          </p>
+        <% else %>
+          
+          <p>
+            <%= raw scan_for_links(tweet.text) %>
+          
+          
+            <span class="date">
+              / <%= link_to "#{ tweet.created_at.strftime('%d %b %H:%M') }", "https://www.twitter.com/#{ tweet.user.screen_name }/statuses/#{ tweet.id }", :target => "_blank", :class => "time" %>
+            </span>
+          
+          </p>
+        <% end %>
+        
+      <% end %>
+  <% end %>
+<% rescue Twitter::Error => e %>
+  <%= "Twitter broke due to: #{e}" %>
+  <p>Twitter is not responding</p>
+<% end %>

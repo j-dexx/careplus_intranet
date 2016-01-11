@@ -1,0 +1,10 @@
+<% title Venue.model_name.human.pluralize %>
+
+<div class="admin_functions">
+  <%= link_to "New #{ Venue.model_name.human }", new_admin_venue_path %>
+</div>
+
+<%= informant_table @venues, {
+      :headings => [ :name, :postcode, :image, :display, '', '' ], 
+      :body => [ :name, :postcode, it_edit_images(:image), it_ajax_toggle(:display), it_edit, it_destroy ]
+    } %>

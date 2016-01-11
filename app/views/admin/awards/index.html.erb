@@ -1,0 +1,35 @@
+<% title Award.model_name.human.pluralize %>
+
+<div class="admin_functions">
+  <%= link_to "New #{ Award.model_name.human }", new_admin_award_path %>
+</div>
+
+<%= informant_table @awards, {
+      :headings => [ :title, :mode, 'Award winner', :display, '', '', '', '', ''], 
+      :body => [
+        :title,
+        :mode,
+        lambda{
+          |x| x.award_suggested_nomination ?
+          x.award_suggested_nomination.user_nominated ?
+          "#{x.award_suggested_nomination.user_nominated.first_name} #{x.award_suggested_nomination.user_nominated.last_name}" :
+          "#{x.award_suggested_nomination.name} (#{x.award_suggested_nomination.telephone})"
+          : ''
+        },  
+        it_ajax_toggle(:display),
+        lambda{
+          |x| link_to "Votes (#{x.award_votes_count})", admin_award_award_votes_path(x)
+        },
+        lambda{
+          |x| link_to "Finalised Nominations (#{x.award_nominations_count})",
+          admin_award_award_nominations_path(x)
+        },
+        lambda{
+          |x| link_to "Suggested Nominations (#{x.award_suggested_nominations_count})",
+          admin_award_award_suggested_nominations_path(x)
+        },
+        it_edit,
+        it_destroy ]
+    } %>
+
+<%= paginate @awards %>

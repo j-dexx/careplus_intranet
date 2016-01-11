@@ -1,0 +1,25 @@
+<% title 'Emails' %>
+
+<div class="admin_functions">
+  <%= link_to "New Email", new_admin_email_path %>
+</div>
+
+<%= render 'admin/shared/search' %>
+
+<%= informant_table @emails, {
+      :headings => [ :heading, 'List', 'Link', '', '', '', '', '', '' ],
+      :body => [
+        :heading,
+        lambda{|x| x.list_name if x.list_name},
+        lambda{|x| link_to(email_path(x), email_path(x), :target => '_blank')},
+        it_edit_images(:image),
+        it_edit,
+        it_destroy,
+        lambda{|x| x.campaign_sent ? 'SENT' : ( x.campaign_id? ? link_to('Update Campaign', update_campaign_admin_email_path(x), :method => :post) :
+                                                                 link_to('Create Campaign', create_campaign_admin_email_path(x), :method => :post) ) },
+        lambda{|x| (!x.campaign_sent and x.campaign_id?) ? link_to('Send Test', send_test_admin_email_path(x), :method => :post) : '' },
+        lambda{|x| (!x.campaign_sent and x.campaign_id?) ? link_to('Send Now', send_now_admin_email_path(x), :method => :post, :confirm => 'Are you sure?') : '' }
+      ]
+    } %>
+
+<%= paginate @emails %>

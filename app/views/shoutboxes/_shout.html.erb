@@ -1,0 +1,43 @@
+<% if current_user and current_user.id == shout.user.id %>
+  <div class="own">
+<% end %>
+
+  <p class="date-details">
+    <%= l(shout.created_at, :format => :short) %>,
+    
+    <% if current_user and current_user.id == shout.user.id %>
+      <strong>
+        <%= link_to "you", shout.user, :title => "#{shout.user.first_name} #{shout.user.last_name}" %>
+      </strong>
+    <% else %>
+      <strong>
+        <%= link_to "#{shout.user.first_name} #{shout.user.last_name}", shout.user, :title => "#{shout.user.first_name} #{shout.user.last_name}" %>
+      </strong>
+    <% end %>
+    
+    wrote:
+  </p>
+  
+  <div>    
+    <%= raw shout.message %>
+  </div>
+  
+  <% unless shout.edited_at.blank? %>
+    <p>
+      <strong>
+        This shout was last edited on <%= l(shout.edited_at, :format => :short) %>.
+      </strong>
+    </p>
+  <% end %>
+  
+  <div class="shout-controls">
+    <a href="#shout-<%= shout.id %>" class="toggle-class" data-class="hidden" title="Reply">Reply</a>
+    
+    <% if current_user and current_user.id == shout.user.id %>
+      | <%= link_to 'Edit', edit_shoutbox_path(shout) %>    
+    <% end %>
+  </div>
+  
+<% if current_user and current_user.id == shout.user.id %>
+  </div>
+<% end %>

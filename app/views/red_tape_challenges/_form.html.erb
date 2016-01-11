@@ -1,0 +1,31 @@
+<%= form_for @red_tape_challenge do |f| %>
+  <% if f.object.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@red_tape_challenge.errors.count, "error") %> stopped this form being submitted:</h2>
+      
+      <ul>
+        <% for message in f.object.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'Name (optional)' %>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="field">
+    <%= f.label 'Email (optional)' %>
+    <%= f.text_field :email %>
+    
+  <div class="field">
+    <%= f.label :suggested %>
+    <%= f.text_area :suggested, :rows => 10 %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "Send", :class => "highlight-button" %>
+  </div>
+<% end %>

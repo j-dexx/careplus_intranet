@@ -1,0 +1,21 @@
+<section class="internal-content">
+  <div class="inner">
+    <div class="information">  
+      <h1>Staff Benefits</h1>
+    
+      <p>As an employee of Care Plus Group a number of benefits are availalbe to you. The menu on the right provides links to full details of each benefit.</p>      
+    </div>
+    
+    <div class="sidebar">
+      <h2>Staff Benefits</h2>      
+    
+      <ul class="sub-nav">
+        <% @staff_benefits.each do |benefit| %>
+          <li>
+            <%= link_to benefit.title, benefit %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</section>

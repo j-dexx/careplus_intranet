@@ -1,0 +1,16 @@
+<% title User.model_name.human.pluralize %>
+
+<div class="admin_functions">
+  <%= link_to "New #{ User.model_name.human }", new_admin_user_path %>
+</div>
+
+<%= render 'admin/shared/search' %>
+
+<p>The search looks in last name, or first name, e.g. "John Smith" would return no results, but "Smi" or "Joh" would.</p>
+
+<%= informant_table @users, {
+      :headings => [ :first_name, :last_name, :email, :job_title, :department, 'Phone Number', :active_user, '', '' ], 
+      :body => [ :first_name, :last_name, :email, :job_title, :department, :phone_number, it_ajax_toggle(:active_user), it_edit, it_destroy ]
+    } %>
+
+<%= paginate @users %>

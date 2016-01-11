@@ -1,0 +1,54 @@
+<h2>Voting</h2>
+  <% if current_user %>
+    <% unless @award_user_voted.blank? %>          
+      <p>
+        You have already voted for this award.
+      </p>
+      
+      <p>
+        You voted for
+        
+        <strong>
+        
+        <% unless @award_user_voted[0].nomination.award_suggested_nomination.name.blank? %>
+          <%= @award_user_voted[0].nomination.award_suggested_nomination.name %>
+        <% else %>
+          <%= @award_user_voted[0].nomination.award_suggested_nomination.user_nominated.first_name %>
+          <%= @award_user_voted[0].nomination.award_suggested_nomination.user_nominated.last_name %>.
+        <% end %>
+        </strong>
+      </p>
+      
+      <p>You may change your vote.</p>          
+    <% end %>
+    
+  <% else %>
+    
+    <% session[:return_to] = request.original_url %>
+    <p>You must be <%= link_to "logged in", login_path %> to cast your nomination.</p>
+    
+  <% end %>
+        
+  <h2>Award Nominations</h2>        
+  
+  <% @award_finalised_nominations.each do |x| %>
+    <strong class="name"><%= x.award_suggested_nomination.name %></strong>
+    
+    <div class="float-right">
+      <%= render "award_votes/form", :nominee => x.award_suggested_nomination, :nomination_id => x.id %>
+    </div>
+    
+    <% @award_nominations[x.award_suggested_nomination.name.upcase].each_with_index do |x, index| %>
+      <p>
+        <strong>Reason <%= index + 1 %></strong>
+        
+        <br />
+      
+        <%= x.reason %>
+      </p>
+    <% end %>
+    
+    <hr />
+  <% end %>
+  
+  <div class="clear"></div>

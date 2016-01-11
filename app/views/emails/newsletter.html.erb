@@ -1,0 +1,225 @@
+<!-- HIGHTLIGHT -->
+<tr>
+	 <td colspan="2" align="left" valign="top" style="padding: 0px 15px 30px 15px;">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	    <tr>
+	      <td align="left" valign="top" style="font-family: Arial, sans-serif; font-weight: bold; font-size: 16px; color: #1b445c; line-height: 21px;">
+          <%= raw @email.heading.gsub("\n", '<br />') %>
+        </td>
+	    </tr>
+    </table>
+	</td>
+</tr>
+<!-- END -->
+
+
+<!-- INTRODUCTION -->
+<tr>
+	<td colspan="2" align="left" valign="top" style="padding: 0px 15px 40px 15px;">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	    <tr>
+	      <td align="left" valign="top" style="font-family: Arial, sans-serif; font-size: 14px; line-height: 19px; color: #333;">
+          <%= raw @email.summary.gsub("\n", '<br />') %>
+        </td>
+	      <td align="right" valign="top" style="padding: 5px 0px 0px 25px;">
+				  <% if @email.image? %>
+						<div style="border: 3px solid #a41984; display: inline-block;">
+                <%= absolute_image_tag @email.image.newsletter, {
+                      :alt => @email.image_alt,
+                      :title => @email.image_alt,
+                      :width => "180",
+                      :height => "115",
+                      :style => "display:block;",
+                      :border => "0"
+                    } %>
+						</div>
+          <% end %>
+				</td>
+	    </tr>
+    </table>
+	</td>
+</tr>
+<!-- END -->
+
+<% unless @email.email_items.blank? %>
+  <!-- LATEST NEWS TITLE -->
+  <tr>
+    <td colspan="2" align="left" valign="top" bgcolor="#1b445c" style="padding: 5px 15px 5px 15px;">
+      <table width="570" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="55">
+            <%= absolute_image_tag 'email-title-left.png', {
+              :alt => " ",
+              :width => "31",
+              :height => "13",
+              :style => "display:block;",
+              :border => "0"
+            } %>
+          </td>
+          <td width="120" style="font-family: Arial, sans-serif; color: #FFF; text-transform: uppercase; font-size: 18px; line-height: 23px;">
+            Our News
+          </td>
+          <td width="50">
+            <%= absolute_image_tag 'email-title-right.png', {
+              :alt => " ",
+              :width => "31",
+              :height => "13",
+              :style => "display:block;",
+              :border => "0"
+            } %>
+          </td>
+          <td width="315" align="right" style="font-family: Arial, sans-serif; font-weight: bold; color: #FFF; text-transform: uppercase;font-size: 12px; line-height: 17px;">
+            <%= link_to "See All >", articles_url, {
+              :style => "color:#fff; text-decoration: none;",
+              :target => '_blank'
+            } %>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- LATEST NEWS ARTICLES -->
+
+  <% @email.email_items.each_with_index do |email_item, i| %>
+    <% if email_item.email_item_type == 'Article' %>
+      <%= render "newsletter_article", :email_item => email_item, :i => i %>
+    <% end %>
+	<% end %>
+	
+  <!-- SPECIFIC SHOUT TITLE -->
+  <tr>
+    <td colspan="2" align="left" valign="top" bgcolor="#1b445c" style="padding: 5px 15px 5px 15px;">
+      <table width="570" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="55">
+            <%= absolute_image_tag 'email-title-left.png', {
+              :alt => " ",
+              :width => "31",
+              :height => "13",
+              :style => "display:block;",
+              :border => "0"
+            } %>
+          </td>
+          <td width="130" style="font-family: Arial, sans-serif; color: #FFF; text-transform: uppercase; font-size: 18px; line-height: 23px;">
+            Your News
+          </td>
+          <td width="50">
+            <%= absolute_image_tag 'email-title-right.png', {
+              :alt => " ",
+              :width => "31",
+              :height => "13",
+              :style => "display:block;",
+              :border => "0"
+            } %>
+          </td>
+          <td width="315" align="right" style="font-family: Arial, sans-serif; font-weight: bold; color: #FFF; text-transform: uppercase;font-size: 12px; line-height: 17px;">
+            <%= link_to "See All >", shoutboxes_url, {
+              :style => "color:#fff; text-decoration: none;",
+              :target => '_blank'
+            } %>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- SPECIFIC SHOUT SHOUT -->
+
+  <% @email.email_items.each_with_index do |email_item, i| %>
+    <% if email_item.email_item_type == 'Shout' %>
+      <%= render "newsletter_shout", :email_item => email_item, :i => i %>
+    <% end %>
+	<% end %>
+  
+  <!-- SPECIFIC BUY AND SELL TITLE -->
+  <!--
+  <tr>
+    <td colspan="2" align="left" valign="top" bgcolor="#1b445c" style="padding: 5px 15px 5px 15px;">
+      <table width="570" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="55">
+            <%= absolute_image_tag 'email-title-left.png', {
+              :alt => " ",
+              :width => "31",
+              :height => "13",
+              :style => "display:block;",
+              :border => "0"
+            } %>
+          </td>
+          <td width="300" style="font-family: Arial, sans-serif; color: #FFF; text-transform: uppercase; font-size: 18px; line-height: 23px;">
+            Selected Buy and Sell
+          </td>
+          <td width="50">
+            <%= absolute_image_tag 'email-title-right.png', {
+              :alt => " ",
+              :width => "31",
+              :height => "13",
+              :style => "display:block;",
+              :border => "0"
+            } %>
+          </td>
+          <td width="315" align="right" style="font-family: Arial, sans-serif; font-weight: bold; color: #FFF; text-transform: uppercase;font-size: 12px; line-height: 17px;">
+            <%= link_to "See All >", sale_categories_url, {
+              :style => "color:#fff; text-decoration: none;",
+              :target => '_blank'
+            } %>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  -->
+
+  <!-- SPECIFIC BUY AND SELL SHOUT -->
+
+  <% @email.email_items.each_with_index do |email_item, i| %>
+    <% if email_item.email_item_type == 'Sale' %>
+      <%= render "newsletter_shout", :email_item => email_item, :i => i %>
+    <% end %>
+	<% end %>
+  
+  
+	<tr>
+	  <td height="15" colspan="2" align="left" valign="top" bgcolor="#e7f5fc" style="border-bottom: 3px solid #cee4ef;">
+      &nbsp;
+    </td>
+  </tr>
+	<tr>
+	  <td height="45" colspan="2" align="left" valign="top" bgcolor="#e7f5fc" >
+      &nbsp;
+    </td>
+  </tr>
+<!-- END -->
+<% end %>
+
+
+<!-- TWITTER and TESTIMONIAL -->
+</table>
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#e7f5fc">
+<tr>
+	  <td width="100%" align="left" valign="top" bgcolor="#6a365e" style="padding: 25px 15px 25px 15px;"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+	    <tr>
+	      <td align="center" valign="top" style="padding-bottom: 30px;"><%= link_to((absolute_image_tag 'email-twitter-bird.gif', {
+                        :alt => "Twitter",
+                        :width => "58",
+                        :height => "47",
+                        :style => "display:block;",
+                        :border => "0"
+                      }), 'https://twitter.com/careplusgroup') %></td>
+	      </tr>
+	    <tr>
+	      <td align="center" valign="middle" style="font-family: Arial, sans-serif; font-size: 13px; line-height: 18px; color: #fff;">
+				 <%= render "shared/email_twitter" %>				 
+				</td>
+	      </tr>
+	    <tr>
+	      <td align="center" valign="top" style="padding-top: 30px; font-family: Arial, sans-serif; font-size: 13px; line-height: 18px; color: #82a3a7;">28 Oct 13</td>
+	      </tr>
+    </table></td>
+	  
+  </tr>
+	<tr>
+	  <td height="40" colspan="2" align="left" valign="top">&nbsp;</td>
+  </tr>
+<!-- END -->

@@ -1,0 +1,18 @@
+@import "variables";
+@import "functions";
+
+.venue {
+	padding: emCalc(7) 0 emCalc(14) 0;	
+	margin-bottom: emCalc(7);
+	
+	border-bottom: 1px dotted $nhs_colour;
+	
+	strong {
+		font-size: emCalc(16);
+	}
+	
+	p {
+		margin-top: 0;
+		padding-top: 0;
+	}
+}

@@ -1,0 +1,27 @@
+@import "variables";
+@import "functions";
+
+.field {
+  &.half-width {
+    width: 45%;
+    margin-right: 5%;
+    float: left;
+  }
+}
+
+.users-search {
+  .field {
+    width: 33%;
+    float: left;
+    margin-right: 2%;
+  }
+  
+  .actions {
+    clear: both;
+  }
+}
+
+.report-form {
+  float: right;
+  margin: 0;
+}

@@ -1,0 +1,88 @@
+
+
+<% unless @footer_links.blank? %>
+<section class="email-sign-up">
+  <div class="inner">
+
+    <div class="footer-links">
+      <ul class="inline-list">
+        <% @footer_links.each do |footer_link| %>
+          <li>
+            <%= link_to footer_link.title, footer_link.link %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    
+    <div class="social">
+      <% unless SITE_SETTINGS["Twitter"].blank? %>
+        <h5>
+          Latest Tweet
+        </h5>
+        
+        <div class="icons">
+          <% unless SITE_SETTINGS["Twitter"].blank? %>
+            <%= link_to (image_tag "useful-links/twitter.png", :alt => "Twitter"), SITE_SETTINGS["Twitter"], :class => "margin-right-7" %>
+          <% end %>
+      
+          <% unless SITE_SETTINGS["Facebook"].blank? %>
+            <%= link_to (image_tag "useful-links/facebook.png", :alt => "Facebook"), SITE_SETTINGS["Facebook"] %>
+          <% end %>
+        </div>
+        
+        <div class="tweet">    
+          <%= render "shared/twitter" %>
+        </div>
+      <% end %>  
+    </div>
+    
+  </div>
+</section>
+<% end %>
+
+<div class="charity">
+  <div class="inner">
+    <span>Our charity</span>
+
+    <%= link_to image_tag("footer/care4all.jpg", :alt => "Care4All - our charity"), "http://www.care4all.org.uk/" %>
+  </div>
+</div>
+
+<footer class="page-bottom">
+  <div class="inner">
+    <div class="three columns ukas">
+      <%= link_to image_tag("footer/ukas.jpg", :alt => "UKAS"), "/pages/iso-9001-2008" %>
+      <br />
+      <%= link_to image_tag("footer/daa.png", :alt => "Dementia Action Alliance"), "/pages/dementia-action-alliance", :class => "daa" %>
+    </div>
+
+    <% unless SITE_SETTINGS["Address"].blank? %>
+      <div class="six columns address">
+        <% address_lines = SITE_SETTINGS["Address"].split(",") %>
+
+        <% address_lines.each_with_index do |address_line, i| %>
+
+          <% if i == 0 %>
+            <div class="name"><%= address_line %></div>
+
+            <% elsif i == address_lines.length - 1 %>
+              <%= address_line %>
+            <% else %>
+              <%= address_line %> <span class="bullet">&bull;</span>
+          <% end %>
+
+        <% end %>
+
+        <% unless SITE_SETTINGS["Telephone"].blank? %>
+          <div class="telephone emphasis"><%= SITE_SETTINGS["Telephone"] %></div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="three columns nhs-logo">
+      <%= image_tag "footer/nhs.jpg", :alt => "NHS" %>
+      
+      <%= link_to image_tag("footer/humber-lep.png", :alt => "Humber LEP: Skills Pledged"), "/pages/we-have-pledged", :class => "lep" %>
+    </div>
+  </div>
+</footer>

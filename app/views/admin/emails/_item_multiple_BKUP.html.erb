@@ -1,0 +1,41 @@
+<div class="field">
+  <%= label_tag "email[email_items_attributes][#{length}][email_item_type]", 'Item Type' %><br />
+  <%= select_tag(
+        "email[email_items_attributes][#{length}][email_item_type]",
+        options_for_select(EmailItem.email_item_types, email_item.email_item_type),
+        { :include_blank => true, :onchange => "toggleSelect(this.value + '-select-#{length}', this.value, '#{length}')" }
+      ) %>
+</div>
+
+<div id="article-select-<%= length %>", style="display: <%= email_item.email_item_type == 'Article' ? 'block' : 'none' %>;" class="module-content-list-<%= "#{length}" %>">
+  <div class="field">
+    <%= label_tag "email[email_items_attributes][#{length}][email_item_id]", 'Item ID' %><br />
+    <%= select_tag(
+          "email[email_items_attributes][#{length}][email_item_id]",
+          options_for_select(Article.order('created_at DESC').map{|x| [x.headline, x.id]}, email_item.email_item_id),
+          { :include_blank => true }
+        ) %>
+  </div>
+</div>
+
+<div id="shout-select-<%= length %>", style="display: <%= email_item.email_item_type == 'Shout' ? 'block' : 'none' %>;" class="module-content-list-<%= "#{length}" %>">
+  <div class="field">
+    <%= label_tag "email[email_items_attributes][#{length}][email_item_id]", 'Item ID' %><br />
+    <%= select_tag(
+          "email[email_items_attributes][#{length}][email_item_id]",
+          options_for_select(Shoutbox.where(:shout_id => nil, :display => true, :sale_item => nil).order('created_at DESC').map{|x| [x.title, x.id]}, email_item.email_item_id),
+          { :include_blank => true }
+        ) %>
+  </div>
+</div>
+
+<div id="buy-and-sell-select-<%= length %>", style="display: <%= email_item.email_item_type == 'Shout' ? 'block' : 'none' %>;" class="module-content-list-<%= "#{length}" %>">
+  <div class="field">
+    <%= label_tag "email[email_items_attributes][#{length}][email_item_id]", 'Item ID' %><br />
+    <%= select_tag(
+          "email[email_items_attributes][#{length}][email_item_id]",
+          options_for_select(Shoutbox.where(:shout_id => nil, :display => true, :sale_item => true).order('created_at DESC').map{|x| [x.title, x.id]}, email_item.email_item_id),
+          { :include_blank => true }
+        ) %>
+  </div>
+</div>

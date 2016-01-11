@@ -1,0 +1,52 @@
+<%= form_for(@shoutbox) do |f| %>
+  <% if @shoutbox.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shoutbox.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% @shoutbox.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :parent_id, :value => @shoutbox.parent_id %>
+
+  <% if params[:parent_id].blank? %>
+    
+    <% if @shoutbox.ancestry_depth == 0 or @shoutbox.ancestry_depth.blank? %>
+      <div class="field">
+        <%= f.label :title %><br />
+        <%= f.text_field :title %>
+      </div>
+    <% end %>
+    
+    <%= f.hidden_field :id, :value => @shoutbox.id %>
+    
+  <% else %>
+      <%= f.hidden_field :title, :value => @shoutbox.parent.title %>
+      <%= f.hidden_field :shout_id, :value => @shoutbox.parent.id %>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :message %><br />
+    <%= f.text_area :message, :class => "tinymce" %>
+  </div>
+
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :display, :value => "1" %>
+  <%= f.hidden_field :rumour, :value => "1" %>
+
+  <% if params[:action] == 'edit' %>
+    <%= f.hidden_field :edited_at, :value => DateTime.now %>
+  <% end %>
+
+  <div class="actions">
+    <% if params[:action] == 'edit' %>
+      <%= f.submit "Update" %>
+    <% else %>
+      <%= f.submit "Create" %>
+    <% end %>
+  </div>
+<% end %>

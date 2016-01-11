@@ -1,0 +1,47 @@
+<%
+navigation     = Willow::Branch.where(:tree => "Main Navigation")
+has_navigation = false;
+%>
+
+<section class="internal-content">
+  <div class="inner">
+    <h1 class="item-header">
+      <span><%= @page.title %></span>
+    </h1>
+
+    <% if @page.image? %>
+      <%= image_tag @page.image.show %>
+    <% end %>
+
+    <%= raw @page.content.gsub('%20', ' ') %>
+
+    <% navigation.roots.order(:position).each_with_index do |branch, i| %>
+      <% if @current_branch and @current_branch.name == branch.name %>
+        <% unless branch.children.blank? %>
+              <% branch.children.order(:position).each_with_index do |child, index| %>
+
+               <% if index % 4 == 0 %>
+                  <div class="service margin-left-0">
+                <% else %>
+                  <div class="service">
+                <% end %>
+                    <%= link_to child.destination do %>
+                    <div class="image">
+                      <% if child.leaf.image.present? %>
+                        <%= image_tag child.leaf.image.service_image, :alt => child.name %>
+                      <% else %>
+                        <%= image_tag 'masks/care4all-placeholder.jpg', :alt => child.name %>
+                      <% end %>
+
+                      <div class="clip"></div>
+                    </div>
+                    <div class="service-title"><%= child.name %></div>
+                    <% end %>
+                  </div>
+              <% end %>
+              <div class="clear"></div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</section>

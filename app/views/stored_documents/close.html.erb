@@ -1,0 +1,10 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      parent.$('.mce-document-url-input input').val('<%= @stored_document.document.url %>');
+      el = parent.$('input.mce-document-text-input').first();
+      if (el.val() == '') { el.val('<%= @stored_document.name %>'); }
+      parent.tinymce.activeEditor.windowManager.close();
+    </script>
+  </head>
+</html>

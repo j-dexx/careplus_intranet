@@ -1,0 +1,40 @@
+<%= field_set_tag 'Page Layout' do -%>
+  <div class="field">
+    <%= f.label :layout %><br />
+    <%= f.select :layout, Page.layouts.map{ |x| [t(x), x] } %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :style %><br />
+    <%= f.select :style, Page.styles.map{ |x| [t(x), x] } %>
+  </div>
+<% end -%>
+
+<fieldset>
+  <legend>Main Content</legend>
+  
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_area :content, :class => "tinymce" %>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Images</legend>
+
+  <%= f.image_field :image %>
+</fieldset>
+
+<fieldset>
+  <legend>Settings</legend>
+
+  <div class="field">
+    <%= f.label :display %><br />
+    <%= f.check_box :display %>
+  </div>
+</fieldset>

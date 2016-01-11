@@ -1,0 +1,62 @@
+<% title AwardVote.model_name.human.pluralize %>
+
+<div class="admin_functions">
+  <%= link_to 'Back', admin_awards_path %>
+</div>
+
+<div class="admin_functions">
+  <%=
+    #link_to "New #{ AwardVote.model_name.human }", new_admin_award_award_vote_path
+  %>
+</div>
+
+<% if @award_votes_leaderboard.length >= 1
+%>
+  <h2>Vote leaderboard</h2>
+  
+  <% @award_votes_leaderboard.each do |award| %>  
+    <div>
+      <strong>
+        Vote count: <%= award.nomination_count %>
+      </strong>
+      
+      <% unless award.nomination.award_suggested_nomination.user_nominated.blank? %>        
+        
+        <%= award.nomination.award_suggested_nomination.user_nominated.first_name %>
+        <%= award.nomination.award_suggested_nomination.user_nominated.last_name %>
+        <%= award.nomination.award_suggested_nomination.user_nominated.email %>
+        
+      <% else %>
+        
+        <%= award.nomination.award_suggested_nomination.name %>
+        
+        <% unless award.nomination.award_suggested_nomination.email.blank? %>
+          <%= award.nomination.award_suggested_nomination.email %>
+        <% end %>
+        
+        <%= award.nomination.award_suggested_nomination.telephone %>
+        
+      <% end %>
+    </div>
+  <% end %>
+<% end
+%>
+
+<%= informant_table @award_votes, {
+      :headings => [ 'Award', 'Nomination', 'User who voted' ], 
+      :body => [
+              lambda{
+                |x| x.award.title if x.award
+              },
+              lambda{
+                |x|
+                x.nomination.award_suggested_nomination.user_nominated ? "#{x.nomination.award_suggested_nomination.user_nominated.first_name} #{x.nomination.award_suggested_nomination.user_nominated.last_name}" :
+                "#{x.nomination.award_suggested_nomination.name} (#{x.nomination.award_suggested_nomination.telephone})"
+              },
+              lambda{
+                |x| "#{x.user.first_name} #{x.user.last_name}"if x.user
+              },
+              #it_edit,
+              it_destroy
+              ]
+    } %>

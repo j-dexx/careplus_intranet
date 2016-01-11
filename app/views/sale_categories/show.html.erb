@@ -1,0 +1,64 @@
+<section class="forum-content">
+  <div class="inner">
+    <h1 class="item-header">
+      <span><%= @sale_category.title %></span>
+    </h1>
+    
+    <ul class="inline-list breadcrumb-links">
+      <li>
+        You are here:
+      </li>
+      
+      <li>
+        <%= link_to 'Buy and Sell', sale_categories_path %>
+      </li>
+      
+      <li>
+        >
+      </li>
+      
+      <li>
+        <strong>
+          <%= @sale_category.title %>
+        </strong>
+      </li>
+    </ul>
+    
+    <div class="main-button-container">
+      <%= link_to 'Create new buy or sell item', new_shoutbox_path(:sale_item => "1", :sale_category_id => @sale_category.id), :class => "main-button" %>
+    </div>
+    
+    <% if @all_shoutboxes.count == 0 %>
+      <p>There are no items to buy or sell in this category.</p>
+    <% end %>
+    
+    <% @all_shoutboxes.each do |shout| %>
+      <% unless shout.item_sold.blank? %>
+        <div class="shout sale sold">
+      <% else %>
+        <div class="shout sale">
+      <% end %>
+        <p>
+          <!-- <%= link_to shout.title, shout %><br /> -->
+          <%= link_to truncate(shout.title, :length => 30, :omission => '...'), shout %><br />
+          
+          by <strong><%= shout.user.first_name %> <%= shout.user.last_name %></strong>
+        </p>
+        
+        <!-- <%= raw truncate(shout.message, :length => 35, :omission => '...') %> -->
+        <p><%= sanitize(truncate(shout.message, :length => 35, :omission => '...'), :tags => []) %></p>
+        
+        <p class="date">
+          Updated: <span class="float-right"><%= l(shout.updated_at, :format => :short) %></span><br />
+          Created: <span class="float-right"><%= l(shout.created_at, :format => :short) %></span>          
+        </p>
+      </div>
+    <% end %>
+    
+    <div class="clear"></div>
+    
+    <%= paginate @all_shoutboxes %>
+    
+    <%= link_to 'Back', sale_categories_path, :class => "back-link" %>
+  </div>
+</section>

@@ -1,0 +1,159 @@
+@import "variables";
+@import "functions";
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  header {
+    #logo {
+      @include column(7);
+    }
+    
+    .float-right {
+      margin: 0;
+    }
+    
+    aside {
+      @include column(5);
+    }
+  }
+  
+  .internal-content {
+    .inner {
+      padding: 0 emCalc(5);
+      background-image: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  /* http://stackoverflow.com/a/11092531 */
+  a[href^=tel]{
+    color: inherit;
+    text-decoration: none;
+  }
+
+  h1 {
+    font-size: emCalc(32);
+  }
+  
+  h2 {
+    font-size: emCalc(28);
+  }
+  
+  h3 {
+    font-size: emCalc(26);
+  }
+  
+  h4 {
+    font-size: emCalc(24);
+  }
+  
+  h5 {
+    font-size: emCalc(23);
+  }
+  
+  h6 {
+    font-size: emCalc(21);
+  }
+  
+  p {
+    line-height: 1.3;
+  }
+  
+  header {
+    #logo .float-right {
+      display: none;
+    }
+    
+    aside {
+      width: 37%;
+      float: right;
+    }
+  }
+  
+  #cookie-warning {
+    p {
+      padding: 0 emCalc(5);
+    }
+  }
+  
+  .main-navigation {
+    
+    a {
+      border-right: 0;
+      
+      float: none;    
+      display: block;
+      
+      margin-bottom: emCalc(2);
+    }
+    
+    .toggle-class {
+      border-bottom: 2px dotted $navigation_background_hover_colour;
+    }
+  }
+  
+  .banner-area {
+    background: $navigation_background_colour;
+    
+    height: auto;
+  
+    .banners {
+      display: none;
+    }
+  }
+  
+  .internal-news-pebble {
+    margin: emCalc(5) 0;
+    float: none;
+    width: 100%;
+    
+    h2 {
+      width: 100%;
+    }
+    
+    .details {
+      height: auto;
+    }
+  }
+  
+  .sidebar {
+    @include push(0);
+    @include column(5);
+  }
+  
+  .mobile-hidden {
+    display: none;
+  }
+  
+  .internal-content {
+    .inner {
+      padding: 0 emCalc(5);
+    }
+  }
+  
+  .notice {
+    .inner {
+      padding: 0 emCalc(5);
+    }
+  }
+  
+  .page-bottom {
+    .inner {
+      background-position: bottom right;
+    }
+  }
+  
+  .multiplebgs .item-header span {
+    padding: 0 emCalc(15);
+  }
+  
+  .news-pebble {
+    margin: 0;
+  }
+  
+  .service-item {
+    p {
+      margin: emCalc(5) 0;
+    }
+  }
+}

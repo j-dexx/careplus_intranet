@@ -1,0 +1,20 @@
+
+<div class="field">
+  <%= label_tag "email[email_items_attributes][#{length}][email_item_type]", 'Item Type' %><br />
+  <%= select_tag(
+        "email[email_items_attributes][#{length}][email_item_type]",
+        options_for_select(EmailItem.email_item_types, email_item.email_item_type),
+        { :include_blank => true, :onchange => "toggleSelect('article-select-#{length}', this.value)" }
+      ) %>
+</div>
+
+<div id="article-select-<%= length %>", style="display: <%= email_item.email_item_type == 'Article' ? 'block' : 'none' %>;">
+  <div class="field">
+    <%= label_tag "email[email_items_attributes][#{length}][email_item_id]", 'Item ID' %><br />
+    <%= select_tag(
+          "email[email_items_attributes][#{length}][email_item_id]",
+          options_for_select(Article.order('created_at DESC').map{|x| [x.headline, x.id]}, email_item.email_item_id),
+          { :include_blank => true }
+        ) %>
+  </div>
+</div>

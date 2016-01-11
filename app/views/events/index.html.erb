@@ -1,0 +1,36 @@
+<section class="internal-content">
+  <div class="inner">
+    <h1 class="item-header"><span>Events</span></h1>
+
+    <% unless !@events.blank? %>
+      <p class="text-center">There are no upcoming events.</p>
+    <% end %>
+    
+    <% @events.each do |event| %>
+      <% unless event.image.blank? %>    
+        <div class="internal-news-pebble">
+          <%= link_to event do %>
+            <div class="image">
+              <%= image_tag event.image.index, :alt => "#{event.name}" %>
+              
+              <div class="clip"></div>
+            </div>
+          <% end %>
+        
+          <div class="details">
+            <h2><%= link_to truncate(sanitize(event.name, :tags => []), length: 40), event, :title => event.name %></h2>
+            
+            <span class="published">
+              Start: <span class="float-right"><%= l(event.start_datetime, :format => :short) %></span><br />
+              End: <span class="float-right"><%= l(event.end_datetime, :format => :short) %></span>
+            </span>
+              
+            <p><%= truncate(sanitize(event.summary, :tags => []), length: 30) %></p>
+            
+            <%= link_to "Read more >>", event, :title => event.name %>
+          </div>
+        </div>    
+      <% end %>
+    <% end %>
+  </div>
+</section>

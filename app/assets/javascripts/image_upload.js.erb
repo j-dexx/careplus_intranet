@@ -1,0 +1,78 @@
+jQuery(function() {
+  return $('#image-upload').fileupload({
+    dataType: "script",
+    add: function(e, data) {
+      var file, types;
+      var whiteList = "<%= Chronicler::ImageUploader.extension_white_list.join('|') %>";
+      types = new RegExp("(\.|\/)(" + whiteList + ")$", "i");
+
+      file = data.files[0];
+
+      if (types.test(file.type) || types.test(file.name)) {
+        data.context = $($.parseHTML(tmpl("template-upload", file)));
+        $('#image-upload').append(data.context);
+        return data.submit();
+      } else {
+        return alert("" + file.name + " is not a gif, jpeg, png or bmp image file");
+      }
+    },
+    progress: function(e, data) {
+      var progress;
+      if (data.context) {
+        progress = parseInt(data.loaded / data.total * 100, 10);
+        if (progress < 33) {
+          return data.context.find('.bar').css({
+            "width": progress + '%',
+            "background": '#FF0000'
+          });
+        }
+        else if (progress < 66) {
+          return data.context.find('.bar').css({
+            "width": progress + '%',
+            "background": '#FF6600'
+          });
+        }
+        else if (progress < 99) {
+          return data.context.find('.bar').css({
+            "width": progress + '%',
+            "background": '#FFFC17'
+          });
+        }
+        else{
+          return data.context.find('.bar').css({
+            "width": progress + '%',
+            "background": '#3EC144'
+          });
+        }
+      }
+    },
+    progressall: function(e, data) {
+      var progress;
+      progress = parseInt(data.loaded / data.total * 100, 10);
+      if (progress < 33) {
+        $("#global-progress-bar").css({
+          "width": progress + '%',
+          "background": '#FF0000'
+        });
+      }
+      else if (progress < 66) {
+        $("#global-progress-bar").css({
+          "width": progress + '%',
+          "background": '#FF6600'
+        });
+      }
+      else if (progress < 99) {
+        $("#global-progress-bar").css({
+          "width": progress + '%',
+          "background": '#FFFC17'
+        });
+      }
+      else{
+        $("#global-progress-bar").css({
+          "width": progress + '%',
+          "background": '#3EC144'
+        });
+      }
+    }
+  });
+});

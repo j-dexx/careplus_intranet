@@ -1,0 +1,10 @@
+<% title FooterLink.model_name.human.pluralize %>
+
+<div class="admin_functions">
+  <%= link_to "New #{ FooterLink.model_name.human }", new_admin_footer_link_path %>
+</div>
+
+<%= informant_table @footer_links, {
+      :headings => [ '', 'Title', 'Link', 'Display', '', '' ], 
+      :body => [ it_sort, :title, lambda{|x| link_to x.title, x.link, :target => "_blank" if x.link?}, it_ajax_toggle(:display), it_edit, it_destroy ]
+    } %>

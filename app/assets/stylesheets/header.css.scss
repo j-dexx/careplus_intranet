@@ -1,0 +1,104 @@
+@import "variables";
+@import "functions";
+
+
+#cookie-warning {
+  background: $notice_background_colour;
+  
+  div {
+    @include outerRow();
+  }
+  
+  p {
+    @include column(12);
+    
+    padding: emCalc(5) 0;
+    
+    color: #fff;
+    text-align: center;
+  }
+  
+  a:link {
+    color: $notice_link_colour;
+  }
+  
+  a:visited {
+    color: $notice_link_visited_colour;
+  }
+  
+  a:hover {
+    color: $notice_link_hover_colour;
+  }
+  
+  a:active {
+    color: $notice_link_active_colour;
+  }
+}
+
+header {
+  /*background: #e7f5fc;*/
+  
+  padding: emCalc(7) 0 emCalc(7) 0;
+  
+  .inner {
+    @include outerRow();
+    
+    background: #88bfdd image-url("header-sprinkles-background.png") center right no-repeat;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+  }
+  
+  #logo {
+    @include column(6);
+  }
+  
+  .float-right {
+    color: #fff;    
+  }
+  
+  .slogan {
+    color: #fff;
+    
+    font: {
+      weight: bold;
+      style: italic;
+      size: emCalc(14);
+    }
+    
+    margin: emCalc(15) 0 0 emCalc(5);    
+  }
+  
+  h1 {
+    font-size: emCalc(25);
+    font-weight: bold;
+    font-style: italic;
+    
+    color: #fff;
+    
+    margin: 0;
+  }
+  
+  aside {
+    @include column(6);
+    
+    color: $complimentary_colour;
+    text-align: right;
+  }
+  
+  .username {
+    font-size: emCalc(29);
+    font-weight: bold;
+    font-style: italic;
+    
+    margin: 0 0 emCalc(2) 0;
+  }
+  
+  .user-link a {
+    color: $complimentary_colour;
+  }
+  
+  .intranet-text {
+    font-size: emCalc(41);
+  }
+}

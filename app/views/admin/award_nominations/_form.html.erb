@@ -1,0 +1,20 @@
+<%= form_for([:admin, @award, @award_nomination]) do |f| %>
+
+  <%= f.error_messages %>
+
+  <%= field_set_tag 'Basic' do -%>
+    
+    <%= f.hidden_field :award_id %>
+    
+    <div class="field">
+      <%= f.label :award_suggested_nomination_id %><br />
+      <%= f.select :award_suggested_nomination_id, AwardSuggestedNomination.where(:award_id => @award.id).map{|x| x.user_nominated ? ["#{x.user_nominated.first_name} #{x.user_nominated.last_name}", x.id] : ["#{x.name} #{x.telephone}", x.id]} %>
+    </div>
+    
+  <% end -%>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+<% end %>					

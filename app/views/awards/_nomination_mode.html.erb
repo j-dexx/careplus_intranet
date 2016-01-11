@@ -1,0 +1,46 @@
+<h2>Cast your Nomination</h2>
+
+<% if current_user %>
+  
+  <% unless @award_user_nomination.blank? %>
+  
+    <p>
+      Thank you for submitting a nomination for a STAR awards, your nomination will now go through to the voting process
+    </p>
+    
+    <p>
+      Your nomination:
+      
+      
+      <% unless @award_user_nomination[0].name.blank? %>
+        
+        <strong>
+          <%= @award_user_nomination[0].name %>
+        </strong>
+        
+      <% else %>
+        
+        <strong>
+          <%= @award_user_nomination[0].user_nominated.first_name %> <%= @award_user_nomination[0].user_nominated.last_name %>
+        </strong>
+        
+      <% end %>
+    </p>
+    
+    <p>
+      Reason:
+      
+      <%= @award_user_nomination[0].reason %>
+    </p>
+    
+    <p>This award is not yet in voting mode.</p>
+  <% else %>
+    <%= render "award_suggested_nominations/form" %>            
+  <% end %>
+  
+<% else %>
+  
+  <% session[:return_to] = request.original_url %>
+  <p>You must be <%= link_to "logged in", login_path %> to cast your nomination.</p>
+  
+<% end %>

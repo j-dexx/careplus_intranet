@@ -1,0 +1,561 @@
+@import "variables";
+@import "functions";
+
+
+.home-inner {
+  @include outerRow();
+}
+
+.banner-area {
+  @include column(8);
+
+  margin: 0;
+  padding: 0;
+}
+
+
+.banner-controls {
+  width: 33%;
+  float: left;
+  margin: 0;
+
+  border-color: $emphasis_colour;
+  border-style: solid;
+  border-right-width: 1px;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+
+  li {
+    border-bottom: 1px dotted $emphasis_colour;
+
+    &:last-of-type {
+      border-bottom: 0;
+    }
+  }
+
+  li a {
+    font-size: emCalc(16);
+
+    background: $section_twitter_colour;
+
+    padding: emCalc(5);
+    display: block;
+
+    text-decoration: none;
+
+
+    color: #fff;
+
+    &:hover {
+      background: lighten($section_twitter_colour, 5%);
+    }
+  }
+
+  /*
+  .active {
+    background: $section_twitter_colour;
+  }
+  */
+
+  .summary, li {
+   // padding: emCalc(5) emCalc(5);
+    color: #fff;
+  }
+
+  .summary {
+    font-size: emCalc(14);
+    margin: emCalc(3) 0;
+  }
+}
+
+.banners {
+  position: relative;
+
+  margin: 0 auto emCalc(7) auto;
+  text-align: center;
+  line-height: 1;
+
+  li img {
+    border-color: $content_border_colour;
+    border-style: solid;
+    border-width: 1px;
+    display: block;
+    
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+  }
+
+  li div {
+    /*background: image-url('masks/banner-mask.png') repeat;
+    position: absolute;
+    width: 100%;
+    bottom: 3px;
+    padding: 5px 0;
+    margin: 0 auto;
+
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-right-width: 1px;
+    border-style: solid;
+    border-color: $emphasis_colour;
+    */
+
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+
+    background: #a41984;
+    color: #fff;
+
+    padding: emCalc(10) emCalc(5) emCalc(10) emCalc(10);
+
+    -webkit-border-top-left-radius: 24px;
+    -webkit-border-bottom-left-radius: 24px;
+    -moz-border-radius-topleft: 24px;
+    -moz-border-radius-bottomleft: 24px;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+  }
+
+  li span {
+    padding: 5px 7px;
+
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  a {
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.home-content {
+  //background: image-url("banner-sprinkles-background.png") center no-repeat;
+  
+  /*
+  border-color: $content_border_colour;
+  border-style: solid;
+
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  */
+  
+  &.white {
+    background: none;
+    border: 0;
+  }
+
+  &.white .inner {
+    background: #fff;
+    padding-left: 0;
+    min-height: inherit;
+  }
+}
+
+.news-pebble {
+  width: 208px;
+  height: 268px;
+  margin: 0 emCalc(5) 0 emCalc(50);
+  float: left;
+
+  font-size: emCalc(16);
+  font-weight: bold;
+  text-align: center;
+
+  .image {
+    position: relative;
+    overflow: hidden;
+    width: 208px;
+    height: 208px;
+
+    margin: emCalc(5) 0 emCalc(15) 0;
+  }
+
+  .clip {
+    width: 208px;
+    height: 208px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background: image-url("masks/home-news.png") no-repeat;
+
+    &:hover {
+      background: image-url("masks/home-news-hover.png") no-repeat;
+    }
+  }
+
+  a {
+    color: $section_news_link_colour;
+    text-decoration: none;
+
+    &:hover {
+      color: $section_news_link_hover_colour;
+    }
+  }
+}
+
+.all-news {
+  text-align: left;
+  font-weight: bold;
+
+  padding: emCalc(5);
+  margin: emCalc(73) 0 0 0;
+
+  a {
+    background: lighten(#a41984, 4%);
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    padding: emCalc(10);
+    margin: emCalc(15) 0;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    
+    &:hover {
+      background: $section_news_link_hover_colour;
+      color: $section_news_text_link_hover_colour;
+    }
+  }
+}
+
+.item-header {
+  text-transform: uppercase;
+  text-align: center;
+
+  font-size: emCalc(30);
+}
+
+.opinion {
+  background: $section_opinion_colour;
+  color: $section_opinion_text_colour;
+
+  h2 {
+    font-size: emCalc(24);
+    text-transform: uppercase;
+    color: $section_opinion_header_colour;
+  }
+
+  a {
+    color: $section_opinion_text_colour;
+    background: $section_opinion_link_colour;
+
+    margin: emCalc(10) 0 0 0;
+    padding: emCalc(5);
+
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+  }
+}
+
+
+.testimonial {
+  background: $section_testimonial_colour;
+  color: $section_testimonial_text_colour;
+  border: 0;
+
+  p {
+    color: $section_testimonial_text_colour;
+  }
+}
+
+.notice {
+  margin: emCalc(20) 0;
+}
+
+.email-sign-up {
+  margin-top: emCalc(7);
+  
+  .inner {
+    @include outerRow();
+    
+    padding: emCalc(15) 0;
+    background: $section_email_sign_up_colour;
+  
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .footer-links {
+    @include column(8);
+    margin: emCalc(7) auto 0 auto;
+  }
+  
+  .footer-links li {
+    width: 44%;
+    line-height: 1.45;
+  }
+  
+  .social {
+    @include column(4);
+    text-align: left;
+    color: #fff;
+    padding-left: 0;
+  }
+  
+  .icons {
+    float: right;
+    overflow: hidden;
+  }
+  
+  .social h5 {
+    color: #fff;
+    margin: 0 0 emCalc(7) 0;
+    font-size: emCalc(22);
+    float: left;
+  }
+  
+  .tweet {
+    clear: both;
+  }
+  
+  .tweet p {
+    margin: 0;
+    padding: 0;
+    font-size: emCalc(12);
+  }
+
+  .tweet a {
+    color: $section_email_sign_up_text_colour;
+  }
+  
+  ul {
+    margin: 0;
+  }
+
+  .margin-right-7 {
+    margin-right: emCalc(7);
+  }
+  
+  .footer-links a {
+    font-size: emCalc(14);
+    color: $section_email_sign_up_text_colour;
+  }
+}
+
+
+/*
+.banners {
+  @include column(9);
+
+  margin: 17px auto;
+
+  img {
+    border: 3px solid $nhs_colour;
+  }
+
+  li {
+    position: relative;
+  }
+
+  li div {
+    background: image-url('masks/banner-mask.png') repeat;
+    position: absolute;
+    width: 100%;
+    bottom: 7px;
+    padding: 5px 0;
+    margin: 0 auto;
+  }
+
+  li span {
+    padding: 5px 7px;
+
+    font-size: emCalc(18);
+    color: $banner_text_colour;
+  }
+}
+*/
+
+.benefits-area {
+  @include column(3);
+
+  margin: 17px auto;
+
+  text-align: center;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 36px;
+  }
+
+  li {
+    background: #A3D6F4;
+    color: #fff;
+
+    margin: 0 auto;
+    padding: 30px 8px;
+    width: 150px;
+    height: 150px;
+
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+
+    /* http://www.paulund.co.uk/creating-different-css3-box-shadows-effects */
+    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  }
+
+  li div {
+    width: 100%;
+    height: 100%;
+    display: table;
+  }
+
+  li span {
+    display: table-cell;
+    vertical-align: middle;
+
+    font-size: emCalc(25);
+    line-height: 1;
+  }
+}
+
+.banner-descriptions {
+  .float-right {
+    width: 33%;
+
+    margin-right: 2%;
+
+    background: $section_news_button_background_colour;
+  }
+
+  h2 {
+    padding: 0;
+  }
+
+  a {
+    background: $section_twitter_colour;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 4%;
+
+    display: block;
+
+    &:hover {
+      background: $section_news_link_hover_colour;
+      color: $section_news_text_link_hover_colour;
+    }
+  }
+}
+
+#staff-benefits {
+  @include column(4);
+  margin: emCalc(7) 0 0 0;
+  padding: 0;
+  
+  .item-header {
+    margin-top: 0;
+    padding-top: emCalc(7);
+    font-size: emCalc(23);
+  }
+  
+  .links-inner {
+    margin: 0 0 0 emCalc(7);
+    padding: 0;
+    background: $nhs_colour;
+    border: 1px solid #0d7bc0;
+    overflow: hidden;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+  }
+  
+  ul {
+    margin: 0;
+  }
+  
+  li div {
+    /*background: image-url('masks/banner-mask.png') repeat;
+    position: absolute;
+    width: 100%;
+    bottom: 3px;
+    padding: 5px 0;
+    margin: 0 auto;
+
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-right-width: 1px;
+    border-style: solid;
+    border-color: $emphasis_colour;
+    */
+
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+
+    background: $nhs_colour;
+    color: #fff;
+
+    padding: emCalc(5) emCalc(10);
+
+    -webkit-border-top-left-radius: 24px;
+    -webkit-border-bottom-left-radius: 24px;
+    -moz-border-radius-topleft: 24px;
+    -moz-border-radius-bottomleft: 24px;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+  }
+
+  li span {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  li a, li img {
+    margin: 0;
+    vertical-align:bottom;
+    
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  li img {
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  
+  .item-header a {
+    font-weight: bold;
+    color: #fff;
+    text-decoration: underline;
+  }
+  
+  .item-header a:hover {
+    text-decoration: none;
+  }
+}
+
+.empty-state-message {
+  border-top: 1px solid $section_testimonial_colour;
+  padding: emCalc(7);
+}
+
+.home-inner {
+  background-color: $content_background_colour;
+  
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}

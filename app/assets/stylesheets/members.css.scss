@@ -1,0 +1,24 @@
+.staff {
+  width: 208px;
+  height: 208px;
+  
+  float: right;
+  
+  .image {
+    position: relative;
+    overflow: hidden;
+    width: 208px;
+    height: 208px;
+  }
+  
+  .clip {
+    width: 208px;
+    height: 208px;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    background: image-url("masks/staff-mask.png") no-repeat;
+  }
+}

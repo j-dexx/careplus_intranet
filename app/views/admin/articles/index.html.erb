@@ -1,0 +1,12 @@
+<% title Article.model_name.human.pluralize %>
+
+<div class="admin_functions">
+  <%= link_to "New #{ Article.model_name.human }", new_admin_article_path %>
+</div>
+
+<%= informant_table @articles, {
+      :headings => [ :headline,  :date, :image, :display, '', '' ], 
+      :body => [ :headline, :date, it_edit_images(:image), it_ajax_toggle(:display), it_edit, it_destroy ]
+    } %>
+
+<%= paginate @articles %>

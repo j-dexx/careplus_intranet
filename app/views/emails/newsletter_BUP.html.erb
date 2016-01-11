@@ -1,0 +1,199 @@
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="#000000" width="600" align="center">
+  <tr>
+    <td width="600" bgcolor="#01aef0" height="88">
+      <div style="margin: 20px;
+                  background-color: #01aef0;
+                  font-family: Rockwell, Palatino Linotype, Georgia, serif;
+                  font-size:40px">
+        <span style="color:#000">
+          Latest
+        </span>
+        <span style="color:#FFF; font-weight: bold;">
+          News
+        </span>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="#FFF" width="600" align="center">
+  <tr>
+    <td width="360"
+        bgcolor="#FFF"
+        align="center"
+        style="padding: 20px;
+           text-align: left;
+           font-family: Rockwell, Palatino Linotype, Georgia, serif;
+           font-size: 14px;
+           line-height: 18px;">
+      <div style="background-color: #FFF; font-family: Rockwell, Palatino Linotype, Georgia, serif; color: #000;">
+        <%= @email.heading %>
+      </div>
+      <div style="background-color: #FFF; font-family: Rockwell, Palatino Linotype, Georgia, serif; color: #28BBEF;">
+        <%= raw @email.summary.gsub("\n", '<br />') %>
+      </div>
+    </td>
+    <td width="160" bgcolor="#FFF" align="center" style="padding: 20px; text-align: left;">
+      <div style="background-color: #FFF; width: 160px;">
+        <% if @email.image? %>
+          <%= absolute_image_tag @email.image.newsletter, {
+                :alt => "Hull Bid Logo",
+                :title => "Hull Bid",
+                :width => "160",
+                :height => "121",
+                :style => "display:block;",
+                :border => "0"
+              } %>
+        <% end %>
+      </div>
+    </td>
+  </tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="#000" width="600" align="center">
+  <tr>
+    <td width="600" bgcolor="#000000" height="10">
+      <div style="line-height: 10px;">
+        &nbsp;
+      </div>
+    </td>
+  </tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="#EAECEB" width="600" align="center">
+  <tr>
+    <td width="600" bgcolor="#EAECEB" height="15">
+      <div style="line-height: 15px;">
+        &nbsp;
+      </div>
+    </td>
+  </tr>
+</table>
+
+<% @email.email_items.each_with_index do |email_item, i| %>
+  <% if email_item.email_item_type == 'Article' %>
+    <% article = Article.find(email_item.email_item_id) %>
+
+    <table cellpadding="0" cellspacing="0" border="0" bgcolor="#EAECEB" width="600" align="center">
+      <tr>
+        <td width="600" align="center" bgcolor="#EAECEB">
+          <table cellpadding="0" cellspacing="0" border="0" bgcolor="#FFF" width="570" align="center">
+            <tr>
+              <% if i.odd? %>
+                <td width="180" bgcolor="#FFF" align="center" style="background-color: #FFF; padding: 10px;">
+                  <div style="background-color: #FFF;">
+                    <% if article.image? %>
+                      <%= absolute_image_tag article.image.newsletter, {
+                            :alt => article.title,
+                            :title => article.title,
+                            :width => "180",
+                            :height => "180",
+                            :style => "display:block;",
+                            :border => "0"
+                          } %>
+                    <% end %>
+                  </div>
+                </td>
+              <% end %>
+              <td width="360" style="padding: 10px; background-color: #FFF" bgcolor="#FFF" align="center">
+                <table cellpadding="0"
+                       cellspacing="0"
+                       border="0"
+                       bgcolor="#FFF"
+                       width="360"
+                       align="center"
+                       style="background-color: #FFF">
+                  <tr>
+                    <td style="background-color: #FFF;
+                               padding: 10px 0px;
+                               text-align: left;
+                               font-family: Rockwell, Palatino Linotype, Georgia, serif;
+                               font-size: 24px;
+                               line-height: 24px;">
+                      <div style="background-color: #FFF; font-family: Rockwell, Palatino Linotype, Georgia, serif;">
+                        <%= link_to article.title, article_url(article), {
+                              :style => "color:#000;
+                                         text-decoration: none;
+                                         font-family: Rockwell, Arial, Helvetica, sans-serif;
+                                         color: #000;
+                                         font-size: 24px;",
+                              :target => '_blank'
+                            } %>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="background-color: #FFF;
+                               padding: 5px 0px 10px 0px;
+                               text-align: left;
+                               font-family: Arial, Helvetica, sans-serif;
+                               font-size: 14px;
+                               line-height: 16px;">
+                      <div style="background-color: #FFF;
+                                  font-family: Arial, Helvetica, sans-serif;
+                                  color: #000;">
+                        <%= raw article.summary.gsub("\n", '<br />') %>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="background-color: #FFF;
+                               padding: 5px 0px;
+                               text-align: left;
+                               font-family: Rockwell, Palatino Linotype, Georgia, serif;
+                               font-size: 16px;
+                               color: #28BBEF;
+                               line-height: 16px;">
+                      <%= link_to(article_url(article), {
+                            :style => "font-family: Rockwell, Arial, Helvetica, sans-serif;
+                                       color: #28BBEF;
+                                       font-size: 14px;
+                                       text-decoration: none;",
+                            :target => "_blank"
+                          }) do %>
+                        Read More
+                        <%= absolute_image_tag "email-arrow.png", {
+                              :width => "14",
+                              :height => "14",
+                              :style => "display:inline-block;",
+                              :border => "0"
+                            } %>
+                      <% end %>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <% if i.even? %>
+                <td width="180" bgcolor="#FFF" align="center" style="background-color: #FFF; padding: 10px;">
+                  <div style="background-color: #FFF;">
+                    <% if article.image? %>
+                      <%= absolute_image_tag article.image.newsletter, {
+                            :alt => article.title,
+                            :title => article.title,
+                            :width => "180",
+                            :height => "180",
+                            :style => "display:block;",
+                            :border => "0"
+                          } %>
+                    <% end %>
+                  </div>
+                </td>
+              <% end %>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+
+    <table cellpadding="0" cellspacing="0" border="0" bgcolor="#EAECEB" width="600" align="center">
+      <tr>
+        <td width="600" bgcolor="#EAECEB" height="15">
+          <div style="line-height: 15px;">
+            &nbsp;
+          </div>
+        </td>
+      </tr>
+    </table>
+  <% elsif email_item.email_item_type == 'Bottom Boxes' %>
+    <%= render 'bottom_boxes' %>
+  <% end %>
+<% end %>

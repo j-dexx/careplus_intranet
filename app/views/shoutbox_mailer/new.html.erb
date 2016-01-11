@@ -1,0 +1,20 @@
+<html lang="en">
+  <body>
+  
+    <p>Hi,</p>
+    
+    <p>This is just a quick email to let you know there has been a reply to your shout:</p>
+  
+    <p>
+      <strong>
+        <%= @shout.title %>
+      </strong>
+    </p>
+    
+    <%= raw @shout.message %>
+    
+    <p>
+      by <%= @shout.user.first_name %> <%= @shout.user.last_name %>      
+    </p>
+  </body>
+</html>

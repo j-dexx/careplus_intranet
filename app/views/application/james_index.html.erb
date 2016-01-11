@@ -1,0 +1,132 @@
+<section class="home-content">
+  <div class="home-inner">
+    <% unless notice.blank? %>
+      <div class="row">
+        <div class="twelve columns">
+          <p id="flash_notice">
+            <%= notice %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="four columns home-social">
+        <h5 class="item-header">
+          <span>Useful Links</span>
+        </h5>
+        <div class="row">
+          <div class="twelve columns">
+            <%= link_to (image_tag "useful-links/document-search.png", :alt => "Document search"), 'Q:\\' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="six columns">
+            <%= link_to (image_tag "useful-links/datix-report.jpg", :alt => "Datix report"), "#report-incident", :class => "toggle-class float-left", :"data-toggle-class" => "hidden" %>
+          </div>
+          <div class="six columns">
+            <%= link_to (image_tag "useful-links/datix-compliment.jpg", :alt => "Datix compliment"), "http://ser-fsrc-datix.f4.local/careplus/Live/index.php?form_id=2&module=COM", :class => "float-left" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="eight columns">
+        <% unless @footer_articles.blank? %>
+          <ul class="banners">
+            <li class="banner" id="banner-0">
+              <%= render "article_banner", :article => @footer_articles[0] %>
+            </li>
+
+            <% @footer_articles[1..-1].each_with_index do |banner, index| %>
+              <li class="banner hidden" id="banner-<%= index + 1 %>">
+                <%= render "article_banner", :article => banner, :index => index + 1  %>
+              </li>
+            <% end %>
+          </ul>
+
+          <div class="clear"></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="six columns">
+        <div class="row">
+          <div class="twelve columns staff-benefits equal-height-top">
+            <div class="banner-descriptions">
+              <% unless @staff_benefits.blank? %>
+                <h2 class="item-header">
+                  <span>
+                    Staff Benefits
+                  </span>
+                </h2>
+              <% end %>
+            </div>
+
+            <% unless @staff_benefits.blank? %>
+              <div class="staff-benefits-slider" id="benefits-slider">
+                <% @staff_benefits.each_with_index do |benefit, index| %>
+                  <div><%= link_to benefit.title, benefit %></div>
+                <% end %>
+              </div>
+            <% end %>
+
+            <div class="all-news">
+              <%= link_to 'View All Benefits', staff_benefit_path(@staff_benefits[0].id), :title => 'See More News' %>
+            </div>
+
+            <div class="clear"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="twelve columns home-social text-center join-us-height">
+            <% unless SITE_SETTINGS["Twitter"].blank? %>
+              <div class="home-social">
+                <h5 class="item-header">
+                  <span>Latest Tweet</span>
+                </h5>
+
+                <div class="twitter">
+                  <%= render "shared/twitter" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="six columns">
+        <div class="home-shouts equal-height">
+          <h5 class="item-header">
+            <span>Forum &amp; Sales</span>
+          </h5>
+
+          <div class="new opinion">
+            <%= link_to "New Post", new_shoutbox_path %>
+          </div>
+
+          <div class="new opinion sale">
+            <%= link_to "New Sale Item", new_shoutbox_path(:sale_item => "1") %>
+          </div>
+
+          <div class="clear"></div>
+
+          <% unless @shoutboxes.blank? %>
+           <% @shoutboxes.each do |shout| %>
+            <div class="social-item opinion">
+              <p>
+                <%= link_to shout.title, shout %><br />
+                by <strong><%= shout.user.first_name %> <%= shout.user.last_name %></strong>
+              </p>
+
+              <div class="summary">
+                <%= raw truncate(shout.message, :length => 40, :omission => '...') %>
+              </div>
+
+              <p class="date">Updated: <%= l(shout.updated_at, :format => :short) %></p>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

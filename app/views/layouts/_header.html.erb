@@ -40,7 +40,7 @@
             <li>
               <% if @current_branch and @current_branch.name == branch.name %>
                 <% if branch.name == 'Bullying and Harassment' %>
-                    <%= link_to branch.name, branch.destination, :class => "bullying-link red-tape-current" %>
+                    <%= link_to branch.name, branch.destination, :class => "bullying-link bullying-link-current" %>
                 <% else %>
                     <%= link_to branch.name, branch.destination, :class => "current" %>
                 <% end %>

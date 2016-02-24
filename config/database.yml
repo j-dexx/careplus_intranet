@@ -16,6 +16,7 @@ development:
   pool: 5
   username: root
   password: tmedia
+  host: 192.168.0.41
   #socket: /var/lib/mysql/mysql.sock
 
 main_site_development:
@@ -26,6 +27,7 @@ main_site_development:
   pool: 5
   username: root
   password: tmedia
+  host: 192.168.0.41
   #socket: /var/lib/mysql/mysql.sock
 
 # Warning: The database defined as "test" will be erased and

@@ -22,7 +22,7 @@
     </div>
 
     <aside>
-      
+
     </aside>
 
   </div>
@@ -39,14 +39,14 @@
           <% navigation.roots.order(:position).each_with_index do |branch, i| %>
             <li>
               <% if @current_branch and @current_branch.name == branch.name %>
-                <% if branch.name == 'Red Tape Challenge' %>
-                    <%= link_to branch.name, branch.destination, :class => "red-tape-challenge red-tape-current" %>
+                <% if branch.name == 'Bullying and Harassment' %>
+                    <%= link_to branch.name, branch.destination, :class => "bullying-link red-tape-current" %>
                 <% else %>
                     <%= link_to branch.name, branch.destination, :class => "current" %>
                 <% end %>
               <% else %>
-                <% if branch.name == 'Red Tape Challenge' %>
-                  <%= link_to branch.name, branch.destination, :class => "red-tape-challenge" %>
+                <% if branch.name == 'Bullying and Harassment' %>
+                  <%= link_to branch.name, branch.destination, :class => "bullying-link" %>
                 <% else %>
                   <%= link_to branch.name, branch.destination %>
                 <% end %>
@@ -56,12 +56,12 @@
         <% end %>
       </ul>
     </div>
-      
+
     <div class="user-details">
       <% if current_user %>
           <div class="dropdown">
             <%= link_to "Account", edit_user_path(current_user), :class => "username" %>
-            
+
             <ul class="dropdown-links">
               <li class="padded"><%= current_user.first_name %></li>
               <li><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>

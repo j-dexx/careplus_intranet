@@ -1,0 +1,11 @@
+<div id="<%= blog_author.name %>" class="blog-author">
+  <h2><%= blog_author.name %></h2>
+  <div class="row">
+    <div class="four columns">
+      <%= image_tag blog_author.image.index, alt: blog_author.name, title: blog_author.name, class: 'author-photo-rounded' if blog_author.image? %>
+    </div>
+    <div class="eight columns">
+      <%= raw blog_author.bio %>
+    </div>
+  </div>
+</div>

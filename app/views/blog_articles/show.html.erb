@@ -1,0 +1,36 @@
+<section class="internal-content">
+  <div class="inner">
+    <h1 class="item-header">
+      <span>
+        <%= @blog_article.title %>
+      </span>
+    </h1>
+
+    <div class="row">
+      <div class="nine columns">
+        <div class="published">
+          Published: <strong><%= l(@blog_article.date_published, :format => :long) %></strong>
+          <% unless @blog_article.service.blank? %>
+            | Service: <strong><%= link_to @blog_article.service.title, service_path(@blog_article.service), :title => @blog_article.service.title %></strong>
+          <% end %>
+        </div>
+
+        <%= image_tag @blog_article.image.show, :alt => @blog_article.title, :class => "display-block" if @blog_article.image.present? %>
+
+        <%= raw @blog_article.summary %>
+
+        <%= raw @blog_article.content %>
+
+        <p><%= link_to 'View all blog articles', blog_articles_path %></p>
+      </div>
+      <div class="three columns">
+        <% if @blog_article.blog_author %>
+          <%= image_tag @blog_article.blog_author.image.index, class: 'author-photo-rounded' if @blog_article.blog_author.image? %>
+          <div class="published">
+            Written by: <%= link_to @blog_article.blog_author_name, blog_authors_path(anchor: @blog_article.blog_author_name) %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

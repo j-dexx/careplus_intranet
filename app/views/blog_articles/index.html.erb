@@ -1,0 +1,31 @@
+<section class="internal-content">
+  <div class="inner">
+  <div class="full-information">
+    <h1 class="item-header">
+      <span>
+        Blog
+      </span>
+    </h1>
+
+
+    <div class="row">
+      <div class="nine columns">
+        <% unless @blog_articles.blank? %>
+          <%= render @blog_articles %>
+        <% else %>
+          <p>There are currently no blog articles.</p>
+        <% end %>
+      </div>
+      <div class="three columns">
+        <% if @chief_executive.present? %>
+          <%= image_tag @chief_executive.image.index, class: 'author-photo-rounded' if @chief_executive.image.present? %>
+          <div class="chief-executive-bio">
+            <%= raw @chief_executive.bio %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  </div>
+</section>

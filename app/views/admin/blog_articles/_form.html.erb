@@ -1,0 +1,45 @@
+<%= form_for([:admin, @blog_article]) do |f| %>
+  <%= f.error_messages %>
+  <%= field_set_tag 'Basic' do -%>
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :summary, "Summary" %><br />
+      <%= f.text_area :summary, :class => "tinymce" %>
+    </div>
+    <div class="field">
+      <%= f.label :content %><br />
+      <%= f.text_area :content, :class => "tinymce" %>
+    </div>
+    <div class="field">
+      <% if @blog_article.image? %>
+        <%= image_tag @blog_article.image.thumb %><br/>
+      <% end %>
+      <%= f.label :image %><br />
+      <%= f.file_field :image %>
+      <%= f.hidden_field :image_cache %>
+      <% if @blog_article.image? %>
+        <br/>
+        <%= f.label :remove_image %>
+        <%= f.check_box :remove_image %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f.label :date_published %><br />
+      <%= f.text_field :date_published, :class => "datepicker" %>
+    </div>
+    <div class="field">
+      <%= f.label :blog_author_id %><br/>
+      <%= f.select :blog_author_id, BlogAuthor.order(:name).map{|x| [x.name, x.id]}, include_blank: true %>
+    </div>
+    <div class="field">
+      <%= f.label :display %><br />
+      <%= f.check_box :display %>
+    </div>
+  <% end -%>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

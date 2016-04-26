@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140430081012) do
+ActiveRecord::Schema.define(:version => 20160426082043) do
 
   create_table "articles", :force => true do |t|
     t.string   "headline"
@@ -82,6 +82,32 @@ ActiveRecord::Schema.define(:version => 20140430081012) do
   end
 
   add_index "awards", ["award_suggested_nomination_id"], :name => "index_awards_on_award_suggested_nomination_id"
+
+  create_table "blog_articles", :force => true do |t|
+    t.integer  "blog_author_id"
+    t.string   "title",                            :null => false
+    t.text     "summary"
+    t.text     "content",                          :null => false
+    t.string   "image"
+    t.date     "date_published",                   :null => false
+    t.boolean  "display",        :default => true
+    t.string   "slug"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
+  add_index "blog_articles", ["blog_author_id"], :name => "index_blog_articles_on_blog_author_id"
+
+  create_table "blog_authors", :force => true do |t|
+    t.string   "name",                               :null => false
+    t.string   "slug"
+    t.string   "image"
+    t.text     "bio"
+    t.boolean  "display",         :default => true
+    t.boolean  "chief_executive", :default => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
 
   create_table "chronicler_documents", :force => true do |t|
     t.string   "name"

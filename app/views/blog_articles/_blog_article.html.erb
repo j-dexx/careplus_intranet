@@ -1,0 +1,47 @@
+<div class="blog-entry">
+  <div class="blog-details">
+    <div class="published-information">
+      <h2>
+        <%= link_to blog_article.title,
+            blog_article, :title => blog_article.title, :class => 'title' %>
+      </h2>
+
+      <div class="date">
+        <%= l(blog_article.date_published, :format => :long) %>
+      </div>
+
+      <div class="published">
+        Published
+
+        <% if blog_article.blog_author.present? %>
+          by
+          <%= link_to blog_article.blog_author_name,
+              blog_authors_path(anchor: blog_article.blog_author_name) %>
+        <% end %>
+
+        <% if blog_article.service.present? %>
+          in
+          <%= link_to blog_article.service_title,
+              service_path(blog_article.service),
+              :title => blog_article.service_title,
+              :class => 'blog-service' %>
+        <% end %>
+      </div>
+    </div>
+
+    <% if blog_article.blog_author_image.present? %>
+      <div class="author-photo">
+        <%= link_to (image_tag blog_article.blog_author_image.thumb), blog_authors_path(anchor: blog_article.blog_author_name) %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="blog-preview">
+    <%= link_to (image_tag blog_article.image.index, :alt => "#{blog_article.title} #{"- " + blog_article.service.title if blog_article.service.present?}"),
+        blog_article, title: blog_article.title, :class => 'preview-image' if blog_article.image.present? %>
+
+    <%= raw blog_article.summary %>
+
+    <p><%= link_to "Read more >>", blog_article, :title => blog_article.title %></p>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<section class="internal-content">
+  <div class="inner">
+    <div class="full-information">
+      <h1 class="item-header">
+      <span>
+        Blog Authors
+      </span>
+      </h1>
+
+
+      <% if @blog_authors.blank? %>
+        <p>There are currently no blog authors.</p>
+      <% else %>
+         <%= render @blog_authors %>
+      <% end %>
+      <div class="clear"></div>
+    </div>
+  </div>
+</section>

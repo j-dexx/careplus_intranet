@@ -9,9 +9,11 @@
 <li><%#= link_to Slider.model_name.human.pluralize, main_app.admin_sliders_path %></li>
 <li><%= link_to Award.model_name.human.pluralize, main_app.admin_awards_path %></li>
 
-
-
 <li><%= link_to FooterLink.model_name.human.pluralize, main_app.admin_footer_links_path %></li>
 <li><%= link_to Venue.model_name.human.pluralize, main_app.admin_venues_path %></li>
 <li><%= link_to Member.model_name.human.pluralize, main_app.admin_members_path %></li>
+
+<li><span>Blog</span></li>
+<li><%= link_to BlogArticle.model_name.human.pluralize, main_app.admin_blog_articles_path %></li>
+<li><%= link_to BlogAuthor.model_name.human.pluralize, main_app.admin_blog_authors_path %></li>
 <%# END OF LIST %>

@@ -1,0 +1,15 @@
+<% title BlogAuthor.model_name.human.pluralize %>
+
+<div class="admin_functions">
+  <%= link_to "New #{ BlogAuthor.model_name.human }", new_admin_blog_author_path %>
+</div>
+
+<%= informant_table @blog_authors, {
+      :headings => [ 'Name', 'Image', 'Display', 'Chief Executive', '', '' ],
+      :body => [ :name,
+                 it_edit_images(:image),
+                 it_ajax_toggle(:display),
+                 it_ajax_toggle(:chief_executive),
+                 it_edit,
+                 it_destroy ]
+    } %>

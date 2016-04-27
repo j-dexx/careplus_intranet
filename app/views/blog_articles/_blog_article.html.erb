@@ -18,22 +18,8 @@
           <%= link_to blog_article.blog_author_name,
               blog_authors_path(anchor: blog_article.blog_author_name) %>
         <% end %>
-
-        <% if blog_article.service.present? %>
-          in
-          <%= link_to blog_article.service_title,
-              service_path(blog_article.service),
-              :title => blog_article.service_title,
-              :class => 'blog-service' %>
-        <% end %>
       </div>
     </div>
-
-    <% if blog_article.blog_author_image.present? %>
-      <div class="author-photo">
-        <%= link_to (image_tag blog_article.blog_author_image.thumb), blog_authors_path(anchor: blog_article.blog_author_name) %>
-      </div>
-    <% end %>
   </div>
 
   <div class="blog-preview">

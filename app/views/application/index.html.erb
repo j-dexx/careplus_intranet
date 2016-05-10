@@ -134,12 +134,14 @@
       <div class="clear"></div>
 
       <hr />
-
+      <!--
       <% [{ name: "Document Store", image: "useful-links/document-search.png"}, { name: "Foundations Document Store", image: "useful-links/foundations-document-search.png" }].each do |doc_store| %>
         <% unless SITE_SETTINGS[doc_store[:name]].blank? %>
           <%= link_to (image_tag doc_store[:image], :alt => "Document search"), SITE_SETTINGS[doc_store[:name]], class: 'image-grid float-left', :target => "_blank" %>
         <% end %>
       <% end %>
+      -->
+      <%= link_to (image_tag 'useful-links/document-search.png', :alt => "Document search"), '/pages/document-store', :target => "_blank" %>
 
       <div class="clear"></div>
 

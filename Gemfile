@@ -27,5 +27,5 @@ gem 'manticore', git: 'git@github.com:eskimosoup/manticore.git', branch: 'rails_
 gem 'jquery-ui-rails'
 gem 'friendly_id', '~> 4.0.9'
 gem 'jquery-fileupload-rails'
-gem 'mailchimp'
+gem 'mailchimp-api', require: 'mailchimp'
 gem 'twitter', '4.8.1'

@@ -18,7 +18,7 @@ class Email < ActiveRecord::Base
   end
 
   def create_campaign
-    api = Mailchimp::API.new('33b304e594801940062b2bfbefddcd36-us3')
+    api = Mailchimp::API.new('01e4730feb63b653b84f5e90cc0f90d0-us3')
 
     # campaignCreate(string apikey, string type, array options, array content, array segment_opts, array type_opts)
     campaign_id = api.campaignCreate(
@@ -40,7 +40,7 @@ class Email < ActiveRecord::Base
   end
 
   def update_campaign
-    api = Mailchimp::API.new('33b304e594801940062b2bfbefddcd36-us3')
+    api = Mailchimp::API.new('01e4730feb63b653b84f5e90cc0f90d0-us3')
 
     # campaignUpdate(string apikey, string cid, string name, mixed value)
     api.campaignUpdate('cid' => campaign_id, 'name' => 'subject', 'value' => subject)
@@ -52,14 +52,14 @@ class Email < ActiveRecord::Base
   end
 
   def send_test
-    api = Mailchimp::API.new('33b304e594801940062b2bfbefddcd36-us3')
+    api = Mailchimp::API.new('01e4730feb63b653b84f5e90cc0f90d0-us3')
 
     # campaignSendTest(string apikey, string cid, array test_emails, string send_type)
     api.campaignSendTest('cid' => campaign_id, 'test_emails' => [SITE_SETTINGS['Email']], 'send_type' => 'html')
   end
 
   def send_now
-    api = Mailchimp::API.new('33b304e594801940062b2bfbefddcd36-us3')
+    api = Mailchimp::API.new('01e4730feb63b653b84f5e90cc0f90d0-us3')
 
     # campaignSendNow(string apikey, string cid)
     if api.campaignSendNow('cid' => campaign_id)
@@ -72,7 +72,7 @@ class Email < ActiveRecord::Base
   end
 
   def self.campaigns
-    api = Mailchimp::API.new('33b304e594801940062b2bfbefddcd36-us3')
+    api = Mailchimp::API.new('01e4730feb63b653b84f5e90cc0f90d0-us3')
 
     list = api.lists
     unless list.blank? or list["data"].blank?

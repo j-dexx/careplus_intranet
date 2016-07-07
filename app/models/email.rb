@@ -17,6 +17,10 @@ class Email < ActiveRecord::Base
     ['Newsletter']
   end
 
+  def self.api
+    Mailchimp::API.new(ENV['MAILCHIMP_API_KEY'])
+  end
+
   def api
     Mailchimp::API.new(ENV['MAILCHIMP_API_KEY'])
   end
